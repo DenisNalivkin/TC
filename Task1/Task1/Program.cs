@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesignOfClasses
+namespace Task1
 {
-   public interface IamText
+    class Program
     {
-        string TextFoRLesson { get; set; }
+        static void Main(string[] args)
+        {
+        }
     }
 }
