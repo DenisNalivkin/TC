@@ -1,7 +1,9 @@
 ﻿
 namespace Task1
-{
-  public interface IVersionable
+{/// <summary>
+ /// Interface  IVersionable stores property Version which will realize classes  Video and Lesson.
+ /// </summary>
+    public interface IVersionable
     {
         byte[] Version { get; set; }
     }

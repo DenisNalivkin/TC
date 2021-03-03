@@ -25,7 +25,14 @@ namespace Task1
             }
             set
             {
-                if (value.Length <= lengthOfDescription)
+                if (!string.IsNullOrEmpty(value))
+                {
+                    if (value.Length <= lengthOfDescription)
+                    {
+                        textDescription = value;
+                    }
+                }
+                else
                 {
                     textDescription = value;
                 }

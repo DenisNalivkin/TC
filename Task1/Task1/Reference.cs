@@ -1,13 +1,11 @@
 ﻿using System;
 namespace Task1
-{
-    /// <summary>
-    ///   Text class stores text for lesson.
-    /// </summary>
-    public class Text : GeneralForSiteEntities
-    {   
+{/// <summary>
+/// Reference class stores references for lesson.
+/// </summary>
+    class Reference : GeneralForSiteEntities
+    {
         const int lengthOfDescription = 256;
-        const int lengthOfText = 10000;
         private Guid theUniueIdentifier;
         public override Guid TheUniueIdentifier
         {
@@ -37,24 +35,24 @@ namespace Task1
                     textDescription = value;
                 }
             }
-                  
         }
-        private string textForLesson;
-        public string TextForLesson
+        private string referenceOnContent;
+        public string ReferenceOnContent
         {
             get
             {
-                return textForLesson;
+                return referenceOnContent;
             }
             set
             {
-                if ( !String.IsNullOrEmpty(value) && value.Length <= lengthOfText)
+                if(!string.IsNullOrEmpty(value))
                 {
-                    textDescription = value;
+                   referenceOnContent = value;
                 }
             }
         }
-        public Text (string textDescription, string textForLesson)
+        private TypeOfReference ReferenceType { get; set; }    
+        public Reference(string textDescription, string referenceOnContent, TypeOfReference referenceType)
         {
             this.theUniueIdentifier = theUniueIdentifier.CreateUniqueIdentifier();
             this.textDescription = textDescription;
@@ -69,14 +67,12 @@ namespace Task1
                     throw new ArgumentOutOfRangeException();
                 }
             }
-            if (!String.IsNullOrEmpty(textForLesson) && textForLesson.Length <= lengthOfText)
-            {
-               this.textForLesson = textForLesson;
-            }
-            else
+            this.referenceOnContent = referenceOnContent;
+            if(string.IsNullOrEmpty(referenceOnContent))
             {
                 throw new ArgumentOutOfRangeException();
-            }               
+            }
+            this.ReferenceType = referenceType;
         }
         /// <summary>
         /// Overridden ToString method.
@@ -93,13 +89,12 @@ namespace Task1
         /// <returns>  True if both operands are equals, or false if not equals. </returns>
         public override bool Equals(object obj)
         {
-            GeneralForSiteEntities resultOfConverting = obj as GeneralForSiteEntities;             
-            if(resultOfConverting !=null)
+            GeneralForSiteEntities resultOfConverting = obj as GeneralForSiteEntities;
+            if (resultOfConverting != null)
             {
                 return this.theUniueIdentifier == resultOfConverting.TheUniueIdentifier;
             }
-            return false;        
+            return false;
         }
     }
-    }
-
+}
