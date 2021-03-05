@@ -8,11 +8,10 @@ namespace Task2
     {
         protected T[] Data { get; set; }
         public int Rank { get; protected set; }
-        public ArgumentsForEvent<T> _ArgumentsForEvent { get; set; }
 
-        public SquareMatrix(T[] array)
+        public SquareMatrix( T[] array )
         {
-            if(array == null)
+            if( array == null )
             {
                 throw new ArgumentException();
             }
@@ -32,25 +31,27 @@ namespace Task2
 
         }
 
-        public delegate void Matrix<T>( ArgumentsForEvent<T> agrs, int firstIndex, int secondIndex, T oldValue, T newValue );
+        public delegate void Matrix<T>( int firstIndex, int secondIndex, T oldValue, T newValue );
         public event Matrix<T> MatrixChanged;
 
-        public T this[int i, int j]
+        public T this[ int i, int j ]
         {
             get
             {
                 CheckIndex( i );
                 CheckIndex( j );
-                return Data[i * Rank + j];
+                return Data[ i * Rank + j ];
             }
 
             set
             {
                 CheckIndex( i );
                 CheckIndex( j );
-                ArgumentsForEvent<T> agrsEvent = new ArgumentsForEvent<T>( i, j, Data[i * Rank + j], value );
-                MatrixChanged?.Invoke( agrsEvent, i, j, Data[i * Rank + j], value );
-                Data[i * Rank + j] = value;
+                if(!value.Equals( Data[i * Rank + j] ) )
+                {
+                    MatrixChanged?.Invoke( i, j, Data[ i * Rank + j ], value);
+                    Data[ i * Rank + j ] = value;
+                }             
             }
         }
         /// <summary>
@@ -63,6 +64,17 @@ namespace Task2
             {
                 throw new IndexOutOfRangeException();
             }
+        }
+        /// <summary>
+        /// Method ReceiveEvent is shell for event Matrix Changed.
+        /// </summary>
+        /// <param name="firstIndex"> First index of node from square matrix. </param>
+        /// <param name="secondIndex"> Second index of node from square matrix. </param>
+        /// <param name="oldValue"> Value before change. </param>
+        /// <param name="newValue"> New value. </param>
+        protected virtual void ReceiveEvent ( int firstIndex, int secondIndex, T oldValue, T newValue )
+        {
+          MatrixChanged?.Invoke( firstIndex, secondIndex, oldValue, newValue );
         }
     }
 }
