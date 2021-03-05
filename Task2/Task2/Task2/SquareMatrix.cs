@@ -11,7 +11,7 @@ namespace Task2
 
         public SquareMatrix( T[] array )
         {
-            if( array == null )
+            if( array == null || array.Length == 0 )
             {
                 throw new ArgumentException();
             }
@@ -54,6 +54,7 @@ namespace Task2
                 }             
             }
         }
+
         /// <summary>
         /// Method CheckIndex checks input index.  
         /// </summary>
@@ -65,6 +66,7 @@ namespace Task2
                 throw new IndexOutOfRangeException();
             }
         }
+
         /// <summary>
         /// Method ReceiveEvent is shell for event Matrix Changed.
         /// </summary>

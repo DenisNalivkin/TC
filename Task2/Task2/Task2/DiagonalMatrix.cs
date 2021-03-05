@@ -7,7 +7,6 @@
     {
         public DiagonalMatrix( T[] data ) : base()
         {
-
             Rank = (int)System.Math.Sqrt((double)data.Length);
             Data = new T[data.Length];
             System.Array.Copy(data, Data, data.Length);
@@ -20,7 +19,7 @@
                 CheckIndex( j );
                 if ( i == j )
                 {
-                    return Data[ i ];
+                    return Data[ i * Rank + j ];
                 }
                 return default( T );
             }
@@ -28,13 +27,13 @@
             {
                 CheckIndex( i );
                 CheckIndex( j );
-                if ( i == j )
+                if (i == j)
                 {
-                    if ( !value.Equals( Data[ i * Rank + j ] ) )
+                    if (!value.Equals(Data[i * Rank + j]))
                     {
-                        ReceiveEvent( i, j, Data[ i * Rank + j ], value );
+                        ReceiveEvent(i, j, Data[i * Rank + j], value);
+                        Data[i] = value;
                     }
-                    Data[ i ] = value;
                 }
                 else
                 {
@@ -42,6 +41,7 @@
                 }
             }           
         }
+
         /// <summary>
         ///  Method ovveride ReceiveEvent for getting event from base class of SquareMatrix.
         /// </summary>
