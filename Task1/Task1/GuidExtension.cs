@@ -5,7 +5,7 @@ namespace Task1
  /// </summary>
     public static class GuidExtension
     {
-        public static Guid CreateUniqueIdentifier(this Guid guid)
+        public static Guid CreateIdentifier( this Guid guid )
         {
             return Guid.NewGuid();
         }

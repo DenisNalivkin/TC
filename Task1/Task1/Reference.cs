@@ -5,96 +5,56 @@ namespace Task1
 /// </summary>
     class Reference : GeneralForSiteEntities
     {
-        const int lengthOfDescription = 256;
-        private Guid theUniueIdentifier;
-        public override Guid TheUniueIdentifier
+        private Guid _uniqueIdentifier;
+        public override Guid UniqueIdentifier
         {
             get
             {
-                return theUniueIdentifier;
+                return _uniqueIdentifier;
             }
         }
-        private string textDescription;
+        private string _textDescription;
         public override string TextDescription
         {
             get
             {
-                return textDescription;
+                return _textDescription;
             }
             set
             {
-                if (!string.IsNullOrEmpty(value))
+                if ( value == null || value.Length <= lengthDescription )
                 {
-                    if (value.Length <= lengthOfDescription)
-                    {
-                        textDescription = value;
-                    }
+                    _textDescription = value;
+                    return;
                 }
-                else
-                {
-                    textDescription = value;
-                }
+                throw new ArgumentOutOfRangeException();
             }
         }
-        private string referenceOnContent;
-        public string ReferenceOnContent
+        private string _referenceContent;
+        public string ReferenceContent
         {
             get
             {
-                return referenceOnContent;
+                return _referenceContent;
             }
             set
             {
-                if(!string.IsNullOrEmpty(value))
+                if( !string.IsNullOrEmpty(value) )
                 {
-                   referenceOnContent = value;
+                   _referenceContent = value;
+                    return;
                 }
+                throw new ArgumentException();
             }
         }
-        private TypeOfReference ReferenceType { get; set; }    
-        public Reference(string textDescription, string referenceOnContent, TypeOfReference referenceType)
+        public TypeReference ReferenceType { get; set; } 
+        
+        public Reference( string textDescription, string referenceContent, TypeReference referenceType )
         {
-            this.theUniueIdentifier = theUniueIdentifier.CreateUniqueIdentifier();
-            this.textDescription = textDescription;
-            if (!string.IsNullOrEmpty(textDescription))
-            {
-                if (textDescription.Length <= lengthOfDescription)
-                {
-                    this.textDescription = textDescription;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-            }
-            this.referenceOnContent = referenceOnContent;
-            if(string.IsNullOrEmpty(referenceOnContent))
-            {
-                throw new ArgumentOutOfRangeException();
-            }
+            this._uniqueIdentifier = _uniqueIdentifier.CreateIdentifier();
+            this.TextDescription = textDescription;
+            this.ReferenceContent = referenceContent;           
             this.ReferenceType = referenceType;
-        }
-        /// <summary>
-        /// Overridden ToString method.
-        /// </summary>
-        /// <returns>Returns property textDescription of text class.  </returns>
-        public override string ToString()
-        {
-            return TextDescription;
-        }
-        /// <summary>
-        ///  Overridden Equals method.
-        /// </summary>
-        /// <param name="obj"> The second operand for compare.</param>
-        /// <returns>  True if both operands are equals, or false if not equals. </returns>
-        public override bool Equals(object obj)
-        {
-            GeneralForSiteEntities resultOfConverting = obj as GeneralForSiteEntities;
-            if (resultOfConverting != null)
-            {
-                return this.theUniueIdentifier == resultOfConverting.TheUniueIdentifier;
-            }
-            return false;
         }
     }
 }

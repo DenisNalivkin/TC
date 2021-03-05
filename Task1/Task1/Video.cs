@@ -6,116 +6,83 @@ namespace Task1
     /// </summary>
     public class Video : GeneralForSiteEntities, IVersionable
     {
-        const int lengthOfDescription = 256;
         const int LengthVersion = 8;
-        private Guid theUniueIdentifier;
-        public override Guid TheUniueIdentifier
+        private Guid _uniqueIdentifier;
+        public override Guid UniqueIdentifier
         {
             get
             {
-                return theUniueIdentifier;
+                return _uniqueIdentifier;
             }
         }
-        private string textDescription;
+        private string _textDescription;
         public override string TextDescription
         {
             get
             {
-                return textDescription;
+                return _textDescription;
             }
             set
             {
-                if (!string.IsNullOrEmpty(value))
+               if( value == null || value.Length <= lengthDescription )
                 {
-                    if (value.Length <= lengthOfDescription)
-                    {
-                        textDescription = value;
-                    }
+                    _textDescription = value;
+                    return;
                 }
-                else
-                {
-                    textDescription = value;
-                }
+                throw new ArgumentOutOfRangeException();
             }
         }
-
-        private string urlVideo;
+        private string _urlVideo;
         public string UrlVideo
         {
             get
             {
-                return urlVideo;
+                return _urlVideo;
             }
             set
             {
-                if (!String.IsNullOrEmpty(value))
+                if ( !String.IsNullOrEmpty(value) )
                 {
-                    textDescription = value;
-                }
+                    _urlVideo = value;
+                    return;
+                }                
+                   throw new ArgumentException();             
             }
         }
-        private string UrlPicture { get; set; }
-        public VideOFormat FormatOfVideo { get; set; }
-        private byte[] version;
+        private byte[] _version;
         public byte[] Version
         {
             get
             {               
-                return version;
+                return _version;
             }
             set
             {
-                if(version!=null && value.Length <= LengthVersion)
+                if( value != null && value.Length == LengthVersion )
                 {
-                    version = value;
+                    _version = new byte[LengthVersion];
+                    Array.Copy( value, _version, value.Length );                   
+                    return;
                 }
+                throw new ArithmeticException();
             }
         }
-        public Video (string textDescription, string urlVideo, string urlPicture, VideOFormat formatOfVideo)
-        {
-            this.theUniueIdentifier = theUniueIdentifier.CreateUniqueIdentifier();
-            this.textDescription = textDescription;
-            if(!string.IsNullOrEmpty(textDescription))
-            {
-                if (textDescription.Length <= lengthOfDescription)
-                {
-                    this.textDescription = textDescription;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-            }                  
-            this.urlVideo = urlVideo;
-            if(String.IsNullOrEmpty(urlVideo))
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-            this.UrlPicture = urlPicture;
-            this.FormatOfVideo = formatOfVideo;
-        }
+        public string UrlPicture { get; set; }
+        public VideFormat FormatVideo { get; set; }
 
-        /// <summary>
-        /// Overridden ToString method.
-        /// </summary>
-        /// <returns>Returns property textDescription of text class.  </returns>
-        public override string ToString()
+        public Video ( string textDescription, string urlVideo, string urlPicture, VideFormat formatVideo, byte[] version )
         {
-            return TextDescription;
-        }
-        /// <summary>
-        ///  Overridden Equals method.
-        /// </summary>
-        /// <param name="obj"> The second operand for compare.</param>
-        /// <returns>  True if both operands are equals, or false if not equals. </returns>
-        public override bool Equals(object obj)
+            this._uniqueIdentifier = _uniqueIdentifier.CreateIdentifier();
+            this.TextDescription = textDescription;
+            this.UrlVideo = urlVideo;
+            this.UrlPicture = urlPicture;
+            this.FormatVideo = formatVideo;
+            this.Version = version;
+        } 
+        
+        public Video()
         {
-            GeneralForSiteEntities resultOfConverting = obj as GeneralForSiteEntities;
-            if (resultOfConverting != null)
-            {
-                return this.theUniueIdentifier == resultOfConverting.TheUniueIdentifier;
-            }
-            return false;
+
         }
     }
 }

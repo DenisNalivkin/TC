@@ -6,99 +6,60 @@ namespace Task1
     /// </summary>
     public class Text : GeneralForSiteEntities
     {   
-        const int lengthOfDescription = 256;
-        const int lengthOfText = 10000;
-        private Guid theUniueIdentifier;
-        public override Guid TheUniueIdentifier
+        const int lengthText = 10000;
+        private Guid _uniqueIdentifier;
+        public override Guid UniqueIdentifier
         {
             get
             {
-                return theUniueIdentifier;
+                return _uniqueIdentifier;
             }
         }
-        private string textDescription;
+        private string _textDescription;
         public override string TextDescription
         {
             get
             {
-                return textDescription;
+                return _textDescription;
             }
             set
             {
-                if (!string.IsNullOrEmpty(value))
+                if ( value == null || value.Length <= lengthDescription )
                 {
-                    if (value.Length <= lengthOfDescription)
-                    {
-                        textDescription = value;
-                    }
+                    _textDescription = value;
+                    return;
                 }
-                else
-                {
-                    textDescription = value;
-                }
+                throw new ArgumentOutOfRangeException();
             }
-                  
         }
-        private string textForLesson;
-        public string TextForLesson
+        private string _textLesson;
+        public string TextLesson
         {
             get
             {
-                return textForLesson;
+                return _textLesson;
             }
             set
             {
-                if ( !String.IsNullOrEmpty(value) && value.Length <= lengthOfText)
+                if ( !String.IsNullOrEmpty(value) && value.Length <= lengthText )
                 {
-                    textDescription = value;
+                    _textLesson = value;
+                    return;
                 }
+                throw new ArgumentException();
             }
         }
-        public Text (string textDescription, string textForLesson)
+
+        public Text ( string textDescription, string textLesson )
         {
-            this.theUniueIdentifier = theUniueIdentifier.CreateUniqueIdentifier();
-            this.textDescription = textDescription;
-            if (!string.IsNullOrEmpty(textDescription))
-            {
-                if (textDescription.Length <= lengthOfDescription)
-                {
-                    this.textDescription = textDescription;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-            }
-            if (!String.IsNullOrEmpty(textForLesson) && textForLesson.Length <= lengthOfText)
-            {
-               this.textForLesson = textForLesson;
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException();
-            }               
+            this._uniqueIdentifier = _uniqueIdentifier.CreateIdentifier();
+            this.TextDescription = textDescription;           
+            this.TextLesson = textLesson;                         
         }
-        /// <summary>
-        /// Overridden ToString method.
-        /// </summary>
-        /// <returns>Returns property textDescription of text class.  </returns>
-        public override string ToString()
+
+        public Text()
         {
-            return TextDescription;
-        }
-        /// <summary>
-        ///  Overridden Equals method.
-        /// </summary>
-        /// <param name="obj"> The second operand for compare.</param>
-        /// <returns>  True if both operands are equals, or false if not equals. </returns>
-        public override bool Equals(object obj)
-        {
-            GeneralForSiteEntities resultOfConverting = obj as GeneralForSiteEntities;             
-            if(resultOfConverting !=null)
-            {
-                return this.theUniueIdentifier == resultOfConverting.TheUniueIdentifier;
-            }
-            return false;        
+
         }
     }
     }

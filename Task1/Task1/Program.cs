@@ -4,7 +4,7 @@ namespace Task1
     /// <summary>
     /// Enum TypeOFLesson  stores types lesson.
     /// </summary>
-    public enum TypeOFLesson : int
+    public enum TypeLesson : int
     {
         TextLesson,
         VideoLeson,
@@ -12,7 +12,7 @@ namespace Task1
     /// <summary>
     /// Enum VideOFormat  stores types of video for lesson.
     /// </summary>
-    public enum VideOFormat : int
+    public enum VideFormat : int
     {
         Unknown,
         Avi,
@@ -22,7 +22,7 @@ namespace Task1
     /// <summary>
     /// Enum TypeOfReference  stores types of references for lesson.
     /// </summary>
-    public enum TypeOfReference : int
+    public enum TypeReference : int
     {
         Unknown,
         Html,
@@ -34,6 +34,6 @@ namespace Task1
     {
         static void Main(string[] args)
         {
-        }
+        }       
     }
 }
