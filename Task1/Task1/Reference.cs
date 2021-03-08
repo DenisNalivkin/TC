@@ -3,7 +3,7 @@ namespace Task1
 {/// <summary>
 /// Reference class stores references for lesson.
 /// </summary>
-    class Reference : GeneralForSiteEntities
+    class Reference : GeneralForSiteEntities, ICloneable
     {
         private Guid _uniqueIdentifier;
         public override Guid UniqueIdentifier
@@ -39,7 +39,7 @@ namespace Task1
             }
             set
             {
-                if( !string.IsNullOrEmpty(value) )
+                if( !string.IsNullOrEmpty( value ) )
                 {
                    _referenceContent = value;
                     return;
@@ -55,6 +55,15 @@ namespace Task1
             this.TextDescription = textDescription;
             this.ReferenceContent = referenceContent;           
             this.ReferenceType = referenceType;
+        }
+        /// <summary>
+        ///  Clone method copies object of class Reference.
+        /// </summary>
+        /// <returns>  Copy of the Reference. </returns>
+        public object Clone()
+        {
+            Reference reference = new Reference( this.TextDescription, this.ReferenceContent, this.ReferenceType );
+            return reference;
         }
     }
 }

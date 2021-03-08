@@ -4,7 +4,7 @@ namespace Task1
     /// <summary>
     ///   Text class stores text for lesson.
     /// </summary>
-    public class Text : GeneralForSiteEntities
+    public class Text : GeneralForSiteEntities, ICloneable
     {   
         const int lengthText = 10000;
         private Guid _uniqueIdentifier;
@@ -60,6 +60,15 @@ namespace Task1
         public Text()
         {
 
+        }
+        /// <summary>
+        ///  Clone method copies object of class Text.
+        /// </summary>
+        /// <returns>  Copy of the Text. </returns>
+        public object Clone()
+        {
+            Text text = new Text( this.TextDescription, this.TextLesson );
+            return text;
         }
     }
     }

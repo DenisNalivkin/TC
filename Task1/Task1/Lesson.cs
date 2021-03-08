@@ -1,6 +1,4 @@
-﻿
-using System;
-
+﻿using System;
 namespace Task1
 {/// <summary>
 /// lesson class stores materials which will use on lesson.
@@ -47,21 +45,24 @@ namespace Task1
                     throw new ArgumentException();
                 }
                 _materials = new GeneralForSiteEntities[value.Length];
-                for ( int i = 0; i < _materials.Length; i++ )
+                for ( int i = 0; i < value.Length; i++ )
                 {
-                    GeneralForSiteEntities typeMaterial = Lesson.CloneElementMaterials( value[i] );
-                    if ( typeMaterial is Video )
+                    if ( value[i] is Video )
                     {
-                        this._materials[i] = ( Video )typeMaterial;
+                        Video copyVideo = (Video)value[i];
+                        _materials[i] = (Video)copyVideo.Clone();
                     }
-                    if (typeMaterial is Text)
+                    if ( value[i] is Text )
                     {
-                        this._materials[i] = ( Text )typeMaterial;
+                        Text copyText = ( Text )value[i];
+                        _materials[i] = ( Text )copyText.Clone();
                     }
-                    if ( typeMaterial is Reference )
+                    if ( value[i] is Reference )
                     {
-                        this._materials[i] = ( Reference )typeMaterial;
+                        Reference copyRef = ( Reference )value[i];
+                        _materials[i] = ( Reference )copyRef.Clone();
                     }
+
                 }
             }
         }
@@ -101,7 +102,7 @@ namespace Task1
         {
             foreach( GeneralForSiteEntities material in this._materials )
             {
-                if(material is Video)
+                if( material is Video )
                 {
                     return new Video();
                 }
@@ -115,20 +116,22 @@ namespace Task1
         public object Clone()
         {
             GeneralForSiteEntities[] duplicateMaterials = new GeneralForSiteEntities[this._materials.Length];          
-            for(int i = 0; i < _materials.Length; i++)
+            for( int i = 0; i < _materials.Length; i++ )
             {
-                GeneralForSiteEntities typeMaterial = Lesson.CloneElementMaterials( _materials[i] );
-                if( typeMaterial is Video )
+                if( _materials[i] is Video )
                 {
-                    duplicateMaterials[i] = ( Video )typeMaterial;
+                    Video copyVideo = ( Video )_materials[i];
+                    duplicateMaterials[i] = ( Video )copyVideo.Clone();
                 }
-                if( typeMaterial is Text )
+                if( _materials[i] is Text )
                 {
-                    duplicateMaterials[i] = ( Text )typeMaterial;
+                    Text copyText = ( Text )_materials[i];
+                    duplicateMaterials[i] = ( Text )copyText.Clone();
                 }
-                if ( typeMaterial is Reference )
+                if ( _materials[i] is Reference )
                 {
-                    duplicateMaterials[i] = ( Reference )typeMaterial;
+                    Reference copyRef = ( Reference )_materials[i];
+                    duplicateMaterials[i] = ( Reference )copyRef.Clone();
                 }
             }
             byte[] duplicateVersion = new byte[_version.Length];
@@ -140,31 +143,6 @@ namespace Task1
                 _materials = duplicateMaterials,
                 _version = duplicateVersion
             };                 
-        }
-        /// <summary>
-        /// CloneElement Materials method copies elements of array with materials for lesson.
-        /// </summary>
-        /// <param name="materialType"> Element of array with material for lesson. </param>
-        /// <returns>  Copy of lesson material. </returns>
-        private static GeneralForSiteEntities CloneElementMaterials( GeneralForSiteEntities materialType )
-        {
-            if ( materialType is Video )
-            {
-                Video vFormat = ( Video )materialType;
-                Video video = new Video( vFormat.TextDescription, vFormat.UrlVideo, vFormat.UrlPicture, vFormat.FormatVideo, vFormat.Version ); 
-                return video;               
-            }
-            if( materialType is Text )
-            {
-                Text tFormat = ( Text )materialType;
-                Text text = new Text( tFormat.TextDescription, tFormat.TextLesson );
-                return text;
-            }                           
-            Reference rFormat = ( Reference )materialType;
-            Reference reference = new Reference( rFormat.TextDescription, rFormat.ReferenceContent, rFormat.ReferenceType );
-            return reference;
-        }
-
-        
+        }       
     }
 }

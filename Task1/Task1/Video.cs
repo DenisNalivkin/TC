@@ -4,7 +4,7 @@ namespace Task1
     /// <summary>
     ///  Video class stores video for lesson.
     /// </summary>
-    public class Video : GeneralForSiteEntities, IVersionable
+    public class Video : GeneralForSiteEntities, IVersionable, ICloneable
     {
         const int LengthVersion = 8;
         private Guid _uniqueIdentifier;
@@ -83,6 +83,15 @@ namespace Task1
         public Video()
         {
 
+        }
+        /// <summary>
+        ///  Clone method copies object of class Video.
+        /// </summary>
+        /// <returns> Copy of the Video. </returns>
+        public object Clone()
+        {
+            Video video = new Video( this.TextDescription, this.UrlVideo, this.UrlPicture, this.FormatVideo, this.Version ); 
+            return video;            
         }
     }
 }

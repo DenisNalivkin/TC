@@ -1,5 +1,4 @@
-﻿
-namespace Task1
+﻿namespace Task1
 {/// <summary>
 ///  Abstract class which stores generals properties for site entities.
 /// </summary>
@@ -12,7 +11,7 @@ namespace Task1
         /// <summary>
         /// Overridden ToString method.
         /// </summary>
-        /// <returns> String type.</returns>
+        /// <returns> String type. </returns>
        public override string ToString()
         {
             return this.TextDescription;
@@ -22,7 +21,7 @@ namespace Task1
         ///  Overridden Equals method.
         /// </summary>
         /// <param name="obj"> The second operand for compare.</param>
-        /// <returns>  True if both operands are equals, or false if not equals. </returns>
+        /// <returns> True if both operands are equals, or false if not equals. </returns>
        public override bool Equals( object obj )
         {
             GeneralForSiteEntities resultConverting = obj as GeneralForSiteEntities;

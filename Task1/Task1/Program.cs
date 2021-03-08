@@ -1,5 +1,4 @@
-﻿
-namespace Task1
+﻿namespace Task1
 {
     /// <summary>
     /// Enum TypeOFLesson  stores types lesson.
@@ -20,7 +19,7 @@ namespace Task1
         Flv,
     }
     /// <summary>
-    /// Enum TypeOfReference  stores types of references for lesson.
+    /// Enum TypeOfReference stores types of references for lesson.
     /// </summary>
     public enum TypeReference : int
     {
@@ -33,7 +32,7 @@ namespace Task1
     class Program
     {
         static void Main(string[] args)
-        {
+        {        
         }       
     }
 }
