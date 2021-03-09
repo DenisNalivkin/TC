@@ -1,14 +1,16 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 namespace Task3
 {/// <summary>
 /// The book class stores information about the book.
 /// </summary>
-    public class Book
+    public class Book : System.IComparable<Book>
     {
         private const string firstPattern = "[0-9]{3}-[0-9]{1}-[0-9]{2}-[0-9]{6}-[0-9]{1}";
         private const string secondPattern = "[0-9]{13}";
         private const int _lengthFirstPattern = 17;
         private const int _lengthSecondPattern = 13;
+        private const int LengthBookName = 1000;
         private string _isbn;
         public string Isbn
         {
@@ -35,7 +37,7 @@ namespace Task3
             }
             set
             {
-                if ( !string.IsNullOrEmpty( value ) && value.Length <= 1000 )
+                if ( !string.IsNullOrEmpty( value ) && value.Length <= LengthBookName )
                 {
                     _bookName = value;
                     return;
@@ -58,8 +60,17 @@ namespace Task3
         public Book()
         {
 
-        }      
-     }
+        }
+        /// <summary>
+        /// Implementation of the method of interface IComparable. CompareTo method compares objects of class Book by property Name.
+        /// </summary>
+        /// <param name="otherBook"> Second operand for compare. </param>
+        /// <returns></returns>
+        public int CompareTo( Book otherBook )
+        {
+            return this.BookName.CompareTo( otherBook.BookName );
+        }       
+    }
 }
 
   

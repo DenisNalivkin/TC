@@ -4,6 +4,7 @@
 /// </summary>
     public class Author
     {
+        private const int LengthName = 200;
         private string _firstName;
         public string FirstName
         {
@@ -13,7 +14,7 @@
             }
             set
             {
-                if( !string.IsNullOrEmpty( value ) && value.Length <= 200 )
+                if( !string.IsNullOrEmpty( value ) && value.Length <= LengthName )
                 {
                     _firstName = value;
                     return;
@@ -30,7 +31,7 @@
             }
             set
             {
-                if ( !string.IsNullOrEmpty( value ) && value.Length <= 200 )
+                if ( !string.IsNullOrEmpty( value ) && value.Length <= LengthName )
                 {
                     _lastName = value;
                     return;
@@ -39,7 +40,7 @@
             }         
         }
 
-        public Author(string firstName, string lastName)
+        public Author( string firstName, string lastName )
         {
             this.FirstName = firstName;
             this.LastName = lastName;
