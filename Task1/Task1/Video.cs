@@ -41,7 +41,7 @@ namespace Task1
             }
             set
             {
-                if ( !String.IsNullOrEmpty(value) )
+                if ( !String.IsNullOrEmpty( value ) )
                 {
                     _urlVideo = value;
                     return;
@@ -64,7 +64,7 @@ namespace Task1
                     Array.Copy( value, _version, value.Length );                   
                     return;
                 }
-                throw new ArithmeticException();
+                throw new ArgumentException();
             }
         }
         public string UrlPicture { get; set; }

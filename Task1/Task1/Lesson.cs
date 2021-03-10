@@ -44,13 +44,14 @@ namespace Task1
                 {
                     throw new ArgumentException();
                 }
+
                 _materials = new GeneralForSiteEntities[value.Length];
                 for ( int i = 0; i < value.Length; i++ )
                 {
                     if ( value[i] is Video )
                     {
-                        Video copyVideo = (Video)value[i];
-                        _materials[i] = (Video)copyVideo.Clone();
+                        Video copyVideo = ( Video )value[i];
+                        _materials[i] = ( Video )copyVideo.Clone();
                     }
                     if ( value[i] is Text )
                     {
@@ -62,7 +63,6 @@ namespace Task1
                         Reference copyRef = ( Reference )value[i];
                         _materials[i] = ( Reference )copyRef.Clone();
                     }
-
                 }
             }
         }
@@ -98,17 +98,18 @@ namespace Task1
 
         }
 
-        public GeneralForSiteEntities GetTypeLesson()
+        public TypeLesson GetTypeLesson()
         {
             foreach( GeneralForSiteEntities material in this._materials )
             {
                 if( material is Video )
                 {
-                    return new Video();
+                    return TypeLesson.VideoLeson;                   
                 }
             }
-            return new Text();           
+            return TypeLesson.TextLesson;
         }
+
         /// <summary>
         /// Clone method copies lessons.
         /// </summary>

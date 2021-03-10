@@ -61,6 +61,7 @@ namespace Task1
         {
 
         }
+
         /// <summary>
         ///  Clone method copies object of class Text.
         /// </summary>

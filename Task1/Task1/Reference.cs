@@ -48,7 +48,7 @@ namespace Task1
             }
         }
         public TypeReference ReferenceType { get; set; } 
-        
+
         public Reference( string textDescription, string referenceContent, TypeReference referenceType )
         {
             this._uniqueIdentifier = _uniqueIdentifier.CreateIdentifier();
@@ -56,6 +56,7 @@ namespace Task1
             this.ReferenceContent = referenceContent;           
             this.ReferenceType = referenceType;
         }
+
         /// <summary>
         ///  Clone method copies object of class Reference.
         /// </summary>
