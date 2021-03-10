@@ -6,7 +6,7 @@ namespace Task3
 /// </summary>
     public class Book : System.IComparable<Book>
     {
-        private const string _firstPatternIsbn = "[0-9]{3}-[0-9]{1}-[0-9]{2}-[0-9]{6}-[0-9]{1}";
+        private const string _firstPatternIsbn = "^[0-9]{3}-[0-9]{1}-[0-9]{2}-[0-9]{6}-[0-9]{1}$";
         public string FirstPattern
         {
             get
@@ -14,7 +14,7 @@ namespace Task3
                 return _firstPatternIsbn;
             }
         }
-        private const string _secondPatternIsbn = "[0-9]{13}";
+        private const string _secondPatternIsbn = "^[0-9]{13}$";
         public string SecondPatternIsbn
         {
             get
@@ -22,8 +22,6 @@ namespace Task3
                 return _secondPatternIsbn;
             }
         }
-        private const int _lengthFirstPattern = 17;
-        private const int _lengthSecondPattern = 13;
         private const int LengthBookName = 1000;
         private string _isbn;
         public string Isbn
@@ -34,7 +32,7 @@ namespace Task3
             }
             set
             {
-                if ( Regex.IsMatch(value, _firstPatternIsbn) && value.Length == _lengthFirstPattern || Regex.IsMatch(value, _secondPatternIsbn) && value.Length == _lengthSecondPattern )
+                if ( Regex.IsMatch( value, _firstPatternIsbn ) || Regex.IsMatch( value, _secondPatternIsbn ) )
                 {
                     _isbn = value;
                     return;

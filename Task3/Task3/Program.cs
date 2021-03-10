@@ -42,16 +42,16 @@ namespace Task3
                            where authors.FirstName.ToUpper() == "ALEXANDR"
                            where authors.LastName.ToUpper() == "PUSHKIN"
                            select book;
-         
+
             // Sort books by descending  by  date publication.
-            var sortBooks = library.BooksList.OrderByDescending(book => book.PublicationDate);
-         
+            var sortBooks = library.BooksList.OrderByDescending( book => book.PublicationDate );
+
             // Get author books count tuple.
             Utils utils1 = new Utils();
-            var result = utils1.GetAuthorBooksCountTuple(library.BooksList);
-            foreach (var elem in result)
+            var result = utils1.GetAuthorBooksCountTuple( library.BooksList );
+            foreach ( var elem in result )
             {
-                System.Console.WriteLine($"Author {elem.Item1} - amount wrote books {elem.Item2}");
+                System.Console.WriteLine( $"Author {elem.Item1} - amount wrote books {elem.Item2}" );
             }
         }  
     }
