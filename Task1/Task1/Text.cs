@@ -7,31 +7,6 @@ namespace Task1
     public class Text : GeneralEntity, ICloneable
     {   
         const int lengthText = 10000;
-        private Guid _uniqueIdentifier;
-        public override Guid UniqueIdentifier
-        {
-            get
-            {
-                return _uniqueIdentifier;
-            }
-        }
-        private string _textDescription;
-        public override string TextDescription
-        {
-            get
-            {
-                return _textDescription;
-            }
-            set
-            {
-                if ( value == null || value.Length <= LengthDescription )
-                {
-                    _textDescription = value;
-                    return;
-                }
-                throw new ArgumentOutOfRangeException();
-            }
-        }
         private string _text;
         public string _Text
         {
@@ -50,16 +25,9 @@ namespace Task1
             }
         }
 
-        public Text ( string textDescription, string textLesson )
-        {
-            this._uniqueIdentifier = _uniqueIdentifier.CreateIdentifier();
-            this.TextDescription = textDescription;           
+        public Text ( string textDescription, string textLesson ) : base (textDescription)
+        {                
             this._Text = textLesson;                         
-        }
-
-        public Text()
-        {
-
         }
 
         /// <summary>

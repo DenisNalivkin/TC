@@ -4,6 +4,7 @@
  /// </summary>
     public interface IVersionable
     {
-        byte[] Version { get; set; }
+        byte[] Version {get; set;}
+        int LengthVersion {get;}      
     }
 }

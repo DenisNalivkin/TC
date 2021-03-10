@@ -5,31 +5,6 @@ namespace Task1
 /// </summary>
     class ReferenceTraining : GeneralEntity, ICloneable
     {
-        private Guid _uniqueIdentifier;
-        public override Guid UniqueIdentifier
-        {
-            get
-            {
-                return _uniqueIdentifier;
-            }
-        }
-        private string _textDescription;
-        public override string TextDescription
-        {
-            get
-            {
-                return _textDescription;
-            }
-            set
-            {
-                if ( value == null || value.Length <= LengthDescription )
-                {
-                    _textDescription = value;
-                    return;
-                }
-                throw new ArgumentOutOfRangeException();
-            }
-        }
         private string _referenceContent;
         public string ReferenceContent
         {
@@ -49,10 +24,8 @@ namespace Task1
         }
         public TypeReference ReferenceType { get; set; } 
 
-        public ReferenceTraining( string textDescription, string referenceContent, TypeReference referenceType )
+        public ReferenceTraining( string textDescription, string referenceContent, TypeReference referenceType ) :base (textDescription)
         {
-            this._uniqueIdentifier = _uniqueIdentifier.CreateIdentifier();
-            this.TextDescription = textDescription;
             this.ReferenceContent = referenceContent;           
             this.ReferenceType = referenceType;
         }

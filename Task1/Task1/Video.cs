@@ -6,31 +6,10 @@ namespace Task1
     /// </summary>
     public class Video : GeneralEntity, IVersionable, ICloneable
     {
-        const int LengthVersion = 8;
-        private Guid _uniqueIdentifier;
-        public override Guid UniqueIdentifier
+        private const int _lengthVersion = 8;
+        int IVersionable.LengthVersion
         {
-            get
-            {
-                return _uniqueIdentifier;
-            }
-        }
-        private string _textDescription;
-        public override string TextDescription
-        {
-            get
-            {
-                return _textDescription;
-            }
-            set
-            {
-               if( value == null || value.Length <= LengthDescription )
-                {
-                    _textDescription = value;
-                    return;
-                }
-                throw new ArgumentOutOfRangeException();
-            }
+            get { return _lengthVersion; }
         }
         private string _urlVideo;
         public string UrlVideo
@@ -41,7 +20,7 @@ namespace Task1
             }
             set
             {
-                if ( !String.IsNullOrEmpty( value ) )
+                if (!String.IsNullOrEmpty(value))
                 {
                     _urlVideo = value;
                     return;
@@ -58,10 +37,10 @@ namespace Task1
             }
             set
             {
-                if( value != null && value.Length == LengthVersion )
+                if( value != null && value.Length == _lengthVersion)
                 {
-                    _version = new byte[LengthVersion];
-                    Array.Copy( value, _version, value.Length );                   
+                    _version = new byte[_lengthVersion];
+                    Array.Copy(value, _version, value.Length);                   
                     return;
                 }
                 throw new ArgumentException();
@@ -70,10 +49,8 @@ namespace Task1
         public string UrlPicture { get; set; }
         public VideFormat FormatVideo { get; set; }
 
-        public Video ( string textDescription, string urlVideo, string urlPicture, VideFormat formatVideo, byte[] version )
-        {
-            this._uniqueIdentifier = _uniqueIdentifier.CreateIdentifier();
-            this.TextDescription = textDescription;
+        public Video ( string textDescription, string urlVideo, string urlPicture, VideFormat formatVideo, byte[] version ) : base (textDescription)
+        {        
             this.UrlVideo = urlVideo;
             this.UrlPicture = urlPicture;
             this.FormatVideo = formatVideo;

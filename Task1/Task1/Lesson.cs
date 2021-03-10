@@ -3,34 +3,13 @@ namespace Task1
 {/// <summary>
 /// lesson class stores materials which will use on lesson.
 /// </summary>
-    class Lesson : GeneralEntity, IVersionable, ICloneable
+    class Lesson : GeneralEntity, IVersionable // ICloneable
     {
-        const int LengthVersion = 8;       
-        private Guid _uniueIdentifier;
-        public override Guid UniqueIdentifier
+        private const int _lengthVersion = 8;
+        int IVersionable.LengthVersion
         {
-            get
-            {
-                return _uniueIdentifier;
-            }
-        }
-        private string _textDescription;
-        public override string TextDescription
-        {
-            get
-            {
-                return _textDescription;
-            }
-            set
-            {
-                if ( value == null || value.Length <= LengthDescription )
-                {
-                    _textDescription = value;
-                    return;
-                }
-                throw new ArgumentOutOfRangeException();
-            }
-        }       
+            get { return _lengthVersion; }
+        }     
         private GeneralEntity[] _materials;
         public GeneralEntity[] Materials
         {
@@ -46,24 +25,7 @@ namespace Task1
                 }
 
                 _materials = new GeneralEntity[value.Length];
-                for ( int i = 0; i < value.Length; i++ )
-                {
-                    if ( value[i] is Video )
-                    {
-                        Video copyVideo = ( Video )value[i];
-                        _materials[i] = ( Video )copyVideo.Clone();
-                    }
-                    if ( value[i] is Text )
-                    {
-                        Text copyText = ( Text )value[i];
-                        _materials[i] = ( Text )copyText.Clone();
-                    }
-                    if ( value[i] is ReferenceTraining )
-                    {
-                        ReferenceTraining copyRef = ( ReferenceTraining )value[i];
-                        _materials[i] = ( ReferenceTraining )copyRef.Clone();
-                    }
-                }
+                Array.Copy(value, _materials, value.Length);              
             }
         }
         private byte[] _version;
@@ -75,9 +37,9 @@ namespace Task1
             }
             set
             {
-                if ( value != null && value.Length == LengthVersion )
+                if ( value != null && value.Length == _lengthVersion )
                 {
-                    _version = new byte[LengthVersion];
+                    _version = new byte[_lengthVersion];
                     Array.Copy( value, _version, value.Length );
                     return;
                 }
@@ -85,14 +47,12 @@ namespace Task1
             }
         }
 
-        public Lesson ( string textDescription, GeneralEntity[] materials, byte[] version )
-        {
-            this._uniueIdentifier = _uniueIdentifier.CreateIdentifier();
-            this.TextDescription = textDescription;
+        public Lesson (string textDescription, GeneralEntity[] materials, byte[] version)  : base (textDescription)
+        {         
             this.Materials = materials;
             this.Version = version;
         }
-
+ 
         public TypeLesson GetTypeLesson()
         {
             foreach( GeneralEntity material in this._materials )
@@ -111,45 +71,15 @@ namespace Task1
         /// <returns>Copy of the lesson.</returns>
         public object Clone()
         {
-            GeneralEntity[] duplicateMaterials = new GeneralEntity[this._materials.Length];          
-            foreach( ICloneable elem in this._materials)
+            GeneralEntity[] duplicateMaterials = new GeneralEntity[this._materials.Length];
+            int nodeIndex = 0;
+            foreach ( ICloneable material in this._materials )
             {
-                elem.Clone // Доделать
-
+                duplicateMaterials[nodeIndex] = (GeneralEntity)material.Clone();
             }
-
-
-
-
-           /* for( int i = 0; i < _materials.Length; i++ )
-            {
-                if( _materials[i] is Video )
-                {
-                    Video copyVideo = ( Video )_materials[i];
-                    duplicateMaterials[i] = ( Video )copyVideo.Clone();
-                }
-                if( _materials[i] is Text )
-                {
-                    Text copyText = ( Text )_materials[i];
-                    duplicateMaterials[i] = ( Text )copyText.Clone();
-                }
-                if ( _materials[i] is ReferenceTraining )
-                {
-                    ReferenceTraining copyRef = ( ReferenceTraining )_materials[i];
-                    duplicateMaterials[i] = ( ReferenceTraining )copyRef.Clone();
-                }
-           
-            }
-           */
             byte[] duplicateVersion = new byte[_version.Length];
-            Array.Copy( this._version, duplicateVersion, this._version.Length );
-            return new Lesson 
-            {
-                _uniueIdentifier = this._uniueIdentifier,
-                _textDescription = this._textDescription,
-                _materials = duplicateMaterials,
-                _version = duplicateVersion
-            };                 
-        }       
+            Array.Copy(this._version, duplicateVersion, this._version.Length);
+            return new Lesson(this.TextDescription, duplicateMaterials, duplicateVersion);         
+        }        
     }
 }
