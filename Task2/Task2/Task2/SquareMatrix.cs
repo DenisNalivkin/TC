@@ -6,10 +6,10 @@ namespace Task2
 /// <typeparam name="T"> Class SquareMatrix is generic. </typeparam>
     class SquareMatrix<T>
     {
-        protected T[] Data { get; set; }
-        public int Rank { get; protected set; }
+        protected T[] Data {get; set;}
+        public int Rank {get; protected set;}
 
-        public SquareMatrix( T[] array )
+        public SquareMatrix(T[] array)
         {
             if( array == null || array.Length == 0 )
             {
@@ -17,39 +17,39 @@ namespace Task2
             }
 
             var result = Math.Sqrt( array.Length );
-            if ( ( result %1 ) != 0 || array.Length == 1 )
+            if ( (result %1) != 0 || array.Length == 1 )
             {
                 throw new ArgumentException();
             }
             Data = new T[array.Length];
-            Array.Copy( array, Data, array.Length );
-            Rank = ( int )result;        
+            Array.Copy(array, Data, array.Length);
+            Rank = (int)result;        
         }
 
-        public SquareMatrix()
+        public delegate void Matrix<T>(int firstIndex, int secondIndex, T oldValue, T newValue);
+        public event Matrix<T> MatrixChanged;
+
+        protected SquareMatrix()
         {
 
         }
 
-        public delegate void Matrix<T>( int firstIndex, int secondIndex, T oldValue, T newValue );
-        public event Matrix<T> MatrixChanged;
-
-        public T this[ int i, int j ]
+        public T this[int i, int j]
         {
             get
             {
-                CheckIndex( i );
-                CheckIndex( j );
+                CheckIndex(i);
+                CheckIndex(j);
                 return Data[i * Rank + j];
             }
 
             set
             {
-                CheckIndex( i );
-                CheckIndex( j );
-                if(!value.Equals( Data[i * Rank + j] ) )
+                CheckIndex(i);
+                CheckIndex(j);
+                if( !value.Equals(Data[i * Rank + j]) )
                 {
-                    MatrixChanged?.Invoke( i, j, Data[i * Rank + j], value);
+                    MatrixChanged?.Invoke(i, j, Data[i * Rank + j], value);
                     Data[i * Rank + j] = value;
                 }             
             }
@@ -59,7 +59,7 @@ namespace Task2
         /// Method CheckIndex checks input index.  
         /// </summary>
         /// <param name="index"> Index for check. </param>
-        protected void CheckIndex( int index )
+        protected void CheckIndex(int index)
         {
             if ( index >= Rank || index < 0 )
             {
@@ -74,9 +74,9 @@ namespace Task2
         /// <param name="secondIndex"> Second index of node from square matrix. </param>
         /// <param name="oldValue"> Value before change. </param>
         /// <param name="newValue"> New value. </param>
-        protected virtual void ReceiveEvent ( int firstIndex, int secondIndex, T oldValue, T newValue )
+        protected virtual void ReceiveEvent (int firstIndex, int secondIndex, T oldValue, T newValue)
         {
-          MatrixChanged?.Invoke( firstIndex, secondIndex, oldValue, newValue );
+          MatrixChanged?.Invoke(firstIndex, secondIndex, oldValue, newValue);
         }
     }
 }

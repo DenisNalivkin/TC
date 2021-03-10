@@ -5,33 +5,33 @@
 /// <typeparam name="T"> Class DiagonalMatrix is generic. </typeparam>
     class DiagonalMatrix<T>: SquareMatrix<T>
     {
-        public DiagonalMatrix( T[] data ) : base()
+        public DiagonalMatrix(T[] data) : base()
         {
-            Rank = ( int )System.Math.Sqrt( ( double )data.Length );
-            Data = new T[data.Length];
-            System.Array.Copy( data, Data, data.Length );
+            Rank = (int)System.Math.Sqrt(( double )data.Length);
+            Data = new T[Rank];
+            GetDiagonalNumbers(data);        
         }
-        public T this[ int i, int j ]
+        public T this[int i, int j]
         {
             get
             {              
-                CheckIndex( i );
-                CheckIndex( j );
-                if ( i == j )
+                CheckIndex(i);
+                CheckIndex(j);
+                if (i == j)
                 {
-                    return Data[ i * Rank + j ];
+                    return Data[i];
                 }
-                return default( T );
+                return default(T);
             }
             set
             {
-                CheckIndex( i );
-                CheckIndex( j );
+                CheckIndex(i);
+                CheckIndex(j);
                 if (i == j)
                 {
-                    if ( !value.Equals( Data[i * Rank + j] ) )
+                    if ( !value.Equals(Data[i]) )
                     {
-                        ReceiveEvent( i, j, Data[i * Rank + j], value );
+                        ReceiveEvent(i, j, Data[i], value);
                         Data[i] = value;
                     }
                 }
@@ -49,9 +49,19 @@
         /// <param name="secondIndex"> Second index of node from square matrix. </param>
         /// <param name="oldValue"> Value before change. </param>
         /// <param name="newValue"> New value. </param>
-        protected override void ReceiveEvent( int firstIndex, int secondIndex, T oldValue, T newValue )
+        protected override void ReceiveEvent(int firstIndex, int secondIndex, T oldValue, T newValue)
         {
-            base.ReceiveEvent( firstIndex, secondIndex, oldValue, newValue) ;
+            base.ReceiveEvent(firstIndex, secondIndex, oldValue, newValue) ;
+        }
+
+        protected void GetDiagonalNumbers(T [] inputData)
+        {
+           int indexInputData = 0; 
+           for ( int i = 0; i < Rank; i++ )
+            {
+                this.Data[i] = inputData[indexInputData];
+                indexInputData += Rank+1; 
+            }         
         }
     }
 }
