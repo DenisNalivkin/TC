@@ -3,7 +3,7 @@ namespace Task1
 {/// <summary>
 /// lesson class stores materials which will use on lesson.
 /// </summary>
-    class Lesson : GeneralForSiteEntities, IVersionable, ICloneable
+    class Lesson : GeneralEntity, IVersionable, ICloneable
     {
         const int LengthVersion = 8;       
         private Guid _uniueIdentifier;
@@ -23,7 +23,7 @@ namespace Task1
             }
             set
             {
-                if ( value == null || value.Length <= lengthDescription )
+                if ( value == null || value.Length <= LengthDescription )
                 {
                     _textDescription = value;
                     return;
@@ -31,8 +31,8 @@ namespace Task1
                 throw new ArgumentOutOfRangeException();
             }
         }       
-        private GeneralForSiteEntities[] _materials;
-        public GeneralForSiteEntities[] Materials
+        private GeneralEntity[] _materials;
+        public GeneralEntity[] Materials
         {
             get
             {
@@ -45,7 +45,7 @@ namespace Task1
                     throw new ArgumentException();
                 }
 
-                _materials = new GeneralForSiteEntities[value.Length];
+                _materials = new GeneralEntity[value.Length];
                 for ( int i = 0; i < value.Length; i++ )
                 {
                     if ( value[i] is Video )
@@ -58,10 +58,10 @@ namespace Task1
                         Text copyText = ( Text )value[i];
                         _materials[i] = ( Text )copyText.Clone();
                     }
-                    if ( value[i] is Reference )
+                    if ( value[i] is ReferenceTraining )
                     {
-                        Reference copyRef = ( Reference )value[i];
-                        _materials[i] = ( Reference )copyRef.Clone();
+                        ReferenceTraining copyRef = ( ReferenceTraining )value[i];
+                        _materials[i] = ( ReferenceTraining )copyRef.Clone();
                     }
                 }
             }
@@ -85,7 +85,7 @@ namespace Task1
             }
         }
 
-        public Lesson ( string textDescription, GeneralForSiteEntities[] materials, byte[] version )
+        public Lesson ( string textDescription, GeneralEntity[] materials, byte[] version )
         {
             this._uniueIdentifier = _uniueIdentifier.CreateIdentifier();
             this.TextDescription = textDescription;
@@ -93,14 +93,9 @@ namespace Task1
             this.Version = version;
         }
 
-        public Lesson()
-        {
-
-        }
-
         public TypeLesson GetTypeLesson()
         {
-            foreach( GeneralForSiteEntities material in this._materials )
+            foreach( GeneralEntity material in this._materials )
             {
                 if( material is Video )
                 {
@@ -116,8 +111,17 @@ namespace Task1
         /// <returns>Copy of the lesson.</returns>
         public object Clone()
         {
-            GeneralForSiteEntities[] duplicateMaterials = new GeneralForSiteEntities[this._materials.Length];          
-            for( int i = 0; i < _materials.Length; i++ )
+            GeneralEntity[] duplicateMaterials = new GeneralEntity[this._materials.Length];          
+            foreach( ICloneable elem in this._materials)
+            {
+                elem.Clone // Доделать
+
+            }
+
+
+
+
+           /* for( int i = 0; i < _materials.Length; i++ )
             {
                 if( _materials[i] is Video )
                 {
@@ -129,12 +133,14 @@ namespace Task1
                     Text copyText = ( Text )_materials[i];
                     duplicateMaterials[i] = ( Text )copyText.Clone();
                 }
-                if ( _materials[i] is Reference )
+                if ( _materials[i] is ReferenceTraining )
                 {
-                    Reference copyRef = ( Reference )_materials[i];
-                    duplicateMaterials[i] = ( Reference )copyRef.Clone();
+                    ReferenceTraining copyRef = ( ReferenceTraining )_materials[i];
+                    duplicateMaterials[i] = ( ReferenceTraining )copyRef.Clone();
                 }
+           
             }
+           */
             byte[] duplicateVersion = new byte[_version.Length];
             Array.Copy( this._version, duplicateVersion, this._version.Length );
             return new Lesson 

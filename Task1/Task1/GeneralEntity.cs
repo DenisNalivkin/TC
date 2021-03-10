@@ -2,11 +2,11 @@
 {/// <summary>
 ///  Abstract class which stores generals properties for site entities.
 /// </summary>
-    public abstract class GeneralForSiteEntities
+    public abstract class GeneralEntity
     {
        public abstract System.Guid UniqueIdentifier { get; }
        public abstract string TextDescription { get; set; }
-       public const int lengthDescription = 256;
+       public const int LengthDescription = 256;
        
         /// <summary>
         /// Overridden ToString method.
@@ -24,7 +24,7 @@
         /// <returns> True if both operands are equals, or false if not equals. </returns>
        public override bool Equals( object obj )
         {
-            GeneralForSiteEntities resultConverting = obj as GeneralForSiteEntities;
+            GeneralEntity resultConverting = obj as GeneralEntity;
             if ( resultConverting != null )
             {
                 return UniqueIdentifier == resultConverting.UniqueIdentifier;

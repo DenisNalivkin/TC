@@ -48,9 +48,9 @@
     <Compile Include="Lesson.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reference.cs" />
+    <Compile Include="ReferenceTraining.cs" />
     <Compile Include="Text.cs" />
-    <Compile Include="GeneralForSiteEntities.cs" />
+    <Compile Include="GeneralEntity.cs" />
     <Compile Include="Video.cs" />
   </ItemGroup>
   <ItemGroup>

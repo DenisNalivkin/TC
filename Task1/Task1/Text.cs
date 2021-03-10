@@ -4,7 +4,7 @@ namespace Task1
     /// <summary>
     ///   Text class stores text for lesson.
     /// </summary>
-    public class Text : GeneralForSiteEntities, ICloneable
+    public class Text : GeneralEntity, ICloneable
     {   
         const int lengthText = 10000;
         private Guid _uniqueIdentifier;
@@ -24,7 +24,7 @@ namespace Task1
             }
             set
             {
-                if ( value == null || value.Length <= lengthDescription )
+                if ( value == null || value.Length <= LengthDescription )
                 {
                     _textDescription = value;
                     return;
@@ -32,18 +32,18 @@ namespace Task1
                 throw new ArgumentOutOfRangeException();
             }
         }
-        private string _textLesson;
-        public string TextLesson
+        private string _text;
+        public string _Text
         {
             get
             {
-                return _textLesson;
+                return _text;
             }
             set
             {
                 if ( !String.IsNullOrEmpty(value) && value.Length <= lengthText )
                 {
-                    _textLesson = value;
+                    _text = value;
                     return;
                 }
                 throw new ArgumentException();
@@ -54,7 +54,7 @@ namespace Task1
         {
             this._uniqueIdentifier = _uniqueIdentifier.CreateIdentifier();
             this.TextDescription = textDescription;           
-            this.TextLesson = textLesson;                         
+            this._Text = textLesson;                         
         }
 
         public Text()
@@ -68,7 +68,7 @@ namespace Task1
         /// <returns>  Copy of the Text. </returns>
         public object Clone()
         {
-            Text text = new Text( this.TextDescription, this.TextLesson );
+            Text text = new Text( this.TextDescription, this._Text );
             return text;
         }
     }
