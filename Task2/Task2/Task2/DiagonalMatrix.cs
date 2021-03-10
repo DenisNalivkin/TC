@@ -7,9 +7,9 @@
     {
         public DiagonalMatrix( T[] data ) : base()
         {
-            Rank = (int)System.Math.Sqrt((double)data.Length);
+            Rank = ( int )System.Math.Sqrt( ( double )data.Length );
             Data = new T[data.Length];
-            System.Array.Copy(data, Data, data.Length);
+            System.Array.Copy( data, Data, data.Length );
         }
         public T this[ int i, int j ]
         {
@@ -29,9 +29,9 @@
                 CheckIndex( j );
                 if (i == j)
                 {
-                    if (!value.Equals(Data[i * Rank + j]))
+                    if ( !value.Equals( Data[i * Rank + j] ) )
                     {
-                        ReceiveEvent(i, j, Data[i * Rank + j], value);
+                        ReceiveEvent( i, j, Data[i * Rank + j], value );
                         Data[i] = value;
                     }
                 }

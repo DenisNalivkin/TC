@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Task2
 {/// <summary>
-/// Class SquareMatrix represents   square matrix.
+/// Class SquareMatrix represents square matrix.
 /// </summary>
 /// <typeparam name="T"> Class SquareMatrix is generic. </typeparam>
     class SquareMatrix<T>
@@ -40,7 +40,7 @@ namespace Task2
             {
                 CheckIndex( i );
                 CheckIndex( j );
-                return Data[ i * Rank + j ];
+                return Data[i * Rank + j];
             }
 
             set
@@ -49,8 +49,8 @@ namespace Task2
                 CheckIndex( j );
                 if(!value.Equals( Data[i * Rank + j] ) )
                 {
-                    MatrixChanged?.Invoke( i, j, Data[ i * Rank + j ], value);
-                    Data[ i * Rank + j ] = value;
+                    MatrixChanged?.Invoke( i, j, Data[i * Rank + j], value);
+                    Data[i * Rank + j] = value;
                 }             
             }
         }

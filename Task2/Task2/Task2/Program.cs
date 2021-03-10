@@ -19,7 +19,6 @@
                  System.Console.WriteLine($"New value: { newValue }");
              };
             
-
             //Example how works lambda expression for processing for event. 
             squareMatrix.MatrixChanged += ( firstIndex, secondIndex, oldValue, newValue ) =>
              {
