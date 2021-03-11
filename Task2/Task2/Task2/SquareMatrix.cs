@@ -9,6 +9,10 @@ namespace Task2
         protected T[] Data {get; set;}
         public int Rank {get; protected set;}
 
+        /// <summary>
+        /// Public constructor initializing the fields of the SquareMatrix class object.
+        /// </summary>
+        /// <param name="array"> The array from which the data will be retrieved. </param>
         public SquareMatrix(T[] array)
         {
             if( array == null || array.Length == 0 )
@@ -29,11 +33,12 @@ namespace Task2
         public delegate void Matrix<T>(int firstIndex, int secondIndex, T oldValue, T newValue);
         public event Matrix<T> MatrixChanged;
 
-        protected SquareMatrix()
-        {
-
-        }
-
+        /// <summary>
+        ///  Indexer retrieves data from a square matrix at two indices.
+        /// </summary>
+        /// <param name="i"> Vertical node index. </param>
+        /// <param name="j"> Horizontal node index </param>
+        /// <returns></returns>
         public T this[int i, int j]
         {
             get
@@ -68,7 +73,7 @@ namespace Task2
         }
 
         /// <summary>
-        /// Method ReceiveEvent is shell for event Matrix Changed.
+        /// Method ReceiveEvent is shell for event MatrixChanged.
         /// </summary>
         /// <param name="firstIndex"> First index of node from square matrix. </param>
         /// <param name="secondIndex"> Second index of node from square matrix. </param>
