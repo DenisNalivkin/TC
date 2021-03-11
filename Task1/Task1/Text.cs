@@ -2,7 +2,7 @@
 namespace Task1
 {
     /// <summary>
-    ///   Text class stores text for lesson.
+    ///  Text class stores text for lesson.
     /// </summary>
     public class Text : GeneralEntity, ICloneable
     {   
@@ -25,7 +25,12 @@ namespace Task1
             }
         }
 
-        public Text ( string textDescription, string textLesson ) : base (textDescription)
+        /// <summary>
+        /// Public constructor initializing the fields of the Text class object.
+        /// </summary>
+        /// <param name="textDescription">  Value for the field textDescription. </param>
+        /// <param name="textLesson"> Value for the field textLesson. </param>
+        public Text ( string textDescription, string textLesson ) : base ( textDescription )
         {                
             this._Text = textLesson;                         
         }
@@ -38,7 +43,7 @@ namespace Task1
         {
             Text text = new Text( this.TextDescription, this._Text );
             return text;
-        }
+        }  
     }
     }
 

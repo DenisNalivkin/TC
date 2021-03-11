@@ -3,10 +3,10 @@ namespace Task1
 {/// <summary>
 /// lesson class stores materials which will use on lesson.
 /// </summary>
-    class Lesson : GeneralEntity, IVersionable // ICloneable
+    class Lesson : GeneralEntity, IVersionable, ICloneable
     {
         private const int _lengthVersion = 8;
-        int IVersionable.LengthVersion
+        public int LengthVersion
         {
             get { return _lengthVersion; }
         }     
@@ -47,12 +47,22 @@ namespace Task1
             }
         }
 
+        /// <summary>
+        /// Public constructor initializing the fields of the Lesson class object.
+        /// </summary>
+        /// <param name="textDescription"> Value for the field textDescription. </param>
+        /// <param name="materials"> Value for the field materials.  </param>
+        /// <param name="version">  Value for the field version. </param>
         public Lesson (string textDescription, GeneralEntity[] materials, byte[] version)  : base (textDescription)
         {         
             this.Materials = materials;
             this.Version = version;
         }
- 
+
+        /// <summary>
+        /// GetTypeLesson method defines type of lesson.
+        /// </summary>
+        /// <returns> Type of lesson. </returns>
         public TypeLesson GetTypeLesson()
         {
             foreach( GeneralEntity material in this._materials )
@@ -76,6 +86,7 @@ namespace Task1
             foreach ( ICloneable material in this._materials )
             {
                 duplicateMaterials[nodeIndex] = (GeneralEntity)material.Clone();
+                nodeIndex += 1;
             }
             byte[] duplicateVersion = new byte[_version.Length];
             Array.Copy(this._version, duplicateVersion, this._version.Length);

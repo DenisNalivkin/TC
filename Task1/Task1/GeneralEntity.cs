@@ -1,9 +1,10 @@
 ﻿namespace Task1
 {/// <summary>
-///  Abstract class which stores generals properties for site entities.
+/// Abstract class which stores generals properties for training site entities.
 /// </summary>
     public abstract class GeneralEntity
     {
+        public const int LengthDescription = 256;
         private System.Guid _uniqueIdentifier;
         public System.Guid UniqueIdentifier
         {
@@ -18,8 +19,7 @@
                     _uniqueIdentifier = value;
                 }
             }          
-        }
-        public const int LengthDescription = 256;
+        }       
         private string _textDescription;
         public string TextDescription
         {
@@ -38,10 +38,13 @@
             }
         }
 
-
+        /// <summary>
+        ///  The public constructor GeneralEntity is called by the inheriting classes and initializes the fields common to them.
+        /// </summary>
+        /// <param name="textDescription"> Value for the field textDescription. </param>
         public GeneralEntity (string textDescription)
         {
-             UniqueIdentifier = UniqueIdentifier.CreateIdentifier();
+             _uniqueIdentifier = UniqueIdentifier.CreateIdentifier();
              TextDescription = textDescription;
         }
 

@@ -7,10 +7,7 @@ namespace Task1
     public class Video : GeneralEntity, IVersionable, ICloneable
     {
         private const int _lengthVersion = 8;
-        int IVersionable.LengthVersion
-        {
-            get { return _lengthVersion; }
-        }
+        int IVersionable.LengthVersion { get { return _lengthVersion; } }
         private string _urlVideo;
         public string UrlVideo
         {
@@ -49,6 +46,14 @@ namespace Task1
         public string UrlPicture { get; set; }
         public VideFormat FormatVideo { get; set; }
 
+        /// <summary>
+        /// Public constructor initializing the fields of the Video class object.
+        /// </summary>
+        /// <param name="textDescription"> Value for the field textDescription. </param>
+        /// <param name="urlVideo"> Value for the field urlVideo. </param>
+        /// <param name="urlPicture"> Value for the field urlPicture. </param>
+        /// <param name="formatVideo"> Value for the field formatVideo. </param>
+        /// <param name="version"> Value for the field version. </param>
         public Video ( string textDescription, string urlVideo, string urlPicture, VideFormat formatVideo, byte[] version ) : base (textDescription)
         {        
             this.UrlVideo = urlVideo;
@@ -65,7 +70,7 @@ namespace Task1
         {
             Video video = new Video( this.TextDescription, this.UrlVideo, this.UrlPicture, this.FormatVideo, this.Version ); 
             return video;            
-        }
+        }       
     }
 }
         

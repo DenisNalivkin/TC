@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Task1
 {/// <summary>
-/// Reference class stores references for lesson.
+/// ReferenceTraining class stores references for lesson.
 /// </summary>
     class ReferenceTraining : GeneralEntity, ICloneable
     {
@@ -22,8 +22,14 @@ namespace Task1
                 throw new ArgumentException();
             }
         }
-        public TypeReference ReferenceType { get; set; } 
+        public TypeReference ReferenceType { get; set; }
 
+        /// <summary>
+        ///  Public constructor initializing the fields of the ReferenceTraining  class object.
+        /// </summary>
+        /// <param name="textDescription"> Value for the field textDescription. </param>
+        /// <param name="referenceContent"> Value for the field referenceContent. </param>
+        /// <param name="referenceType"> Value for the field referenceType. </param>
         public ReferenceTraining( string textDescription, string referenceContent, TypeReference referenceType ) :base (textDescription)
         {
             this.ReferenceContent = referenceContent;           
