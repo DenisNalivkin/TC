@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 namespace Task3
 {/// <summary>
 /// Directory class stores library with books.
@@ -8,34 +8,38 @@ namespace Task3
     {
         public System.Collections.Generic.List<Book> BooksList { get; set; }
 
+        /// <summary>
+        /// Public constructor initializing the field of the Directory class object.
+        /// </summary>
         public Directory ()
         {
             BooksList = new System.Collections.Generic.List<Book>();
         }
 
+        /// <summary>
+        /// Indexer retrieves book from directory by an Isbn.
+        /// </summary>
+        /// <param name="key"> Isbn for search a book.  </param>
+        /// <returns> Book name if key has been found, otherwise throwing exception. </returns>
         public string this[string key]
         {
             get
             {
-               foreach( Book book in BooksList )
+                var searchResult = BooksList.Find((book) => book.Isbn == key);
+                if(searchResult == null)
                 {
-                    if( book.Isbn  == key )
-                    {
-                        return book.BookName;
-                    }
+                    throw new System.Collections.Generic.KeyNotFoundException();
                 }
-               throw new System.Collections.Generic.KeyNotFoundException();
+                return searchResult.BookName;
             }
             set
             {
-                foreach ( Book book in BooksList )
+                var searchResults = BooksList.Find((book) => book.Isbn == key);
+                if (searchResults == null)
                 {
-                    if ( book.Isbn == key )
-                    {
-                        book.Isbn = key;
-                    }
+                    throw new System.Collections.Generic.KeyNotFoundException();
                 }
-               throw new System.Collections.Generic.KeyNotFoundException();
+                searchResults.BookName = value;
             }     
         }
 

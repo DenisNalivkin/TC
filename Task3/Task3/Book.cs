@@ -61,17 +61,18 @@ namespace Task3
         public string PublicationDate { get; set; }
         public System.Collections.Generic.List<Author> ListAuthors { get; set; }
 
+        /// <summary>
+        /// Public constructor initializing the fields of the Book class object.
+        /// </summary>
+        /// <param name="isbn"> Value for field isbn. </param>
+        /// <param name="bookName"> Value for field bookName.  </param>
+        /// <param name="publicationDate"> Value for field publicationDate. </param>
         public Book( string isbn, string bookName, string publicationDate )
         {
             Isbn = isbn;
             BookName = bookName;
             PublicationDate = publicationDate;
             ListAuthors = new System.Collections.Generic.List<Author>();
-        }
-
-        public Book()
-        {
-
         }
 
         /// <summary>
@@ -82,7 +83,24 @@ namespace Task3
         public int CompareTo( Book otherBook )
         {
             return this.BookName.CompareTo( otherBook.BookName );
-        }       
+        }
+
+        /// <summary>
+        ///  The Override Equals method compares objects of the class book by Isbn value.
+        /// </summary>
+        /// <param name="obj"> Second operand for comparison. </param>
+        /// <returns>  True if both operands are equals, otherwise false. </returns>
+        public override bool Equals(object obj)
+        {
+            Book resultConverting = obj as Book;
+            if( resultConverting!=null )
+            {
+                string leftOperand = this.Isbn.Replace("-", "");
+                string rightOperand = resultConverting.Isbn.Replace("-", "");
+                return leftOperand == rightOperand;
+            }
+            return false;
+        }   
     }
 }
 
