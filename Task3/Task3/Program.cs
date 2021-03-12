@@ -13,7 +13,7 @@ namespace Task3
 
             // Books.
             Book pushkinsBook = new Book("1111111111111", "Captain's daughter", "1836");
-            Book pushkinsBook2 = new Book("111-1-11-111111-2", "Ruslan and Ludmila", "1820");
+            Book pushkinsBook2 = new Book("111-1-11-111111-1", "Ruslan and Ludmila", "1820");
             Book tolstoiBook = new Book("2222222222222", "War and peace","1867");
             Book tolstoiBook2 = new Book("222-2-22-222222-2", "Anna Karenina", "1877");
             Book gogolBook = new Book("3333333333333", "Dead souls", "1842");

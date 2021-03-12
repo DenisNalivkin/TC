@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
 namespace Task3
 {/// <summary>
@@ -6,14 +6,14 @@ namespace Task3
 /// </summary>
     public class Directory
     {
-        public System.Collections.Generic.List<Book> BooksList { get; set; }
+        public List<Book> BooksList { get; set; }
 
         /// <summary>
         /// Public constructor initializing the field of the Directory class object.
         /// </summary>
         public Directory ()
         {
-            BooksList = new System.Collections.Generic.List<Book>();
+            BooksList = new List<Book>();
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace Task3
                 var searchResult = BooksList.Find((book) => book.Isbn == key);
                 if(searchResult == null)
                 {
-                    throw new System.Collections.Generic.KeyNotFoundException();
+                    throw new KeyNotFoundException();
                 }
                 return searchResult.BookName;
             }
@@ -37,7 +37,7 @@ namespace Task3
                 var searchResults = BooksList.Find((book) => book.Isbn == key);
                 if (searchResults == null)
                 {
-                    throw new System.Collections.Generic.KeyNotFoundException();
+                    throw new KeyNotFoundException();
                 }
                 searchResults.BookName = value;
             }     
@@ -47,7 +47,7 @@ namespace Task3
         /// GetEnumerator required to iterate over books in a foreach cycle.
         /// </summary>
         /// <returns> Current the book from library with books. </returns>
-        public System.Collections.IEnumerator GetEnumerator()
+        public IEnumerator GetEnumerator()
         {
             this.BooksList.Sort();
             for ( int i = 0; i < BooksList.Capacity-1; i++ )

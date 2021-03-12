@@ -4,7 +4,7 @@ namespace Task3
 {/// <summary>
 /// The book class stores information about the book.
 /// </summary>
-    public class Book : System.IComparable<Book>
+    public class Book : IComparable<Book>
     {
         private const string _firstPatternIsbn = "^[0-9]{3}-[0-9]{1}-[0-9]{2}-[0-9]{6}-[0-9]{1}$";
         public string FirstPattern
@@ -32,6 +32,10 @@ namespace Task3
             }
             set
             {
+                if(value == null)
+                {
+                    throw new System.ArgumentNullException();
+                }
                 if ( Regex.IsMatch( value, _firstPatternIsbn ) || Regex.IsMatch( value, _secondPatternIsbn ) )
                 {
                     _isbn = value;
