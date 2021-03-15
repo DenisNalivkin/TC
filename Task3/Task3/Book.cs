@@ -1,49 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 namespace Task3
 {/// <summary>
 /// The book class stores information about the book.
 /// </summary>
     public class Book : IComparable<Book>
-    {
-        private const string _firstPatternIsbn = "^[0-9]{3}-[0-9]{1}-[0-9]{2}-[0-9]{6}-[0-9]{1}$";
-        public string FirstPattern
-        {
-            get
-            {
-                return _firstPatternIsbn;
-            }
-        }
-        private const string _secondPatternIsbn = "^[0-9]{13}$";
-        public string SecondPatternIsbn
-        {
-            get
-            {
-                return _secondPatternIsbn;
-            }
-        }
+    {      
         private const int LengthBookName = 1000;
-        private string _isbn;
-        public string Isbn
-        {
-            get
-            {
-                return _isbn;
-            }
-            set
-            {
-                if(value == null)
-                {
-                    throw new System.ArgumentNullException();
-                }
-                if ( Regex.IsMatch( value, _firstPatternIsbn ) || Regex.IsMatch( value, _secondPatternIsbn ) )
-                {
-                    _isbn = value;
-                    return;
-                }
-                throw new System.ArgumentException();
-            }
-        }
         private string _bookName;
         public string BookName
         {
@@ -55,15 +19,25 @@ namespace Task3
             {
                 if ( !string.IsNullOrEmpty( value ) && value.Length <= LengthBookName )
                 {
-                    _bookName = value;
-                    return;
+                    _bookName = value;                   
                 }
-                throw new System.ArgumentException();
+                else
+                {
+                    throw new System.ArgumentException();
+                }               
             }
 
         }
-        public string PublicationDate { get; set; }
+        private Isbn _isbn;
+        public string Isbn
+        {
+            get { return _isbn.IsbnValue; }
+            
+        }
+
+        public string PublicationDate { get; private set; }
         public System.Collections.Generic.List<Author> ListAuthors { get; set; }
+       
 
         /// <summary>
         /// Public constructor initializing the fields of the Book class object.
@@ -71,12 +45,12 @@ namespace Task3
         /// <param name="isbn"> Value for field isbn. </param>
         /// <param name="bookName"> Value for field bookName.  </param>
         /// <param name="publicationDate"> Value for field publicationDate. </param>
-        public Book( string isbn, string bookName, string publicationDate )
+        public Book( string isbn, string bookName, string publicationDate, List<Author> AuthorsList)
         {
-            Isbn = isbn;
+            _isbn = new Isbn(isbn);
             BookName = bookName;
             PublicationDate = publicationDate;
-            ListAuthors = new System.Collections.Generic.List<Author>();
+            ListAuthors = AuthorsList;
         }
 
         /// <summary>
@@ -96,14 +70,8 @@ namespace Task3
         /// <returns>  True if both operands are equals, otherwise false. </returns>
         public override bool Equals(object obj)
         {
-            Book resultConverting = obj as Book;
-            if( resultConverting!=null )
-            {
-                string leftOperand = this.Isbn.Replace("-", "");
-                string rightOperand = resultConverting.Isbn.Replace("-", "");
-                return leftOperand == rightOperand;
-            }
-            return false;
+            Book valueToCompare = obj as Book;
+            return Isbn == valueToCompare?.Isbn;
         }   
     }
 }

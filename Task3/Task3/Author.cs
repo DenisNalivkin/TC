@@ -1,4 +1,6 @@
-﻿namespace Task3
+﻿using System;
+
+namespace Task3
 {/// <summary>
 /// The author class stores information about the author of the book.
 /// </summary>
@@ -12,9 +14,16 @@
             {
                 return _firstName;
             }
-            set
+            private set
             {
-                _firstName = CheckName(value);
+                if(IsNameValid(value))
+                {
+                    _firstName = (value);                  
+                }
+                else
+                {
+                    throw new ArgumentException();
+                }                           
             }
         }
         private string _lastName;
@@ -24,9 +33,16 @@
             {
                 return _lastName;
             }
-            set
+            private  set
             {
-              _lastName = CheckName(value);
+                if (IsNameValid(value))
+                {
+                    _lastName = (value);
+                }
+                else
+                {
+                    throw new ArgumentException();
+                }             
             }         
         }
 
@@ -42,16 +58,17 @@
         }
 
         /// <summary>
-        /// CheckName method checks the input string for correctness and, if it meets the requirements, the field is initialized, otherwise throwing exception.
+        /// 
         /// </summary>
         /// <param name="name"> String for check. </param>
-        private string CheckName (string name)
+        private bool IsNameValid (string name)
         {
+            bool isValid = false;
             if (!string.IsNullOrEmpty(name) && name.Length <= LengthName)
             {
-                return name;                        
+                isValid = true;                
             }
-            throw new System.ArgumentException();
+            return isValid;
         }
     }
 }

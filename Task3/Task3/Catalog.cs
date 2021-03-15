@@ -1,17 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 namespace Task3
 {/// <summary>
 /// Directory class stores library with books.
 /// </summary>
-    public class Directory
+    public class Catalog: IEnumerable
     {
         public List<Book> BooksList { get; set; }
 
         /// <summary>
         /// Public constructor initializing the field of the Directory class object.
         /// </summary>
-        public Directory ()
+        public Catalog ()
         {
             BooksList = new List<Book>();
         }
@@ -25,16 +26,16 @@ namespace Task3
         {
             get
             {
-                var searchResult = BooksList.Find((book) => book.Isbn == key);
+                var searchResult = BooksList.Find((book) => book.Isbn == key.Replace("-",""));
                 if(searchResult == null)
                 {
                     throw new KeyNotFoundException();
                 }
                 return searchResult.BookName;
             }
-            set
+            private set
             {
-                var searchResults = BooksList.Find((book) => book.Isbn == key);
+                var searchResults = BooksList.Find((book) => book.Isbn == key.Replace("-", ""));
                 if (searchResults == null)
                 {
                     throw new KeyNotFoundException();
@@ -50,10 +51,13 @@ namespace Task3
         public IEnumerator GetEnumerator()
         {
             this.BooksList.Sort();
-            for ( int i = 0; i < BooksList.Capacity-1; i++ )
+            for (int i = 0; i < BooksList.Capacity - 1; i++)
             {
                 yield return BooksList[i].BookName;
             }
         }
+
+      
+       
     }
 }

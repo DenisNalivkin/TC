@@ -51,7 +51,8 @@
   <ItemGroup>
     <Compile Include="Author.cs" />
     <Compile Include="Book.cs" />
-    <Compile Include="Directory.cs" />
+    <Compile Include="Catalog.cs" />
+    <Compile Include="Isbn.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
