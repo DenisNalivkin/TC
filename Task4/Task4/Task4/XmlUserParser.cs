@@ -14,12 +14,10 @@ namespace Task4
         public XmlUserParser(XDocument xDoc)
         {
             ListUsers = new List<User>();
-            ReadLogins(xDoc);
-            ReadWinElem(xDoc, "main");
-            ReadWinElem(xDoc, "help");
+            ParseLogins(xDoc);
         }
 
-        private void ReadLogins(XDocument xDoc)
+        private void ParseLogins(XDocument xDoc)
         {
             var nestedElements = xDoc.Root.Elements("login");
             this.Logins = new XAttribute[nestedElements.Count()];
@@ -27,30 +25,25 @@ namespace Task4
             for (int i = 0; i < Logins.Length; i++)
             {
                 this.Logins[i] = logins.ElementAtOrDefault(i);
-                ListUsers.Add(new User((string)Logins[i]));
+                var currentLogin = xDoc.Root.Elements("login").Where((login) => login.Attribute("name").Value == (string)Logins[i]);
+                WindowsSettings mainWindowSettings = new WindowsSettings(ParseWinElem(currentLogin, "main", (string)Logins[i]), "main");
+                WindowsSettings helpWindowSettings = new WindowsSettings(ParseWinElem(currentLogin, "help", (string)Logins[i]), "help");
+                ListUsers.Add(new User((string)Logins[i], mainWindowSettings, helpWindowSettings));
             }
         }
 
-        private void ReadWinElem(XDocument xDoc, string attributeName)
+        private UserSettings ParseWinElem(IEnumerable<XElement> login, string attributeName, string userName)
         {
-            var nestedElements = xDoc.Root.Elements("login");
-            for (int i = 0; i < nestedElements.Count(); i++)
-            {
-                var currentLogin = nestedElements.Where((login) => login.Attribute("name").Value == ListUsers[i].Login);
-                var winElem = currentLogin.Elements("window").Where((winAtrib) => winAtrib.Attribute("title").Value == attributeName);
-                ReadNestedWinElem(winElem, ListUsers[i], attributeName);
-            }
+            var winElem = login.Elements("window").Where((winAtrib) => winAtrib.Attribute("title").Value == attributeName);
+            return ParseWinSettings(winElem,attributeName);
         }
 
-        private void ReadNestedWinElem(IEnumerable<XElement> winElem, User user, string attributeName)
+        private UserSettings ParseWinSettings(IEnumerable<XElement> winElem, string attributeName)
         {
-            if (winElem.Count() == 0)
+            UserSettings userSetting = new UserSettings();
+            if (winElem.Count() != 0)
             {
-                return;
-            }
-
-            else
-            {
+                
                 Dictionary<string,string> dictSettings = new Dictionary<string, string> { { "top", null }, { "left", null }, { "width", null }, { "height", null } };
                 string[] settingsArray = { "top", "left", "width", "height" };
                 IEnumerable<string> valueElem;
@@ -61,20 +54,21 @@ namespace Task4
                     {
                         dictSettings[key] =(valueElem.First());                       
                     }                   
-                }               
-                if(dictSettings["top"] is null) { user[attributeName].Top = null; } else { user[attributeName].Top = int.Parse(dictSettings["top"]); }
-                if (dictSettings["left"] is null) { user[attributeName].Left = null; } else { user[attributeName].Left = int.Parse(dictSettings["left"]); }
-                if (dictSettings["width"] is null) { user[attributeName].Width = null; } else { user[attributeName].Width = int.Parse(dictSettings["width"]); }
-                if (dictSettings["height"] is null) { user[attributeName].Height = null; } else { user[attributeName].Height = int.Parse(dictSettings["height"]); }
+                }
+                userSetting.Top = dictSettings["top"] == null ? null : (int?)(int.Parse(dictSettings["top"]));
+                userSetting.Left = dictSettings["left"] == null ? null : (int?)(int.Parse(dictSettings["left"]));
+                userSetting.Width = dictSettings["width"] == null ? null : (int?)(int.Parse(dictSettings["width"]));
+                userSetting.Height = dictSettings["height"] == null ? null : (int?)(int.Parse(dictSettings["height"]));
             }
+            return userSetting;
         }
      
         public void ShowLoginsIncorrectConfiguration()
         {
-            var incorrectUsers = ListUsers.Where((user) => !user.MainSettings.IsSettingsCorrect());
+            var incorrectUsers = ListUsers.Where((user) => !user.MainWin.UserSetting.IsSettingsCorrect());
             foreach (var user in incorrectUsers)
             {
-                Console.WriteLine(user.Login);
+                Console.WriteLine(user.Name);
             }
         }
 
@@ -82,11 +76,11 @@ namespace Task4
         {             
             foreach (var user in ListUsers)
             {
-                Console.WriteLine($"Login: {user.Login}");
-                Console.WriteLine($"main ({user.MainSettings.Top.ConvertingNullableInString()}, {user.MainSettings.Left.ConvertingNullableInString()}," +
-                $" {user.MainSettings.Width.ConvertingNullableInString()}, {user.MainSettings.Height.ConvertingNullableInString()})");
-                Console.WriteLine($"help ({user.HelpSettings.Top.ConvertingNullableInString()}, {user.HelpSettings.Left.ConvertingNullableInString()}," +
-               $" {user.HelpSettings.Width.ConvertingNullableInString()}, {user.HelpSettings.Height.ConvertingNullableInString()})");
+                Console.WriteLine($"Login: {user.Name}");
+                Console.WriteLine($"main ({user.MainWin.UserSetting.Top.ConvertingNullableInString()}, {user.MainWin.UserSetting.Left.ConvertingNullableInString()}," +
+                $" {user.MainWin.UserSetting.Width.ConvertingNullableInString()}, {user.MainWin.UserSetting.Height.ConvertingNullableInString()})");
+                Console.WriteLine($"help ({user.HelpWin.UserSetting.Top.ConvertingNullableInString()}, {user.HelpWin.UserSetting.Left.ConvertingNullableInString()}," +
+               $" {user.HelpWin.UserSetting.Width.ConvertingNullableInString()}, {user.HelpWin.UserSetting.Height.ConvertingNullableInString()})");
             }
         }
       
@@ -95,13 +89,13 @@ namespace Task4
             JsonSerializer serializer = new JsonSerializer();
             for ( int i = 0; i < ListUsers.Count(); i++ )
             {
-                DirectoryInfo userDirectory = new DirectoryInfo(@"D:\Config\"+  ListUsers[i].Login);
+                DirectoryInfo userDirectory = new DirectoryInfo(@"D:\Config\"+  ListUsers[i].Name);
                 if (!userDirectory.Exists)
                 {
                     userDirectory.Create();
                 }
-
-                using (StreamWriter sw = new StreamWriter(@"D:\Config\" + userDirectory +  " " + ListUsers[i].Login +".json"))
+                string path = userDirectory + @"\" + ListUsers[i].Name + ".json";
+                using (StreamWriter sw = new StreamWriter(path))
                 using (JsonWriter writer = new JsonTextWriter(sw))
                 {
                     serializer.Serialize(writer, ListUsers[i]);

@@ -2,10 +2,10 @@
 {
    public class WindowsSettings
     {
-       public User UserSetting { get; private set; }
+       public UserSettings UserSetting { get; private set; }
        public string Title { get; private set; }
 
-        public WindowsSettings (User UserSetting, string title)
+        public WindowsSettings (UserSettings UserSetting, string title)
         {
             this.UserSetting = UserSetting;
             this.Title = title;

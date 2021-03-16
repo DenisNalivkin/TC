@@ -1,7 +1,5 @@
 ﻿namespace Task4
-{/// <summary>
- /// UserSettings class stores data describing the location of the window on the screen.
- /// </summary>
+{
     public class UserSettings
     {
         public int? Top { get; set; }
