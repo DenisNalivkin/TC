@@ -30,7 +30,6 @@ namespace Task3
             library.BooksList.Add(tolstoiBook2);
             library.BooksList.Add(gogolBook);
             library.BooksList.Add(gogolBook2);
-            
 
             // Get a set of books for the given author's first and last name.
             var setBooks = from book in library.BooksList

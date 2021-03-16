@@ -40,7 +40,7 @@ namespace Task3
             get
             {
                 return _authorsList;
-            }                 
+            }       
         }
 
         /// <summary>
