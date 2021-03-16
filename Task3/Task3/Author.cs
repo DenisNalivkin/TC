@@ -16,7 +16,7 @@ namespace Task3
             }
             private set
             {
-                if(IsNameValid(value))
+                if( IsNameValid(value) )
                 {
                     _firstName = (value);                  
                 }
@@ -35,7 +35,7 @@ namespace Task3
             }
             private  set
             {
-                if (IsNameValid(value))
+                if ( IsNameValid(value) )
                 {
                     _lastName = (value);
                 }
@@ -58,9 +58,10 @@ namespace Task3
         }
 
         /// <summary>
-        /// 
+        /// IsValid method checks the string for compliance requirements.
         /// </summary>
         /// <param name="name"> String for check. </param>
+        /// <returns> True value if the input string meets the requirements, otherwise false. </returns>
         private bool IsNameValid (string name)
         {
             bool isValid = false;
@@ -70,5 +71,5 @@ namespace Task3
             }
             return isValid;
         }
-    }
+    } 
 }

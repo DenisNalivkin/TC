@@ -4,7 +4,7 @@ using Task3;
 namespace Task3Tests
 {
     [TestFixture]
-    public class TestsForDirectory
+    public class TestsForCatalog
     {
         Catalog directory;
         Author pushkin;
@@ -16,8 +16,8 @@ namespace Task3Tests
         {
             directory = new Catalog();
             pushkin = new Author("Alexandr", "Pushkin");
-            book1 = new Book("1111111111111", "Captain's daughter", "1836", new List<Author> { pushkin });
-            book2 = new Book("222-2-22-222222-2", "Taras Bulba", "1835", new List<Author> { pushkin });
+            book1 = new Book("1111111111111", "Captain's daughter", "1836", new Author[] { pushkin });
+            book2 = new Book("222-2-22-222222-2", "Taras Bulba", "1835", new Author[] { pushkin });
         }
 
         [Test]

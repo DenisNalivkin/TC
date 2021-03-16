@@ -57,7 +57,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestsForAuthor.cs" />
     <Compile Include="TestsForBook.cs" />
-    <Compile Include="TestsForDirectory.cs" />
+    <Compile Include="TestsForCatalog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

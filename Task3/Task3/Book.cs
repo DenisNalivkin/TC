@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
+
 namespace Task3
 {/// <summary>
 /// The book class stores information about the book.
@@ -15,7 +15,7 @@ namespace Task3
             {
                 return _bookName;
             }
-            set
+            private set
             {
                 if ( !string.IsNullOrEmpty( value ) && value.Length <= LengthBookName )
                 {
@@ -26,18 +26,22 @@ namespace Task3
                     throw new System.ArgumentException();
                 }               
             }
-
         }
         private Isbn _isbn;
         public string Isbn
         {
-            get { return _isbn.IsbnValue; }
-            
+            get { return _isbn.IsbnValue; }          
         }
 
         public string PublicationDate { get; private set; }
-        public System.Collections.Generic.List<Author> ListAuthors { get; set; }
-       
+        private Author [] _authorsList;
+        public Author[] AuthorsList
+        {
+            get
+            {
+                return _authorsList;
+            }                 
+        }
 
         /// <summary>
         /// Public constructor initializing the fields of the Book class object.
@@ -45,19 +49,20 @@ namespace Task3
         /// <param name="isbn"> Value for field isbn. </param>
         /// <param name="bookName"> Value for field bookName.  </param>
         /// <param name="publicationDate"> Value for field publicationDate. </param>
-        public Book( string isbn, string bookName, string publicationDate, List<Author> AuthorsList)
+        /// <param name="authorsList"> Value for field authorsList. </param>
+        public Book( string isbn, string bookName, string publicationDate, Author [] authorsList)
         {
             _isbn = new Isbn(isbn);
             BookName = bookName;
             PublicationDate = publicationDate;
-            ListAuthors = AuthorsList;
+            _authorsList = authorsList;
         }
 
         /// <summary>
-        /// Implementation of the method of interface IComparable. CompareTo method compares objects of class Book by property Name.
+        /// CompareTo is used to compare the current object Book with the object that is passed in the object o parameter. At the output, it returns an integer, which can have one of three values.
         /// </summary>
         /// <param name="otherBook"> Second operand for compare. </param>
-        /// <returns></returns>
+        /// <returns> Less than zero. Hence, the current object must be before the object that is passed as an object.Equal to zero.Hence, both objects are equal. Above zero. This means that the current object must be after the object passed as a parameter. </returns>
         public int CompareTo( Book otherBook )
         {
             return this.BookName.CompareTo( otherBook.BookName );
