@@ -1,5 +1,7 @@
 ﻿namespace Task4
-{
+{/// <summary>
+/// UserSettings class stores values ​​for determining the position of the window on the screen.
+/// </summary>
     public class UserSettings
     {
         public int? Top { get; set; }
@@ -14,11 +16,11 @@
         public bool IsSettingsCorrect()
         {
           bool result = false;
-          if(Top != null && Left != null && Width != null && Height != null || Top == null && Left == null && Width == null && Height == null)
+          if( Top != null && Left != null && Width != null && Height != null || Top == null && Left == null && Width == null && Height == null )
             {
                 result = true;
             }
             return result;         
-        }     
+        }       
     }
 }
