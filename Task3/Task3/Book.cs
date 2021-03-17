@@ -33,7 +33,7 @@ namespace Task3
         }
 
         public string PublicationDate { get; private set; }
-        private Author [] _authorsList;
+        private readonly Author [] _authorsList;
         public Author[] AuthorsList
         {
             get

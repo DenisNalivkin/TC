@@ -1,6 +1,4 @@
 ﻿using System.Linq;
-using System;
-using System.Collections.Generic;
 
 namespace Task3
 {
@@ -21,7 +19,6 @@ namespace Task3
             Book gogolBook = new Book("3333333333333", "Dead souls", "1842", new Author[] { gogol });
             Book gogolBook2 = new Book("2222222222222", "Taras Bulba", "1835", new Author[] { gogol });
 
-
             // Directory which stores list books.
             Catalog library = new Catalog();
             library.BooksList.Add(pushkinsBook);
@@ -38,17 +35,14 @@ namespace Task3
                            where authors.LastName.ToUpper() == "GOGOL"
                            select book;
 
-
             // Get a set of books for the given author's first and last name.
             var setBooks2 = library.BooksList.SelectMany((books) => books.AuthorsList, (book, author) => new
             { Book = book.BookName, AuthorFirstName = author.FirstName, AuthorLastName = author.LastName })
             .Where(bookInformation => bookInformation.AuthorFirstName.ToUpper() == "NICOLAI" && bookInformation.AuthorLastName.ToUpper() == "GOGOL")
             .Select((result) => result.Book);
 
-
             // Sort books by descending  by  date publication.
             var sortBooks = library.BooksList.OrderByDescending(book => book.PublicationDate);
-
 
             // Get set tuples of the form “author - the number of his books in the catalog”.
             var result2 = library.BooksList.SelectMany((books) => books.AuthorsList, (book, author) => author)
