@@ -1,0 +1,11 @@
+{"Logger":
+{
+"MinLogLevel":"Warning",
+
+"TextListener" : { "LogLevel":"Error","Path":"D:\\\\Task5\\\\TextLog.txt"},
+
+"WordListener":  { "LogLevel":"Error","Path":"D:\\\\Task5\\\\WordLog.docx"},
+
+"EventLogListener": { "LogLevel":"Error","Source":"EventLogListener"},
+}
+}
