@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace InterfaceIListener
 {
   public enum LogLevel
-    {        
+    {
+        Trace,
         Info,
         Warning,
         Error

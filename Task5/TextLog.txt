@@ -23,3 +23,11 @@ Info  18:17:25 PM  Message
 Warning  18:20:37 PM  Message
 Warning  18:27:45 PM  Message
 Warning  18:28:29 PM  Message
+Warning  19:09:01 PM  Message
+Warning  19:54:30 PM  Message
+Trace  20:43:03 PM  logger.TrackingPropertyAttribute
+Warning  20:43:50 PM  Message
+Trace  20:47:16 PM  _Number=
+Trace  20:54:42 PM  _Number=10
+Trace  20:54:59 PM  _Number=10
+Trace  20:56:32 PM  _Number=10

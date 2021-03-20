@@ -51,8 +51,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logger.cs" />
+    <Compile Include="Number.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TrackingEntityAttribute.cs" />
+    <Compile Include="TrackingPropertyAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

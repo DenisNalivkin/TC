@@ -38,6 +38,9 @@ namespace logger
                 case "error":
                     minLogLevel = LogLevel.Error;
                     break;
+                case "trace":
+                    minLogLevel = LogLevel.Trace;
+                    break;
                 default: throw new ArgumentException();
             }
         }
@@ -95,7 +98,7 @@ namespace logger
      
         private  void SetLogLevel (string listenerName, string jsonString)
         {
-            Dictionary<string, LogLevel> dictLogLevel = new Dictionary<string, LogLevel> { { "Info", LogLevel.Info }, { "Warning", LogLevel.Warning }, { "Error", LogLevel.Error } };
+            Dictionary<string, LogLevel> dictLogLevel = new Dictionary<string, LogLevel> { {"Trace",LogLevel.Trace },  { "Info", LogLevel.Info }, { "Warning", LogLevel.Warning }, { "Error", LogLevel.Error } };
             var logLevel = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(jsonString)["Logger"][listenerName]["LogLevel"];
             logLevel = minLogLevel < dictLogLevel[logLevel.Value] ? minLogLevel : logLevel;
             if (listenerName == "TextListener")
@@ -118,5 +121,24 @@ namespace logger
             TextListener?.WriteMessage(message, loglevel);
             WordListener?.WriteMessage(message, loglevel);          
         }      
+        public void Track (object obj, string path)
+        {
+            var objType = obj.GetType();
+            Attribute trackingEntityAttribute = Attribute.GetCustomAttribute(objType, typeof(TrackingEntityAttribute));
+            if (trackingEntityAttribute != null)
+            {
+                var allProperty = objType.GetProperties();
+                foreach ( var property in allProperty)
+                {
+                    Attribute result = Attribute.GetCustomAttribute(property, typeof(TrackingPropertyAttribute));
+                    if (result != null)
+                    {
+                        ParseConfig(path);
+                       
+                        Log($"{property.Name}={property.GetValue(obj)}", LogLevel.Trace);
+                    }
+                }
+            }
+        }
     }
 }
