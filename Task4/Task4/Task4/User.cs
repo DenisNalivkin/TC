@@ -1,4 +1,6 @@
-﻿namespace Task4
+﻿using System.Collections.Generic;
+
+namespace Task4
 {
     /// <summary>
     /// User class stores name and data describing the position of the user's windows on the screen.
@@ -6,8 +8,9 @@
     public class User
     {
         public string Name { get; private set; }
-        public WindowsSettings MainWin { get; private set; }
-        public WindowsSettings HelpWin { get; private set; }
+
+        public List<WindowsSettings> ListWindowsSettings { get; set; }
+       
 
         /// <summary>
         /// The public constructor initializes the fields of the user class object.

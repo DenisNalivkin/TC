@@ -50,7 +50,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
-    <Compile Include="UserSettings.cs" />
     <Compile Include="WindowsSettings.cs" />
     <Compile Include="XmlUserParser.cs" />
   </ItemGroup>
