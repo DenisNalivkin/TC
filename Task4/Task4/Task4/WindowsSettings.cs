@@ -4,17 +4,17 @@
  /// </summary>
     public class WindowsSettings
     {
-       public string Title { get; private set; }
-        public int? Top { get; set; }
-        public int? Left { get; set; }
-        public int? Width { get; set; }
-        public int? Height { get; set; }
+        public string Title { get; private set; }
+        public int? Top { get; private set; }
+        public int? Left { get; private set; }
+        public int? Width { get; private set; }
+        public int? Height { get; private set; }
 
         /// <summary>
         /// IsSettingsCorrect method check the user's settings.
         /// </summary>
         /// <returns> Will return true if the configuration contains the settings for a window named main, and for that window there are all four nested elements(top, left, width, height)  or the config does not contain settings for a window named main. Otherwise will return false. </returns>
-        public bool IsSettingsCorrect()
+        public  bool IsSettingsCorrect()
         {
             bool result = false;
             if (Top != null && Left != null && Width != null && Height != null || Top == null && Left == null && Width == null && Height == null)
@@ -27,12 +27,18 @@
         /// <summary>
         /// The public constructor initializes the fields of the WindowsSettings class object.
         /// </summary>
-        /// <param name="UserSetting"> Value for filed UserSetting. </param>
-        /// <param name="title">  Value for filed Title. </param>
-        public WindowsSettings (UserSettings UserSetting, string title)
-        {
-            this.UserSetting = UserSetting;
+        /// <param name="title"> Value for filed Title.</param>
+        /// <param name="top"> Value for filed Top. </param>
+        /// <param name="left">  Value for filed Left. </param>
+        /// <param name="width">  Value for filed Width. </param>
+        /// <param name="height"> Value for filed Height. </param>
+        public WindowsSettings (string title, int? top, int? left, int? width, int? height)
+        {           
             this.Title = title;
-        }
+            this.Top = top;
+            this.Left = left;
+            this.Width = width;
+            this.Height = height;           
+        }      
     }
 }

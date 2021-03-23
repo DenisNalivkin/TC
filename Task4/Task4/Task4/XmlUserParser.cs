@@ -28,45 +28,41 @@ namespace Task4
             var nestedElements = xDoc.Root.Elements("login");
             this.UserNames = new XAttribute[nestedElements.Count()];
             var loginFirstAtr = nestedElements.Select((curentLogin) => curentLogin.FirstAttribute);
+            ParseWinSettings(xDoc, loginFirstAtr);
+        }
+
+        private void ParseWinSettings( XDocument xDoc, IEnumerable<XAttribute> loginFirstAtr)
+        {
             for (int i = 0; i < UserNames.Length; i++)
             {
                 this.UserNames[i] = loginFirstAtr.ElementAtOrDefault(i);
                 var currentLogin = xDoc.Root.Elements("login").Where((login) => login.Attribute("name").Value == (string)UserNames[i]);
-                WindowsSettings mainWindowSettings = new WindowsSettings(ParseWinElem(currentLogin, "main", (string)UserNames[i]), "main");
-                WindowsSettings helpWindowSettings = new WindowsSettings(ParseWinElem(currentLogin, "help", (string)UserNames[i]), "help");
-                ListUsers.Add(new User((string)UserNames[i], mainWindowSettings, helpWindowSettings));
-            }
-        }
+                var nestedWinElemCurrentLogin = currentLogin.Elements("window");
+                ListUsers.Add(new User(UserNames[i].Value.ToString()));
 
-        private UserSettings ParseWinElem(IEnumerable<XElement> login, string attributeName, string userName)
-        {
-            var winElem = login.Elements("window").Where((winAtrib) => winAtrib.Attribute("title").Value == attributeName);
-            return ParseWinSettings(winElem,attributeName);
-        }
-
-        private UserSettings ParseWinSettings(IEnumerable<XElement> winElem, string attributeName)
-        {
-            UserSettings userSetting = new UserSettings();
-            if (winElem.Count() != 0)
-            {
-                
-                Dictionary<string,string> dictSettings = new Dictionary<string, string> { { "top", null }, { "left", null }, { "width", null }, { "height", null } };
-                string[] settingsArray = { "top", "left", "width", "height" };
-                IEnumerable<string> valueElem;
-                foreach (var key in settingsArray)
-                {              
-                    valueElem = winElem.Elements(key).Select((elem) => elem.Value);
-                    if (valueElem.Count() != 0)
-                    {
-                        dictSettings[key] =(valueElem.First());                       
-                    }                   
+                foreach (var winElem in nestedWinElemCurrentLogin)
+                {
+                    string title = (string)winElem.Attribute("title");
+                    string topValue = IsNotEmpry(winElem, "top");
+                    string leftValue = IsNotEmpry(winElem, "left");
+                    string widthValue = IsNotEmpry(winElem, "width");
+                    string heightValue = IsNotEmpry(winElem, "height");
+                    ListUsers[i].ListWinSettings.Add(new WindowsSettings(title, topValue == null ? null : (int?)int.Parse(topValue), leftValue == null ? null : (int?)int.Parse(leftValue), widthValue == null ? null : (int?)int.Parse(widthValue), heightValue == null ? null : (int?)int.Parse(heightValue)));
                 }
-                userSetting.Top = dictSettings["top"] == null ? null : (int?)(int.Parse(dictSettings["top"]));
-                userSetting.Left = dictSettings["left"] == null ? null : (int?)(int.Parse(dictSettings["left"]));
-                userSetting.Width = dictSettings["width"] == null ? null : (int?)(int.Parse(dictSettings["width"]));
-                userSetting.Height = dictSettings["height"] == null ? null : (int?)(int.Parse(dictSettings["height"]));
             }
-            return userSetting;
+        }
+        private string IsNotEmpry(XElement winElem, string elemName)
+        {
+            string value = null;
+            try
+            {
+                value = winElem.Elements(elemName).Select((el) => el.Value).First().ToString();
+            }
+            catch
+            {
+                return value;
+            }
+            return value;
         }
 
         /// <summary>
@@ -74,69 +70,92 @@ namespace Task4
         /// </summary>
         public void ShowLoginsIncorrectConfiguration()
         {
-            var incorrectUsers = ListUsers.Where((user) => !user.MainWin.UserSetting.IsSettingsCorrect());
-            foreach (var user in incorrectUsers)
+            IEnumerable<bool> win = null;
+            IEnumerable<bool> amountMain = null;
+            List<string> usersIncorrectConfig = new List<string>();
+            foreach (var user in ListUsers)
             {
-                Console.WriteLine(user.Name);
-            }           
-        }
+                win = user.ListWinSettings.Select((u) => u.Title == "main");
+                amountMain = win.Where((boolValue) => boolValue == true);
+                if (amountMain.Count() > 1)
+                {
+                    usersIncorrectConfig.Add(user.Name);
+                    continue;
+                }
 
+                for (int i = 0; i < user.ListWinSettings.Count; i++)
+                {
+                    if (user.ListWinSettings[i].Title == "main")
+                    {
+                        if (!user.ListWinSettings[i].IsSettingsCorrect())
+                        {
+                            usersIncorrectConfig.Add(user.Name);
+                        }
+                    }
+                }            
+            }
+            foreach (var name in usersIncorrectConfig)
+            {
+                Console.WriteLine(name);
+            }
+        }
+          
         /// <summary>
         /// Shows information about the user and his settings, the location of the windows on the screen.
         /// </summary>
         public void ShowInformationUserSetting()
-        {             
+        {
             foreach (var user in ListUsers)
             {
                 Console.WriteLine($"Login: {user.Name}");
-                Console.WriteLine($"main ({user.MainWin.UserSetting.Top.ConvertingNullableInString()}, {user.MainWin.UserSetting.Left.ConvertingNullableInString()}," +
-                $" {user.MainWin.UserSetting.Width.ConvertingNullableInString()}, {user.MainWin.UserSetting.Height.ConvertingNullableInString()})");
-                Console.WriteLine($"help ({user.HelpWin.UserSetting.Top.ConvertingNullableInString()}, {user.HelpWin.UserSetting.Left.ConvertingNullableInString()}," +
-               $" {user.HelpWin.UserSetting.Width.ConvertingNullableInString()}, {user.HelpWin.UserSetting.Height.ConvertingNullableInString()})");
-            }
+                foreach (var WinSetting in user.ListWinSettings)
+                {              
+                    Console.WriteLine($"{WinSetting.Title}({WinSetting.Top.ConvertingNullableInString()}, {WinSetting.Left.ConvertingNullableInString()}, {WinSetting.Width.ConvertingNullableInString()}, {WinSetting.Height.ConvertingNullableInString()})");
+                }
+            }      
         }
-
+            
         /// <summary>
         /// Converts the username and settings that determine the location of windows on the screen to json format.
         /// </summary>
         public void ConvertUserSettingsJson()
-        {
-            JsonSerializer serializer = new JsonSerializer();
-            for ( int i = 0; i < ListUsers.Count(); i++ )
             {
-                User newUser = XmlUserParser.ConvertingNullInZero(ListUsers[i]);
-                DirectoryInfo userDirectory = new DirectoryInfo(@"D:\Config\"+  ListUsers[i].Name);
-                if (!userDirectory.Exists)
+                JsonSerializer serializer = new JsonSerializer();
+                for ( int i = 0; i < ListUsers.Count(); i++ )
                 {
-                    userDirectory.Create();
-                }
-                string path = userDirectory + @"\" + ListUsers[i].Name + ".json";
-                using (StreamWriter sw = new StreamWriter(path))
-                using (JsonWriter writer = new JsonTextWriter(sw))
-                {
-                    serializer.Serialize(writer, newUser);
+                    User newUser = XmlUserParser.ConvertingNullInZero(ListUsers[i]);
+                    DirectoryInfo userDirectory = new DirectoryInfo(@"D:\Config\"+  ListUsers[i].Name);
+                    if (!userDirectory.Exists)
+                    {
+                        userDirectory.Create();
+                    }
+                    string path = userDirectory + @"\" + ListUsers[i].Name + ".json";
+                    using (StreamWriter sw = new StreamWriter(path))
+                    using (JsonWriter writer = new JsonTextWriter(sw))
+                    {
+                        serializer.Serialize(writer, newUser);
+                    }
                 }
             }
-        }
 
         /// <summary>
         /// Сonverts null to zero in fields defining the position of the window on the screen.
         /// </summary>
         /// <param name="user"> Object of class user. </param>
         /// <returns> New object of the user class that has no null value for the fields defining the position of the window on the screen.  </returns>
-        private static User ConvertingNullInZero (User user)
-        {               
-            User newUser = new User(user.Name, user.MainWin, user.HelpWin);
-            newUser.MainWin.UserSetting.Top = newUser.MainWin.UserSetting.Top == null ? newUser.MainWin.UserSetting.Top = 0 : newUser.MainWin.UserSetting.Top = newUser.MainWin.UserSetting.Top;
-            newUser.MainWin.UserSetting.Left = newUser.MainWin.UserSetting.Left == null ?   newUser.MainWin.UserSetting.Left = 0 :newUser.MainWin.UserSetting.Left = newUser.MainWin.UserSetting.Left;
-            newUser.MainWin.UserSetting.Width = newUser.MainWin.UserSetting.Width == null ? newUser.MainWin.UserSetting.Width = 0 : newUser.MainWin.UserSetting.Width = newUser.MainWin.UserSetting.Width;
-            newUser.MainWin.UserSetting.Height = newUser.MainWin.UserSetting.Height == null ? newUser.MainWin.UserSetting.Height = 0 : newUser.MainWin.UserSetting.Height = newUser.MainWin.UserSetting.Height;
-
-            newUser.HelpWin.UserSetting.Top = newUser.HelpWin.UserSetting.Top == null ? newUser.HelpWin.UserSetting.Top = 0 : newUser.HelpWin.UserSetting.Top = newUser.HelpWin.UserSetting.Top;
-            newUser.HelpWin.UserSetting.Left = newUser.HelpWin.UserSetting.Left == null ? newUser.HelpWin.UserSetting.Left = 0 : newUser.HelpWin.UserSetting.Left = newUser.HelpWin.UserSetting.Left;
-            newUser.HelpWin.UserSetting.Width = newUser.HelpWin.UserSetting.Width == null ? newUser.HelpWin.UserSetting.Width = 0 : newUser.HelpWin.UserSetting.Width = newUser.HelpWin.UserSetting.Width;
-            newUser.HelpWin.UserSetting.Height = newUser.HelpWin.UserSetting.Height == null ? newUser.HelpWin.UserSetting.Height = 0 : newUser.HelpWin.UserSetting.Height = newUser.HelpWin.UserSetting.Height;
-            return newUser;
-        }        
+        private static User ConvertingNullInZero(User user)
+        {
+            User newUser = new User(user.Name);
+            var users = user.ListWinSettings.Select((winSetting) => winSetting);
+            foreach( var winSetting in users )
+            {
+                newUser.ListWinSettings.Add(new WindowsSettings(winSetting.Title, winSetting.Top == null ?  0 : winSetting.Top,
+                winSetting.Left == null ? 0 :  winSetting.Left, winSetting.Width == null ?  0 : winSetting.Width,
+                winSetting.Height == null ?  0 : winSetting.Height));
+            }
+            return newUser;          
+            }            
+        }
     }
-}
+
+

@@ -8,21 +8,16 @@ namespace Task4
     public class User
     {
         public string Name { get; private set; }
-
-        public List<WindowsSettings> ListWindowsSettings { get; set; }
+        public List<WindowsSettings> ListWinSettings { get; private set; }
        
-
         /// <summary>
         /// The public constructor initializes the fields of the user class object.
         /// </summary>
         /// <param name="name"> Value for field Name. </param>
-        /// <param name="main"> Value for field MainWin. </param>
-        /// <param name="help"> Value for field HelpWin. </param>
-        public User(string name, WindowsSettings main, WindowsSettings help)
-        {
+        public User(string name)
+        {          
             this.Name = name;
-            this.MainWin = main;
-            this.HelpWin = help;
+            ListWinSettings = new List<WindowsSettings>();
         }
     }
 }
