@@ -14,10 +14,10 @@ namespace InterfaceIListener
         Error
     }
     public interface IListener
-    {
-        void WriteMessage(string str, LogLevel InputlogLevel);
-
-        void SetPathOrSource(string pathOrSource);
+    {      
+        string Source { get;  set; }
         LogLevel Loglevel { get; set; }
+        void WriteMessage(string str, LogLevel InputlogLevel);
+        void SetSource(string pathOrSource);
     }
 }

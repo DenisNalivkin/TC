@@ -4,26 +4,25 @@ using Microsoft.Office.Interop.Word;
 
 namespace WordListener
 {
-    public class Wordlistener:IListener
+    public class WordListener:IListener
     {
-        public string Path { get; set; }
+        public string Source { get; set; }
         public LogLevel Loglevel { get; set; }
 
-        public Wordlistener(string path, LogLevel logLevel)
+        public WordListener(string path, LogLevel logLevel)
         {
-            Path = path;
+            Source = path;
             Loglevel = logLevel;
         }
-
-        public Wordlistener()
+        public WordListener()
         {
-           
+
         }
 
         public void WriteMessage(string message, LogLevel inputlogLevel)
         {
             Application app = new Application();
-            Document doc = app.Documents.Open(Path);
+            Document doc = app.Documents.Open(Source);
             if( inputlogLevel >= this.Loglevel)
             {
                 doc.Content.Text += inputlogLevel + " " + DateTime.Now.ToString("MM.dd.yyyy HH:mm:ss tt") + "  " + message;
@@ -32,9 +31,9 @@ namespace WordListener
             }             
         }
 
-        public void SetPathOrSource(string pathOrSource)
+        public void SetSource(string source)
         {
-            Path = pathOrSource;
+            Source = source;
         }
     }
 }

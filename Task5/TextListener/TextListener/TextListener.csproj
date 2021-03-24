@@ -33,7 +33,7 @@
   <ItemGroup>
     <Reference Include="InterfaceIListener, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\InterfaceIListener.dll</HintPath>
+      <HintPath>..\..\logger\logger\bin\Debug\InterfaceIListener.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Textlistener.cs" />
+    <Compile Include="TextListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

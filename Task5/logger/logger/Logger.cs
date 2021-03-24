@@ -10,22 +10,27 @@ namespace logger
    public class Logger
     {
         public LogLevel minLogLevel { get; private set; }
-        public IListener TextListener { get; private set; }
-        public IListener WordListener { get; private set; }
-        public IListener EventLogListener { get; private set; }
+        public List<IListener> executorLogger { get; private set; }
 
+        public Logger ()
+        {
+            executorLogger = new List<IListener>();
+
+        }
+            
         public void ParseConfig (string path)
         {
             using (StreamReader sr = new StreamReader(path))
             {
                 string jsonString = File.ReadAllText(path);
                 var loggerConfig = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(jsonString)["Logger"];
-                SetMinLogLevel(loggerConfig["MinLogLevel"].ToString());
-                InitializeListeners(loggerConfig, jsonString);               
+                SetMinLogLevelLogger(loggerConfig["MinLogLevel"].ToString());
+                InitializeExecutors(loggerConfig, jsonString);
+                SetLogLevelExecutor();
             }
         }
 
-        private void SetMinLogLevel (string str)
+        private void SetMinLogLevelLogger (string str)
         {
             switch (str.ToLower())
             { 
@@ -44,83 +49,50 @@ namespace logger
                 default: throw new ArgumentException();
             }
         }
-
-        private IListener LoadDll(AssemblyName assemblyName, Assembly assembly, string className)
+      
+        private void InitializeExecutors(Newtonsoft.Json.Linq.JObject loggerConfig, string jsonString)
         {
-            try
-            {
-                assembly = Assembly.Load(assemblyName);
-                Type type = assembly.GetType($"{assemblyName}.{className}");
-                return (IListener)Activator.CreateInstance(type);
-            }
-                  
-            catch
-            {
-                return null;
-            }
-        }
-        private void InitializeListeners(Newtonsoft.Json.Linq.JObject loggerConfig, string jsonString)
-        {
-            AssemblyName assemblyName = null;
             Assembly assembly = null;
-            foreach (var value  in loggerConfig.Properties())
+            Type [] classesAssebmly = null;
+            IListener executor = null;
+            LogLevel extcutorLogLevel = 0;
+            Type executorClass = null;
+            foreach (var objExecutor  in loggerConfig.Properties())
             {
-                if(value.Name.ToLower() == "textlistener")
+                if (objExecutor.Name != "MinLogLevel")
                 {
-                    assemblyName = new AssemblyName("TextListener");
-                    assembly = Assembly.Load(assemblyName);
-                    TextListener = LoadDll(assemblyName, assembly, "Textlistener");
-                    SetLogLevel("TextListener", jsonString);                 
-                    var path = loggerConfig["TextListener"]["Path"];
-                    TextListener.SetPathOrSource(path.ToString());
-                }
+                    assembly = Assembly.Load(objExecutor.Name);
+                    classesAssebmly = assembly.GetTypes();
+                    executorClass = assembly.GetType(classesAssebmly[0].FullName);
+                    executor = (IListener)Activator.CreateInstance(executorClass);                           
+                    executor.Loglevel = ParseEnum<LogLevel>((string)loggerConfig[objExecutor.Name]["LogLevel"]);
+                    executor.SetSource((string)loggerConfig[objExecutor.Name]["Source"]);
+                    executorLogger.Add(executor);                 
+                }              
+            }
+        }  
 
-                if (value.Name.ToLower() == "wordlistener")
-                {
-                    assemblyName = new AssemblyName("WordListener");
-                    WordListener = LoadDll(assemblyName, assembly, "Wordlistener");
-                    SetLogLevel("WordListener", jsonString);
-                    var path = loggerConfig["WordListener"]["Path"];
-                    WordListener.SetPathOrSource(path.ToString());
-                }
-
-                if (value.Name.ToLower() == "eventloglistener")
-                {
-                    assemblyName = new AssemblyName("EventLogListener");
-                    EventLogListener = LoadDll(assemblyName, assembly, "EventLoglistener");
-                    SetLogLevel("EventLogListener", jsonString);
-                    var source = loggerConfig["EventLogListener"]["Source"];
-                    EventLogListener.SetPathOrSource(source.ToString());
-                }
-                assemblyName = null;
+        private  void SetLogLevelExecutor ()
+        {         
+            foreach( var curListener in executorLogger)
+            {
+                curListener.Loglevel = minLogLevel < curListener.Loglevel ? minLogLevel : curListener.Loglevel;
             }
         }
-     
-        private  void SetLogLevel (string listenerName, string jsonString)
+
+        private static T ParseEnum<T>(string value)
         {
-            Dictionary<string, LogLevel> dictLogLevel = new Dictionary<string, LogLevel> { {"Trace",LogLevel.Trace },  { "Info", LogLevel.Info }, { "Warning", LogLevel.Warning }, { "Error", LogLevel.Error } };
-            var logLevel = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(jsonString)["Logger"][listenerName]["LogLevel"];
-            logLevel = minLogLevel < dictLogLevel[logLevel.Value] ? minLogLevel : logLevel;
-            if (listenerName == "TextListener")
-            {               
-                this.TextListener.Loglevel = logLevel;
-            }
-            if (listenerName == "WordListener")
-            {
-                this.WordListener.Loglevel = logLevel;
-            }
-            if (listenerName == "EventLogListener")
-            {
-                this.EventLogListener.Loglevel = logLevel;
-            }
-
+            return (T)Enum.Parse(typeof(T), value);
         }
+        
         public void Log (string message, LogLevel loglevel)
         {
-            EventLogListener?.WriteMessage(message, loglevel);
-            TextListener?.WriteMessage(message, loglevel);
-            WordListener?.WriteMessage(message, loglevel);          
-        }      
+            foreach(var curExecutor in executorLogger)
+            {
+                curExecutor?.WriteMessage(message, loglevel);
+            }         
+        }    
+              
         public void Track (object obj, string path)
         {
             var objType = obj.GetType();
@@ -139,6 +111,6 @@ namespace logger
                     }
                 }
             }
-        }
+        }       
     }
 }

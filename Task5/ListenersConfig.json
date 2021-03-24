@@ -2,10 +2,11 @@
 {
 "MinLogLevel":"Trace",
 
-"TextListener" : { "LogLevel":"Error","Path":"D:\\\\GitClone3.20.21\\\\TC\\\\Task5\\\\TextLog.txt"}, 
+"TextListener" : { "LogLevel":"Error","Source":"D:\\\\GitClone3.22.21\\\\TC\\\\Task5\\\\TextLog.txt"}, 
 
-"WordListener":  { "LogLevel":"Error","Path":"D:\\\\GitClone3.20.21\\\\TC\\\\Task5\\\\WordLog.docx"},
+"WordListener":  { "LogLevel":"Error","Source":"D:\\\\GitClone3.22.21\\\\TC\\\\Task5\\\\WordLog.docx"},
 
-"EventLogListener": { "LogLevel":"Error","Source":"EventLogListener"},
+"EventLogListener": { "LogLevel":"Info","Source":"EventLogListener"},
+
 }
 }

@@ -5,24 +5,22 @@ using InterfaceIListener;
 
 namespace TextListener
 {
-    public class Textlistener:IListener
+    public class TextListener:IListener
     {
-        public string Path { get; set; }
+        public string Source { get; set; }
         public LogLevel Loglevel { get; set; }
 
-        public Textlistener(string path)
+        public TextListener(string source)
         {
-            Path = path;
+            Source = source;
         }
-
-        public Textlistener()
+        public TextListener()
         {
-
+           
         }
-
         public void WriteMessage(string message, LogLevel inputlogLevel )
         {
-            using (StreamWriter sw = new StreamWriter(Path, true, Encoding.Default))
+            using (StreamWriter sw = new StreamWriter(Source, true, Encoding.Default))
             {
                 if ((inputlogLevel >= this.Loglevel))
                 {
@@ -31,9 +29,9 @@ namespace TextListener
             }
         }
 
-        public void SetPathOrSource(string pathOrSource)
+        public void SetSource(string source)
         {
-            Path = pathOrSource;
+            this.Source = source;
         }
     }
 }

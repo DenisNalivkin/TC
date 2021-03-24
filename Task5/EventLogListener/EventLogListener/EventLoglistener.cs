@@ -4,20 +4,18 @@ using InterfaceIListener;
 
 namespace EventLogListener
 {
-    public class EventLoglistener: IListener
+    public class EventLogListener: IListener
     {
-        public string Source { get; set; }
+        public string Source { get;  set; }
         public LogLevel Loglevel { get; set; }
-
-        public EventLoglistener(string path)
+        public EventLogListener(string path)
         {
             Source = path;
         }
-        public EventLoglistener()
+        public EventLogListener()
         {
-
+            
         }
-
         public void WriteMessage(string message, LogLevel inputlogLevel)
         {
             if (inputlogLevel >= this.Loglevel)
@@ -32,8 +30,7 @@ namespace EventLogListener
                 myLog.WriteEntry($"{inputlogLevel} {DateTime.Now.ToString("HH:mm:ss tt")}  {message}");            
             }          
         }
-
-        public void SetPathOrSource(string pathOrSource)
+        public void SetSource(string pathOrSource)
         {
             Source = pathOrSource;
         }
