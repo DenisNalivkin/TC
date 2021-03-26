@@ -1,0 +1,11 @@
+{"WebsiteMonitoringSettings":
+
+[
+
+{"intervalBetweenChecksSeconds":3,"maxExpectedServerResponseTimeSeconds":0,"addressPageBeingChecked":"https://www.google.com/","dataAdministrator" :{ "administratorName":"Any","siteName":"google", "websiteAddress":"https://www.google.com/", "adminEmailAddress":"wwww@yandex.ru"},},
+{"intervalBetweenChecksSeconds":3,"maxExpectedServerResponseTimeSeconds":0,"addressPageBeingChecked":"https://www.yandex.by/","dataAdministrator" :{ "administratorName":"Gena","siteName":"yandex", "websiteAddress":"https://www.yandex.by/", "adminEmailAddress":"wwww@yandex.ru"},}
+
+]
+
+}
+
