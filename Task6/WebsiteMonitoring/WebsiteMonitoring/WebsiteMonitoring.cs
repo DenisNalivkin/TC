@@ -7,26 +7,30 @@ using System.Net;
 using System.Threading;
 using System.Net.Mail;
 
-namespace ReflectionJsonSettingsSiteMonitoring
+namespace SiteMonitoring
 {
     public class WebsiteMonitoring
     {
-        public static string JsonPath { get; private set; }
-        public static string PathLog { get; private set; }
-        public List<SettingsWebSiteMonitoring.SettingsWebSiteMonitoring> _WebSiteSettings { get; private set; }
-        public static Logger Logger { get; private set; }
-        private static object Locker;
-        private static object LockerLoggerFileSystemWatcher;
+        public string JsonPath { get; private set; }
+        public string PathLog { get; private set; }
+        public List<SettingsWebSiteMonitoring.SettingsWebSiteMonitoring> ListWebSiteSettings { get; private set; }
+        public Logger Logger { get; private set; }
+        private object Locker;
+        private bool ConfigChanged;
+        private bool ConfigDeleted;
+        private FileSystemWatcher fileSystemWatcher;
 
         public WebsiteMonitoring(string path, string pathLog)
         {
             JsonPath = path;
             PathLog = pathLog;
-            _WebSiteSettings = new List<SettingsWebSiteMonitoring.SettingsWebSiteMonitoring>();
+            ListWebSiteSettings = new List<SettingsWebSiteMonitoring.SettingsWebSiteMonitoring>();
             Logger = new Logger(PathLog);
             ParseConfig(JsonPath);
             Locker = new object();
-            LockerLoggerFileSystemWatcher = new object();
+            ConfigChanged = false;
+            ConfigDeleted = false;
+            InitializeFileSystemWatcher();
         }
    
         private void ParseConfig(string path)
@@ -37,46 +41,59 @@ namespace ReflectionJsonSettingsSiteMonitoring
                 ReflectionJsonSettingsSiteMonitoring WebSites = JsonConvert.DeserializeObject<ReflectionJsonSettingsSiteMonitoring>(jsonString);
                 for (int i = 0; i < WebSites._WebsiteMonitoringSettings.Length; i++)
                 {
-                    _WebSiteSettings.Add(new SettingsWebSiteMonitoring.SettingsWebSiteMonitoring(WebSites._WebsiteMonitoringSettings[i].IntervalBetweenChecksSeconds, WebSites._WebsiteMonitoringSettings[i].MaxExpectedServerResponseTimeSeconds,
-                     WebSites._WebsiteMonitoringSettings[i].AddressPageBeingChecked, WebSites._WebsiteMonitoringSettings[i].DataAdministrator));
+                    ListWebSiteSettings.Add(new SettingsWebSiteMonitoring.SettingsWebSiteMonitoring(WebSites._WebsiteMonitoringSettings[i].IntervalBetweenChecksSeconds, WebSites._WebsiteMonitoringSettings[i].MaxExpectedServerResponseTimeSeconds,
+                     WebSites._WebsiteMonitoringSettings[i].UrlSiteForCheck, WebSites._WebsiteMonitoringSettings[i].DataAdministrator));
                 }
             }
         }
 
         public void CheckUrl(object obj)
-        {
-            List<SettingsWebSiteMonitoring.SettingsWebSiteMonitoring> _webSiteSettings = (List<SettingsWebSiteMonitoring.SettingsWebSiteMonitoring>)obj;
+        {         
             DateTime start = new DateTime();
             DateTime finish = new DateTime();
             int leadTime = 0;
             Action method = null;
             Task task = null;
-            Thread myThread = null;
-            Dictionary<string, Thread> threadsDict = new Dictionary<string, Thread>();        
-            foreach (var elem in _webSiteSettings)
+            Thread threadWebSite = null;           
+            Dictionary<string, Thread> threadsSitesDict = new Dictionary<string, Thread>();
+            List<string> keys = new List<string>();
+
+            foreach (var webSite in ListWebSiteSettings)
             {
-                threadsDict[elem.DataAdministrator.websiteAddress] = null;
+                threadsSitesDict[webSite.UrlSiteForCheck] = null;
             }
+
             while (true)
             {
-                foreach (var webSite in _webSiteSettings)
+                if(ConfigChanged)
                 {
-                    if (threadsDict[webSite.DataAdministrator.websiteAddress] == null)
+                    ParseChangedConfig();
+                    ConfigChanged = false;
+                    UpdateThreadsSitesDict(threadsSitesDict);
+                }
+
+                if(ConfigDeleted)
+                {
+                    break;
+                }
+                                            
+                foreach (var webSite in ListWebSiteSettings)
+                {
+                    if (threadsSitesDict[webSite.UrlSiteForCheck] == null)
                     {
-                        myThread = new Thread(new ParameterizedThreadStart(StartCheckingUrl));
-        
-                        threadsDict[webSite.DataAdministrator.websiteAddress] = myThread;
-                        myThread.Start(webSite);
+                        threadWebSite = new Thread(new ParameterizedThreadStart(StartCheckingUrl));       
+                        threadsSitesDict[webSite.UrlSiteForCheck] = threadWebSite;
+                        threadWebSite.Start(webSite);
                     }               
                 }
-                List<string> keys = new List<string>(threadsDict.Keys);
+                keys = new List<string>(threadsSitesDict.Keys);
                 foreach ( var key in keys)
                 {
-                    if(!threadsDict[key].IsAlive)
+                    if(!threadsSitesDict[key].IsAlive)
                     {
-                        threadsDict[key] = null;
+                        threadsSitesDict[key] = null;
                     }
-                }      
+                }                                     
             }
         }
       
@@ -88,7 +105,7 @@ namespace ReflectionJsonSettingsSiteMonitoring
             m.Subject = "Notification.";
             m.Body = message;
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-            smtp.Credentials = new NetworkCredential("denisnalivkin1992@gmail.com", "1A2b3CNM");
+            smtp.Credentials = new NetworkCredential("denisnalivkin1992@gmail.com", "");
             smtp.EnableSsl = true;
             await smtp.SendMailAsync(m);
         }
@@ -100,7 +117,7 @@ namespace ReflectionJsonSettingsSiteMonitoring
             {        
                 DateTime start = DateTime.Now;
                 WebClient wc = new WebClient();
-                string HTMLSource = wc.DownloadString(webSite.AddressPageBeingChecked);
+                string HTMLSource = wc.DownloadString(webSite.UrlSiteForCheck);
                 DateTime finish = DateTime.Now;
                 int leadTime = (int)finish.Second - (int)start.Second;
                 string message = "Attention! Method CheckUrl has checked ";
@@ -108,12 +125,12 @@ namespace ReflectionJsonSettingsSiteMonitoring
                 {                   
                 lock (Locker) 
                 {
-                    Logger.WriteMessage($"WebSite {webSite.DataAdministrator.siteName} with addres {webSite.DataAdministrator.websiteAddress}  has been opened successfully.");                           
+                    Logger.WriteMessage($"WebSite {webSite.DataAdministrator.siteName} with addres {webSite.UrlSiteForCheck} has been opened successfully.");                           
                 }                                     
                 }
                 else
                 {                                
-                    SendMessageAdmin(webSite, message + $"{webSite.DataAdministrator.siteName} webSite with addres {webSite.DataAdministrator.websiteAddress} . This webSite is not available." );                    
+                    SendMessageAdmin(webSite, message + $"{webSite.DataAdministrator.siteName} webSite with addres {webSite.UrlSiteForCheck}. This webSite is not available." );                    
                 }
             }
             catch (Exception e)
@@ -121,6 +138,74 @@ namespace ReflectionJsonSettingsSiteMonitoring
                 Console.WriteLine(e.Message);
             }
             Thread.Sleep(webSite.IntervalBetweenChecksSeconds * 1000);
+        }
+
+        private void InitializeFileSystemWatcher ()
+        {
+            fileSystemWatcher = new FileSystemWatcher(Path.GetDirectoryName((JsonPath)));
+            fileSystemWatcher.Deleted += Watcher_Deleted;
+            fileSystemWatcher.Changed += Watcher_Changed;
+            fileSystemWatcher.Filter = Path.GetFileName((JsonPath));
+            fileSystemWatcher.EnableRaisingEvents = true;         
+        }
+
+        private void Watcher_Changed(object sender, FileSystemEventArgs e)
+        {
+            fileSystemWatcher.EnableRaisingEvents = false;
+            ConfigChanged = true;
+            fileSystemWatcher.EnableRaisingEvents = true;
+        }
+
+        private void Watcher_Deleted(object sender, FileSystemEventArgs e)
+        {
+            fileSystemWatcher.EnableRaisingEvents = false;
+            ConfigDeleted = true;
+            fileSystemWatcher.EnableRaisingEvents = true;
+        }
+
+        private void ParseChangedConfig ()
+        {
+            bool configIsAvailable = false;
+            while (!configIsAvailable)
+            {
+                try
+                {
+                    ListWebSiteSettings.Clear();
+                    ParseConfig(JsonPath);
+                    configIsAvailable = true;
+                }
+                catch (Exception)
+                {
+
+                }              
+            }
+        }
+
+        private void UpdateThreadsSitesDict (Dictionary<string, Thread> threadsSitesDict)
+        {
+            if(ListWebSiteSettings.Count > threadsSitesDict.Count)
+            {
+                foreach (var webSite in ListWebSiteSettings)
+                {
+                    if (!threadsSitesDict.ContainsKey(webSite.UrlSiteForCheck))
+                    {
+                        threadsSitesDict[webSite.UrlSiteForCheck] = null;
+                    }
+                }
+            }
+            if(ListWebSiteSettings.Count < threadsSitesDict.Count)
+            {
+                SettingsWebSiteMonitoring.SettingsWebSiteMonitoring result = null;
+                List<string> keys =  new List<string>(threadsSitesDict.Keys);
+                foreach (var webSite in keys)
+                {
+                    result = ListWebSiteSettings.Find( (_webSite) => _webSite.UrlSiteForCheck == webSite);
+                    if(result == null)
+                    {
+                        threadsSitesDict.Remove(webSite);
+                    }                  
+                }
+            }                  
         }
     }
 }

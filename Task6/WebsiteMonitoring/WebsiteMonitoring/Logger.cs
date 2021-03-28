@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace ReflectionJsonSettingsSiteMonitoring
+namespace SiteMonitoring
 {
     public class Logger : InterfaceILogger.InterfaceILogger
     {
@@ -13,7 +13,7 @@ namespace ReflectionJsonSettingsSiteMonitoring
             Path = path;
         }
 
-        public  void WriteMessage(string message)
+        public void WriteMessage(string message)
         {
             using (StreamWriter sw = new StreamWriter(Path, true, Encoding.Default))
             {

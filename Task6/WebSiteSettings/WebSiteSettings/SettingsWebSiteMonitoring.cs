@@ -9,7 +9,7 @@ namespace SettingsWebSiteMonitoring
         [JsonProperty("maxExpectedServerResponseTimeSeconds")]
         public int MaxExpectedServerResponseTimeSeconds { get; private set; }
         [JsonProperty("addressPageBeingChecked")]
-        public string AddressPageBeingChecked { get;  private set; }
+        public string UrlSiteForCheck { get;  private set; }
         [JsonProperty("dataAdministrator")]
         public SiteAdministrator.SiteAdministrator DataAdministrator { get; private set; }
        
@@ -17,7 +17,7 @@ namespace SettingsWebSiteMonitoring
         {
             IntervalBetweenChecksSeconds = intervalBetweenChecksSeconds;
             MaxExpectedServerResponseTimeSeconds = maxExpectedServerResponseTimeSeconds;
-            AddressPageBeingChecked = addressPageBeingChecked;
+            UrlSiteForCheck = addressPageBeingChecked;
             DataAdministrator = dataAdministrator;
         }     
     }

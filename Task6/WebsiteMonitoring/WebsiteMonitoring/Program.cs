@@ -1,12 +1,14 @@
 ﻿using System;
+using System.ServiceProcess;
 using System.Threading;
+using SiteMonitoring;
 
-namespace ReflectionJsonSettingsSiteMonitoring
+namespace SiteMonitoring
 {
     class Program
-    {                       
+    {              
         static void Main(string[] args)
-        {                                      
-        }
+        {       
+        }      
     }
 }
