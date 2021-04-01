@@ -9,8 +9,11 @@ using System.Net.Mail;
 
 namespace SiteMonitoring
 {
+    /// <summary>
+    /// The WebsiteMonitoring class checks sites for availability.
+    /// </summary>
     public class WebsiteMonitoring
-    {
+    {      
         public string JsonPath { get; private set; }
         public string PathLog { get; private set; }
         public List<SettingsWebSiteMonitoring.SettingsWebSiteMonitoring> ListWebSiteSettings { get; private set; }
@@ -20,6 +23,11 @@ namespace SiteMonitoring
         private bool ConfigDeleted;
         private FileSystemWatcher fileSystemWatcher;
 
+        /// <summary>
+        /// Public constructor initialize fileds of class WebsiteMonitoring.
+        /// </summary>
+        /// <param name="path"> Value for field JsonPath. </param>
+        /// <param name="pathLog"> Value for field PathLog. </param>
         public WebsiteMonitoring(string path, string pathLog)
         {
             JsonPath = path;
@@ -32,7 +40,11 @@ namespace SiteMonitoring
             ConfigDeleted = false;
             InitializeFileSystemWatcher();
         }
-   
+
+        /// <summary>
+        /// ParseConfig method reads information about the sites that need to be checked from the json file.
+        /// </summary>
+        /// <param name="path"> Path to json file. </param>
         private void ParseConfig(string path)
         {
             using (StreamReader sr = new StreamReader(path))
@@ -47,6 +59,9 @@ namespace SiteMonitoring
             }
         }
 
+        /// <summary>
+        /// CheckUrl method starts checking the sites read from the json file.
+        /// </summary>
         public void CheckUrl(object obj)
         {         
             DateTime start = new DateTime();
@@ -96,7 +111,12 @@ namespace SiteMonitoring
                 }                                     
             }
         }
-      
+
+        /// <summary>
+        /// SendMessage Admin method sends a letter to the administrator of the checked site if his site is unavailable.
+        /// </summary>
+        /// <param name="webSite"> Website with information about it. </param>
+        /// <param name="message"> Text for message. </param>
         private async void SendMessageAdmin(SettingsWebSiteMonitoring.SettingsWebSiteMonitoring webSite, string message)
         {
             MailAddress from = new MailAddress("denisnalivkin1992@gmail.com");
@@ -110,6 +130,10 @@ namespace SiteMonitoring
             await smtp.SendMailAsync(m);
         }
 
+        /// <summary>
+        /// StartCheckingUrl method receives a separate stream for each site and checks it for availability.
+        /// </summary>
+        /// <param name="obj"> An object with all information about the checked site. </param>
         private void StartCheckingUrl(object obj)
         {
             SettingsWebSiteMonitoring.SettingsWebSiteMonitoring webSite = (SettingsWebSiteMonitoring.SettingsWebSiteMonitoring)obj;
@@ -140,6 +164,9 @@ namespace SiteMonitoring
             Thread.Sleep(webSite.IntervalBetweenChecksSeconds * 1000);
         }
 
+        /// <summary>
+        ///  InitializeFileSystemWatcher method starts the file system watcher.
+        /// </summary>
         private void InitializeFileSystemWatcher ()
         {
             fileSystemWatcher = new FileSystemWatcher(Path.GetDirectoryName((JsonPath)));
@@ -149,6 +176,9 @@ namespace SiteMonitoring
             fileSystemWatcher.EnableRaisingEvents = true;         
         }
 
+        /// <summary>
+        /// The Watcher _Changed method handles the event when the json file has been changed.
+        /// </summary>
         private void Watcher_Changed(object sender, FileSystemEventArgs e)
         {
             fileSystemWatcher.EnableRaisingEvents = false;
@@ -156,6 +186,9 @@ namespace SiteMonitoring
             fileSystemWatcher.EnableRaisingEvents = true;
         }
 
+        /// <summary>
+        /// The Watcher_Deleted method handles the event when the json file has been deleted.
+        /// </summary>
         private void Watcher_Deleted(object sender, FileSystemEventArgs e)
         {
             fileSystemWatcher.EnableRaisingEvents = false;
@@ -163,6 +196,9 @@ namespace SiteMonitoring
             fileSystemWatcher.EnableRaisingEvents = true;
         }
 
+        /// <summary>
+        /// ParseChangedConfig method reads information about checked sites from json after changing json file.
+        /// </summary>
         private void ParseChangedConfig ()
         {
             bool configIsAvailable = false;
@@ -174,13 +210,17 @@ namespace SiteMonitoring
                     ParseConfig(JsonPath);
                     configIsAvailable = true;
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-
+                    Console.WriteLine(e.Message);
                 }              
             }
         }
 
+        /// <summary>
+        /// UpdateThreadsSitesDict method updates the data in the dictionary of key (site) - value pairs (separate thread).
+        /// </summary>
+        /// <param name="threadsSitesDict"> Dictionary of key (site) - value (separate thread). </param>
         private void UpdateThreadsSitesDict (Dictionary<string, Thread> threadsSitesDict)
         {
             if(ListWebSiteSettings.Count > threadsSitesDict.Count)
