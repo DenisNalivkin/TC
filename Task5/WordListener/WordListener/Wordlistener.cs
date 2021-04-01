@@ -4,21 +4,28 @@ using Microsoft.Office.Interop.Word;
 
 namespace WordListener
 {
+    /// <summary>
+    /// WordListener class  writes messages to a word-file.
+    /// </summary>
     public class WordListener:IListener
     {
         public string Source { get; set; }
         public LogLevel Loglevel { get; set; }
 
-        public WordListener(string path, LogLevel logLevel)
+        /// <summary>
+        /// Public constructor WordListener initialize Source field.
+        /// </summary>
+        /// <param name="source"> Value for field source. </param>
+        public WordListener(string source)
         {
-            Source = path;
-            Loglevel = logLevel;
-        }
-        public WordListener()
-        {
-
+            Source = source;
         }
 
+        /// <summary>
+        /// WriteMessage method captures message to a word-file.
+        /// </summary>
+        /// <param name="message"> Text for write. </param>
+        /// <param name="inputlogLevel"> Loglevel for event. </param>
         public void WriteMessage(string message, LogLevel inputlogLevel)
         {
             Application app = new Application();
@@ -29,11 +36,6 @@ namespace WordListener
                 app.Visible = true;
                 doc.Save();               
             }             
-        }
-
-        public void SetSource(string source)
-        {
-            Source = source;
         }
     }
 }

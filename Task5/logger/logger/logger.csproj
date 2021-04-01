@@ -61,5 +61,19 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\EventLogListener\EventLogListener\EventLogListener.csproj">
+      <Project>{3d47020f-08cc-4e71-ae6b-2ffe69fa5489}</Project>
+      <Name>EventLogListener</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TextListener\TextListener\TextListener.csproj">
+      <Project>{78c0e0e4-7df2-4b13-87df-f30f3854c7be}</Project>
+      <Name>TextListener</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WordListener\WordListener\WordListener.csproj">
+      <Project>{5cd34e2f-5544-4844-a322-9e0a078fe6ee}</Project>
+      <Name>WordListener</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2,7 +2,10 @@
 
 namespace logger
 {
-     public class TrackingEntityAttribute: Attribute
+    /// <summary>
+    /// TrackingEntityAttribute class created for using attribute [TrackingEntityAttribute()].
+    /// </summary>
+    public class TrackingEntityAttribute: Attribute
     {
     }
 }
