@@ -1,0 +1,13 @@
+{"MeasuringSensors":
+
+[
+
+{"SensorType":"PressureSensor","MeasurementInterval":10},
+{"SensorType":"TemperatureSensor","MeasurementInterval":5},
+{"SensorType":"MagneticFieldSensor","MeasurementInterval":3}
+
+
+]
+
+}
+
