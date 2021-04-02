@@ -24,9 +24,7 @@ namespace BusinessLayer
             List<AbstractSensor> databaseLevelSensors =  new SensorStorage().ReadMeasuringSensorsJson(path);
             foreach(var sensor in databaseLevelSensors)
             {
-                SensorManufacturer sensorManufacturer = null;
-                Sensor newSensor = null;
-                AddSensorInListSensors(businessLevelSensors,sensor, sensorManufacturer, newSensor);
+                AddSensorInListSensors(businessLevelSensors,sensor);
             }          
         }
         
@@ -36,9 +34,7 @@ namespace BusinessLayer
             databaseLevelSensors =  new SensorStorage ().ReadMeasuringSensorsXml(path);
             foreach (var sensor in databaseLevelSensors)
             {
-                SensorManufacturer sensorManufacturer = null;
-                Sensor newSensor = null;
-                AddSensorInListSensors(businessLevelSensors,sensor, sensorManufacturer, newSensor);
+                AddSensorInListSensors(businessLevelSensors,sensor);
             }        
         }
      
@@ -56,26 +52,22 @@ namespace BusinessLayer
             return SensorType.UnknownSensor;
         }
 
-        private void AddSensorInListSensors (List<Sensor> businessLevelSensors,AbstractSensor sensor, SensorManufacturer sensorManufacturer, Sensor newSensor)
-        {       
+        private void AddSensorInListSensors (List<Sensor> businessLevelSensors,AbstractSensor sensor)
+        {
+            SensorManufacturer sensorManufacturer = null;
             switch (sensor.SensorType)
             {
                 case "PressureSensor":
-                    sensorManufacturer = new PressureSensorManufacturer();
-                    newSensor = sensorManufacturer.CreateSensor(ParseStringInEnum(sensor.SensorType), sensor.MeasurementInterval);
-                    businessLevelSensors.Add(newSensor);
+                    sensorManufacturer = new PressureSensorManufacturer();                   
                     break;
                 case "TemperatureSensor":
-                    sensorManufacturer = new TemperatureSensorManufacturer();
-                    newSensor = sensorManufacturer.CreateSensor(ParseStringInEnum(sensor.SensorType), sensor.MeasurementInterval);
-                    businessLevelSensors.Add(newSensor);
+                    sensorManufacturer = new TemperatureSensorManufacturer();          
                     break;
                 case "MagneticFieldSensor":
-                    sensorManufacturer = new MagneticFieldSensorSensorManufacturer();
-                    newSensor = sensorManufacturer.CreateSensor(ParseStringInEnum(sensor.SensorType), sensor.MeasurementInterval);
-                    businessLevelSensors.Add(newSensor);
+                    sensorManufacturer = new MagneticFieldSensorSensorManufacturer();;
                     break;
             }
+            businessLevelSensors.Add(sensorManufacturer.CreateSensor(ParseStringInEnum(sensor.SensorType), sensor.MeasurementInterval));
         }
     }
 }

@@ -31,7 +31,8 @@ namespace PresentationLayer
         private void ReadSensorsFromJsonButton_Click(object sender, EventArgs e)
         {
             DialogResult result = JsonSourceSelectionWindow.ShowDialog();           
-            Sensors.DataSource = RequestHandler.businessLevelSensors;           
+            Sensors.DataSource = RequestHandler.businessLevelSensors;
+         
         }
 
         private void JsonSourceSelectionWindow_FileOk(object sender, CancelEventArgs e)
@@ -69,10 +70,9 @@ namespace PresentationLayer
             {
                 MessageBox.Show($"{sensor.SensorType} - {sensor.MeasuredValue}");
             }
+            Control.CheckForIllegalCrossThreadCalls = false;
             Thread trackThread = new Thread(new ParameterizedThreadStart(TrackSensorState));
             trackThread.Start(sensor);
-
-
         }
 
         private void RefreshListSensors_Click(object sender, EventArgs e)
@@ -86,13 +86,12 @@ namespace PresentationLayer
         {
             WindowSwitchSelectedSensorMode windowSwitchSelectedSensorMode = new WindowSwitchSelectedSensorMode();
             windowSwitchSelectedSensorMode.Show();
-
         }
 
         private void TrackSensorState(object obj)
         {
             Sensor sensor = (Sensor)obj;
-            while(Sensors.SelectedItem == sensor)
+            while (Sensors.SelectedItem == sensor)
             {
                 if( sensor.SensorState is DowntimeSensorState )
                 {
@@ -104,6 +103,30 @@ namespace PresentationLayer
                 }                            
             }
         }
-       
+
+        private void SensorMeasuredValue_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SensorsStateLog_SelectedIndexChanged(object sender, EventArgs e)
+        {
+      
+        }
+
+        private void RefreshSensorsStateLog_Click(object sender, EventArgs e)
+        {
+            SensorsStateLog.DataSource = SensorObserver.SensorStateChangeLog;
+            if (SensorObserver.SensorStateChangeLog.Count != null)
+            {
+                SensorsStateLog.DataSource = null;
+                SensorsStateLog.DataSource = SensorObserver.SensorStateChangeLog;
+                for (int i = 0; i < SensorObserver.SensorStateChangeLog.Count; i++)
+                {
+                    SensorsStateLog.DisplayMember = SensorObserver.SensorStateChangeLog[i];
+                }
+            }
+                    
+        }
     }
 }

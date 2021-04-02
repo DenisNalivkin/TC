@@ -7,31 +7,25 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer
 {
-    public class DowntimeSensorState: ISensorState
+    public class DowntimeSensorState: ISensorState, IObservable
     {
         public void ChangeState(Sensor measuringSensor)
         {
             measuringSensor.SensorState = new CalibrationSensorState();
-            Thread threadSensor = new Thread(new ParameterizedThreadStart(measuringSensor.SensorState.Work));
-            threadSensor.Start(measuringSensor);
+            NotifyObservers(measuringSensor);
+            Action<object> method = x => { measuringSensor.SensorState.Work(measuringSensor); };          
+            var task2 = new Task(method, measuringSensor);
+            task2.Start();
         }
-
-        private void IncreaseMeasuredValue(object obj)
-        {
-            Sensor measuringSensor = (Sensor)obj;
-            measuringSensor.MeasuredValue += 1;            
-        }
-
+    
         public void Work(object obj)
-        {
-            Sensor measuringSensor = (Sensor)obj;
-            while (measuringSensor.SensorState is CalibrationSensorState)
-            {
-                continue;
-            }
+        {                   
         }
-     
 
-
+        public void NotifyObservers(Sensor sensor)
+        {
+            SensorObserver sensorObserver = SensorObserver.GetInstance();
+            sensorObserver.Update(sensor);
+        }
     }
 }

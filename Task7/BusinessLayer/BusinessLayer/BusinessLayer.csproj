@@ -34,6 +34,7 @@
       <HintPath>..\..\PresentationLayer\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,6 +47,8 @@
     <Compile Include="CalibrationSensorState.cs" />
     <Compile Include="DowntimeSensorState.cs" />
     <Compile Include="IntermediateSensor.cs" />
+    <Compile Include="IObservable.cs" />
+    <Compile Include="IObserver.cs" />
     <Compile Include="ISensorState.cs" />
     <Compile Include="MagneticFieldSensor.cs" />
     <Compile Include="MagneticFieldSensorSensorManufacturer.cs" />
@@ -55,6 +58,7 @@
     <Compile Include="RequestHandler.cs" />
     <Compile Include="Sensor.cs" />
     <Compile Include="SensorManufacturer.cs" />
+    <Compile Include="SensorObserver.cs" />
     <Compile Include="TemperatureSensor.cs" />
     <Compile Include="TemperatureSensorManufacturer.cs" />
     <Compile Include="WorkSensorState.cs" />

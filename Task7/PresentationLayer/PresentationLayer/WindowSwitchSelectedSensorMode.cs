@@ -30,7 +30,7 @@ namespace PresentationLayer
         {
         }
 
-        /*
+        
         private void SwitchSelectedSensorMode_SelectedIndexChanged(object sender, EventArgs e)
         {
          
@@ -43,7 +43,7 @@ namespace PresentationLayer
                 }
             }
         }
-        */
+        
 
         private void ChoseSensor_Click(object sender, EventArgs e)
         {
@@ -53,8 +53,17 @@ namespace PresentationLayer
                 if(sensor.ToString() == selectedSensor)
                 {
                     sensor.ChangeState();
+                    break;
                 }
-            }         
+            }
+            
         }
+
+        /*
+        private void SwitchSelectedSensorMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        */
     }
 }

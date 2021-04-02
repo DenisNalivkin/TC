@@ -7,13 +7,21 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer
 {
-    public class WorkSensorState: ISensorState
+    public class WorkSensorState: ISensorState, IObservable
     {
         public void ChangeState(Sensor measuringSensor)
         {
             measuringSensor.SensorState = new DowntimeSensorState();
-            Thread threadSensor = new Thread(new ParameterizedThreadStart(measuringSensor.SensorState.Work));
-            threadSensor.Start(measuringSensor);
+            NotifyObservers(measuringSensor);
+            Action<object> method = x => { measuringSensor.SensorState.Work(measuringSensor); };            
+            var task2 = new Task(method, measuringSensor);
+            task2.Start();
+        }
+
+        public void NotifyObservers(Sensor sensor)
+        {
+            SensorObserver sensorObserver = SensorObserver.GetInstance();
+            sensorObserver.Update(sensor);
         }
 
         public void Work(object obj)
