@@ -25,14 +25,15 @@ namespace PresentationLayer
 
         private void Form1_Load(object sender, EventArgs e)
         {
-          
         }
 
         private void ReadSensorsFromJsonButton_Click(object sender, EventArgs e)
         {
-            DialogResult result = JsonSourceSelectionWindow.ShowDialog();           
-            Sensors.DataSource = RequestHandler.businessLevelSensors;
-         
+            DialogResult result = JsonSourceSelectionWindow.ShowDialog();
+            if(RequestHandler.businessLevelSensors != null)
+            {
+                DeleteSensor.Enabled = true;
+            }          
         }
 
         private void JsonSourceSelectionWindow_FileOk(object sender, CancelEventArgs e)
@@ -43,7 +44,10 @@ namespace PresentationLayer
         private void ReadSensorsFromXmlButton_Click_(object sender, EventArgs e)
         {
             DialogResult result = XmlSourceSelectionWindow.ShowDialog();
-            Sensors.DataSource = RequestHandler.businessLevelSensors;
+            if (RequestHandler.businessLevelSensors != null)
+            {
+                DeleteSensor.Enabled = true;
+            }
         }
 
         private void XmlSourceSelectionWindow_FileOk(object sender, CancelEventArgs e)
@@ -58,25 +62,22 @@ namespace PresentationLayer
         }
 
         private void DeleteSensor_Click(object sender, EventArgs e)
-        {
+        {       
             WindowDeleteSensor windowDeleteSensor = new WindowDeleteSensor();
-            windowDeleteSensor.Show();           
+            windowDeleteSensor.Show();                        
         }
 
         private void Sensors_SelectedIndexChanged(object sender, EventArgs e)
         {           
             Sensor sensor = (Sensor)Sensors.SelectedItem;
-            if(sensor != null)
-            {
-                MessageBox.Show($"{sensor.SensorType} - {sensor.MeasuredValue}");
-            }
             Control.CheckForIllegalCrossThreadCalls = false;
-            Thread trackThread = new Thread(new ParameterizedThreadStart(TrackSensorState));
-            trackThread.Start(sensor);
+            Action<object> method = x => { TrackSensorState(sensor); };
+            var executeTask = new Task(method, sensor);
+            executeTask.Start();       
         }
 
         private void RefreshListSensors_Click(object sender, EventArgs e)
-        {
+        {           
             Sensors.DataSource = null;
             Sensors.DataSource = RequestHandler.businessLevelSensors;
             Sensors.DisplayMember = "SensorType";          
@@ -127,6 +128,20 @@ namespace PresentationLayer
                 }
             }
                     
+        }
+
+        private void SensorList_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void MeasuringValueSensor_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SensorsStateChangeLog_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

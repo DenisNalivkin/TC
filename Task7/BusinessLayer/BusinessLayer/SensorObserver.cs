@@ -28,7 +28,7 @@ namespace BusinessLayer
         public void Update(object obj)
         {
             Sensor sensor = (Sensor)obj;
-            SensorStateChangeLog.Add($"{DateTime.Now} {sensor.SensorType} mode was changed! Now {sensor.SensorType} has {sensor.SensorState} mode!");
+            SensorStateChangeLog.Add($"{DateTime.Now} {sensor.SensorType} mode was changed on {sensor.SensorState.ToString().Substring(14)}!");
         }
     }
 }

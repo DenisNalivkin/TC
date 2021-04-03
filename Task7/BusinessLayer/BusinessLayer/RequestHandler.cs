@@ -25,7 +25,7 @@ namespace BusinessLayer
             foreach(var sensor in databaseLevelSensors)
             {
                 AddSensorInListSensors(businessLevelSensors,sensor);
-            }          
+            }
         }
         
         public  void ReadMeasuringSensorsXml(string path)
