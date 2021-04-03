@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer
 {
+   
     public class DowntimeSensorState: ISensorState, IObservable
     {
+
         public void ChangeState(Sensor measuringSensor)
         {
             measuringSensor.SensorState = new CalibrationSensorState();

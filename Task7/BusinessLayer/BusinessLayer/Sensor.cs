@@ -21,6 +21,7 @@ namespace BusinessLayer
             public ISensorState SensorState { get; set; }
             public int? MeasurementInterval { get; set; }
             public int? MeasuredValue { get;  set; }
+            public string SensorTypeUniqueIdentificator { get; set;}
 
             public Sensor(SensorType sensorType, int? measurementInterval)
             {
@@ -29,6 +30,7 @@ namespace BusinessLayer
                 SensorState = new DowntimeSensorState();
                 MeasurementInterval = measurementInterval;
                 MeasuredValue = 0;
+                SensorTypeUniqueIdentificator = $"{SensorType} - {UniqueIdentificator}";
             }
          
         public void ChangeState()

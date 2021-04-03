@@ -37,16 +37,16 @@ namespace PresentationLayer
             // ChoseSensorForDelete
             // 
             this.ChoseSensorForDelete.FormattingEnabled = true;
-            this.ChoseSensorForDelete.Location = new System.Drawing.Point(93, 62);
+            this.ChoseSensorForDelete.Location = new System.Drawing.Point(24, 62);
             this.ChoseSensorForDelete.Name = "ChoseSensorForDelete";
-            this.ChoseSensorForDelete.Size = new System.Drawing.Size(121, 21);
+            this.ChoseSensorForDelete.Size = new System.Drawing.Size(345, 21);
             this.ChoseSensorForDelete.TabIndex = 0;
             this.ChoseSensorForDelete.SelectedIndexChanged += new System.EventHandler(this.ChoseSensorForDelete_SelectedIndexChanged);
             // 
             // ChoseSensorDelete
             // 
             this.ChoseSensorDelete.AutoSize = true;
-            this.ChoseSensorDelete.Location = new System.Drawing.Point(96, 46);
+            this.ChoseSensorDelete.Location = new System.Drawing.Point(136, 46);
             this.ChoseSensorDelete.Name = "ChoseSensorDelete";
             this.ChoseSensorDelete.Size = new System.Drawing.Size(118, 13);
             this.ChoseSensorDelete.TabIndex = 1;
@@ -55,9 +55,9 @@ namespace PresentationLayer
             // 
             // ChoseSensorDel
             // 
-            this.ChoseSensorDel.Location = new System.Drawing.Point(93, 89);
+            this.ChoseSensorDel.Location = new System.Drawing.Point(24, 89);
             this.ChoseSensorDel.Name = "ChoseSensorDel";
-            this.ChoseSensorDel.Size = new System.Drawing.Size(121, 37);
+            this.ChoseSensorDel.Size = new System.Drawing.Size(345, 23);
             this.ChoseSensorDel.TabIndex = 2;
             this.ChoseSensorDel.Text = "Chose sensor for delete";
             this.ChoseSensorDel.UseVisualStyleBackColor = true;
@@ -67,7 +67,7 @@ namespace PresentationLayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(325, 138);
+            this.ClientSize = new System.Drawing.Size(410, 138);
             this.Controls.Add(this.ChoseSensorDel);
             this.Controls.Add(this.ChoseSensorDelete);
             this.Controls.Add(this.ChoseSensorForDelete);

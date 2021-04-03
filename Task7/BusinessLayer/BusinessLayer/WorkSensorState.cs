@@ -9,8 +9,20 @@ namespace BusinessLayer
 {
     public class WorkSensorState: ISensorState, IObservable
     {
+
+        CancellationTokenSource cancelTokenSource;
+        CancellationToken token;
+
+        public WorkSensorState()
+        {
+            cancelTokenSource = new CancellationTokenSource();
+            token = cancelTokenSource.Token;
+        }
+
+
         public void ChangeState(Sensor measuringSensor)
         {
+            cancelTokenSource.Cancel();
             measuringSensor.SensorState = new DowntimeSensorState();
             NotifyObservers(measuringSensor);
             Action<object> method = x => { measuringSensor.SensorState.Work(measuringSensor); };            
@@ -30,6 +42,10 @@ namespace BusinessLayer
             Random randonNum = new Random();
             while (measuringSensor.SensorState is WorkSensorState)
             {
+                if (token.IsCancellationRequested)
+                {
+                    return;
+                }
                 measuringSensor.MeasuredValue = randonNum.Next(0,10);
                 Thread.Sleep((int)measuringSensor.MeasurementInterval * 1000);
             }

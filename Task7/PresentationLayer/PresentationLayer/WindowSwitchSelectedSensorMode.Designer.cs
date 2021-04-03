@@ -36,17 +36,17 @@ namespace PresentationLayer
             // SwitchSelectedSensorMode
             // 
             this.SwitchSelectedSensorMode.FormattingEnabled = true;
-            this.SwitchSelectedSensorMode.Location = new System.Drawing.Point(120, 109);
+            this.SwitchSelectedSensorMode.Location = new System.Drawing.Point(12, 109);
             this.SwitchSelectedSensorMode.Name = "SwitchSelectedSensorMode";
-            this.SwitchSelectedSensorMode.Size = new System.Drawing.Size(166, 21);
+            this.SwitchSelectedSensorMode.Size = new System.Drawing.Size(390, 21);
             this.SwitchSelectedSensorMode.TabIndex = 0;
-            //this.SwitchSelectedSensorMode.SelectedIndexChanged += new System.EventHandler(this.SwitchSelectedSensorMode_SelectedIndexChanged);
+            this.SwitchSelectedSensorMode.SelectedIndexChanged += new System.EventHandler(this.SwitchSelectedSensorMode_SelectedIndexChanged_1);
             // 
             // ChoseSensor
             // 
-            this.ChoseSensor.Location = new System.Drawing.Point(120, 136);
+            this.ChoseSensor.Location = new System.Drawing.Point(12, 136);
             this.ChoseSensor.Name = "ChoseSensor";
-            this.ChoseSensor.Size = new System.Drawing.Size(166, 23);
+            this.ChoseSensor.Size = new System.Drawing.Size(390, 23);
             this.ChoseSensor.TabIndex = 1;
             this.ChoseSensor.Text = "Chose sensor";
             this.ChoseSensor.UseVisualStyleBackColor = true;

@@ -9,8 +9,20 @@ namespace BusinessLayer
 {
     public class CalibrationSensorState: ISensorState , IObservable
     {
+
+        CancellationTokenSource cancelTokenSource;
+        CancellationToken token;
+
+        public CalibrationSensorState()
+        {
+            cancelTokenSource = new CancellationTokenSource();
+            token = cancelTokenSource.Token;
+        }
+
+
         public void ChangeState(Sensor measuringSensor)
         {
+            cancelTokenSource.Cancel();
             measuringSensor.SensorState = new WorkSensorState();
             NotifyObservers(measuringSensor);
             Action<object> method = x => { measuringSensor.SensorState.Work(measuringSensor); };
@@ -29,6 +41,10 @@ namespace BusinessLayer
             Sensor measuringSensor = (Sensor)obj;
             while (measuringSensor.SensorState is CalibrationSensorState)
             {
+                if (token.IsCancellationRequested)
+                {
+                    return;
+                }
                 measuringSensor.MeasuredValue += 1;
                 Thread.Sleep(1000);
             }

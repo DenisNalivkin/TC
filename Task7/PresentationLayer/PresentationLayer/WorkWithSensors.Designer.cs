@@ -77,9 +77,9 @@
             // 
             // CreateNewSensorButton_Click
             // 
-            this.CreateNewSensorButton_Click.Location = new System.Drawing.Point(12, 406);
+            this.CreateNewSensorButton_Click.Location = new System.Drawing.Point(15, 473);
             this.CreateNewSensorButton_Click.Name = "CreateNewSensorButton_Click";
-            this.CreateNewSensorButton_Click.Size = new System.Drawing.Size(515, 27);
+            this.CreateNewSensorButton_Click.Size = new System.Drawing.Size(512, 27);
             this.CreateNewSensorButton_Click.TabIndex = 2;
             this.CreateNewSensorButton_Click.Text = "Create a  new sensor\r\n";
             this.CreateNewSensorButton_Click.UseVisualStyleBackColor = true;
@@ -87,8 +87,7 @@
             // 
             // DeleteSensor
             // 
-            this.DeleteSensor.Enabled = false;
-            this.DeleteSensor.Location = new System.Drawing.Point(12, 439);
+            this.DeleteSensor.Location = new System.Drawing.Point(12, 510);
             this.DeleteSensor.Name = "DeleteSensor";
             this.DeleteSensor.Size = new System.Drawing.Size(515, 30);
             this.DeleteSensor.TabIndex = 3;
@@ -107,7 +106,7 @@
             // 
             // RefreshListSensors
             // 
-            this.RefreshListSensors.Location = new System.Drawing.Point(12, 475);
+            this.RefreshListSensors.Location = new System.Drawing.Point(15, 404);
             this.RefreshListSensors.Name = "RefreshListSensors";
             this.RefreshListSensors.Size = new System.Drawing.Size(515, 30);
             this.RefreshListSensors.TabIndex = 5;
@@ -144,7 +143,7 @@
             // 
             // RefreshSensorsStateLog
             // 
-            this.RefreshSensorsStateLog.Location = new System.Drawing.Point(12, 511);
+            this.RefreshSensorsStateLog.Location = new System.Drawing.Point(12, 438);
             this.RefreshSensorsStateLog.Name = "RefreshSensorsStateLog";
             this.RefreshSensorsStateLog.Size = new System.Drawing.Size(515, 29);
             this.RefreshSensorsStateLog.TabIndex = 9;
@@ -190,7 +189,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(549, 585);
+            this.ClientSize = new System.Drawing.Size(558, 585);
             this.Controls.Add(this.SensorsStateChangeLog);
             this.Controls.Add(this.MeasuringValueSensor);
             this.Controls.Add(this.SensorList);

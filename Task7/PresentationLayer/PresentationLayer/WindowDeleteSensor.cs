@@ -40,7 +40,7 @@ namespace PresentationLayer
         {
             foreach(var sensor in RequestHandler.businessLevelSensors)
             {
-                ChoseSensorForDelete.Items.Add(sensor.SensorType);
+                ChoseSensorForDelete.Items.Add(sensor.SensorTypeUniqueIdentificator);
             }           
         }
 
@@ -49,7 +49,7 @@ namespace PresentationLayer
             string nameSensor  = ChoseSensorForDelete.Text;
             foreach (var sensor in RequestHandler.businessLevelSensors)
             {
-                if(sensor.SensorType.ToString() == nameSensor)
+                if(sensor.SensorTypeUniqueIdentificator == nameSensor)
                 {
                     RequestHandler.businessLevelSensors.Remove(sensor);
                     break;

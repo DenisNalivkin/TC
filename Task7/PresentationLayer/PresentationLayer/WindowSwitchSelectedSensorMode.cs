@@ -22,7 +22,7 @@ namespace PresentationLayer
             listSensors = RequestHandler.businessLevelSensors;
             foreach(var sensor in RequestHandler.businessLevelSensors)
             {
-                SwitchSelectedSensorMode.Items.Add(sensor);
+                SwitchSelectedSensorMode.Items.Add(sensor.SensorTypeUniqueIdentificator);
             }           
         }
 
@@ -50,20 +50,17 @@ namespace PresentationLayer
             selectedSensor = SwitchSelectedSensorMode.SelectedItem.ToString();
             foreach (var sensor in listSensors)
             {
-                if(sensor.ToString() == selectedSensor)
+                if(sensor.SensorTypeUniqueIdentificator == selectedSensor)
                 {
                     sensor.ChangeState();
                     break;
                 }
             }
-            
+            Close();
         }
 
-        /*
-        private void SwitchSelectedSensorMode_SelectedIndexChanged(object sender, EventArgs e)
+        private void SwitchSelectedSensorMode_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-
-        }
-        */
+        }  
     }
 }

@@ -32,8 +32,7 @@ namespace PresentationLayer
         private void ListKindSensor_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedSensor = ListKindSensors.SelectedItem.ToString();
-            IntermediateSensor.SensorType =  RequestHandler.ParseStringInEnum(selectedSensor);
-            MessageBox.Show($"{selectedSensor} will create after you will chose value for measurement interval.");                      
+            IntermediateSensor.SensorType =  RequestHandler.ParseStringInEnum(selectedSensor);                     
             Sensor sensorforSave = null;
             FinishInstallSensor(selectedSensor, sensorforSave);
             Close();          

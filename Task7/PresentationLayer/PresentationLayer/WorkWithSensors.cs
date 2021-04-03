@@ -14,26 +14,23 @@ namespace PresentationLayer
 {
     public partial class WorkWithSensors : Form
     {
-        public SensorType sensorType;
 
         public WorkWithSensors()
         {
             InitializeComponent();
             RequestHandler requestHandler = new RequestHandler();
-            sensorType = SensorType.UnknownSensor;      
+            Control.CheckForIllegalCrossThreadCalls = false;
+            Task runButtonsTrackingTask = new Task(() => TrackButtonState());
+            runButtonsTrackingTask.Start();    
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {
+        {                 
         }
 
         private void ReadSensorsFromJsonButton_Click(object sender, EventArgs e)
         {
-            DialogResult result = JsonSourceSelectionWindow.ShowDialog();
-            if(RequestHandler.businessLevelSensors != null)
-            {
-                DeleteSensor.Enabled = true;
-            }          
+            DialogResult result = JsonSourceSelectionWindow.ShowDialog();             
         }
 
         private void JsonSourceSelectionWindow_FileOk(object sender, CancelEventArgs e)
@@ -43,11 +40,7 @@ namespace PresentationLayer
 
         private void ReadSensorsFromXmlButton_Click_(object sender, EventArgs e)
         {
-            DialogResult result = XmlSourceSelectionWindow.ShowDialog();
-            if (RequestHandler.businessLevelSensors != null)
-            {
-                DeleteSensor.Enabled = true;
-            }
+            DialogResult result = XmlSourceSelectionWindow.ShowDialog();       
         }
 
         private void XmlSourceSelectionWindow_FileOk(object sender, CancelEventArgs e)
@@ -80,7 +73,7 @@ namespace PresentationLayer
         {           
             Sensors.DataSource = null;
             Sensors.DataSource = RequestHandler.businessLevelSensors;
-            Sensors.DisplayMember = "SensorType";          
+            Sensors.DisplayMember = "SensorTypeUniqueIdentificator";          
         }
 
         private void SwitchSelectedSensorMode_Click(object sender, EventArgs e)
@@ -142,6 +135,27 @@ namespace PresentationLayer
         private void SensorsStateChangeLog_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void TrackButtonState()
+        {
+            while(true)
+            {
+            if (RequestHandler.businessLevelSensors.Count == 0)
+            {
+                CreateNewSensorButton_Click.Enabled = false;
+                DeleteSensor.Enabled = false;
+                RefreshSensorsStateLog.Enabled = false;
+                SwitchSelectedSensorMode.Enabled = false;
+            }
+            else
+            {
+                CreateNewSensorButton_Click.Enabled = true;
+                DeleteSensor.Enabled = true;
+                RefreshSensorsStateLog.Enabled = true;
+                SwitchSelectedSensorMode.Enabled = true;
+            }
+            }        
         }
     }
 }
