@@ -49,7 +49,7 @@
             // 
             this.ReadSensorsFromJsonButton.Location = new System.Drawing.Point(12, 340);
             this.ReadSensorsFromJsonButton.Name = "ReadSensorsFromJsonButton";
-            this.ReadSensorsFromJsonButton.Size = new System.Drawing.Size(515, 27);
+            this.ReadSensorsFromJsonButton.Size = new System.Drawing.Size(639, 27);
             this.ReadSensorsFromJsonButton.TabIndex = 0;
             this.ReadSensorsFromJsonButton.Text = "Read sensors from Json\r\n ";
             this.ReadSensorsFromJsonButton.UseVisualStyleBackColor = true;
@@ -64,7 +64,7 @@
             // 
             this.ReadSensorsFromXmlButton.Location = new System.Drawing.Point(12, 373);
             this.ReadSensorsFromXmlButton.Name = "ReadSensorsFromXmlButton";
-            this.ReadSensorsFromXmlButton.Size = new System.Drawing.Size(515, 27);
+            this.ReadSensorsFromXmlButton.Size = new System.Drawing.Size(639, 27);
             this.ReadSensorsFromXmlButton.TabIndex = 1;
             this.ReadSensorsFromXmlButton.Text = "Read sensors from Xml\r\n";
             this.ReadSensorsFromXmlButton.UseVisualStyleBackColor = true;
@@ -77,9 +77,10 @@
             // 
             // CreateNewSensorButton_Click
             // 
-            this.CreateNewSensorButton_Click.Location = new System.Drawing.Point(15, 473);
+            this.CreateNewSensorButton_Click.Enabled = false;
+            this.CreateNewSensorButton_Click.Location = new System.Drawing.Point(12, 473);
             this.CreateNewSensorButton_Click.Name = "CreateNewSensorButton_Click";
-            this.CreateNewSensorButton_Click.Size = new System.Drawing.Size(512, 27);
+            this.CreateNewSensorButton_Click.Size = new System.Drawing.Size(639, 31);
             this.CreateNewSensorButton_Click.TabIndex = 2;
             this.CreateNewSensorButton_Click.Text = "Create a  new sensor\r\n";
             this.CreateNewSensorButton_Click.UseVisualStyleBackColor = true;
@@ -87,9 +88,10 @@
             // 
             // DeleteSensor
             // 
+            this.DeleteSensor.Enabled = false;
             this.DeleteSensor.Location = new System.Drawing.Point(12, 510);
             this.DeleteSensor.Name = "DeleteSensor";
-            this.DeleteSensor.Size = new System.Drawing.Size(515, 30);
+            this.DeleteSensor.Size = new System.Drawing.Size(639, 30);
             this.DeleteSensor.TabIndex = 3;
             this.DeleteSensor.Text = "Delete sensor\r\n";
             this.DeleteSensor.UseVisualStyleBackColor = true;
@@ -100,7 +102,7 @@
             this.Sensors.FormattingEnabled = true;
             this.Sensors.Location = new System.Drawing.Point(12, 199);
             this.Sensors.Name = "Sensors";
-            this.Sensors.Size = new System.Drawing.Size(515, 82);
+            this.Sensors.Size = new System.Drawing.Size(639, 82);
             this.Sensors.TabIndex = 4;
             this.Sensors.SelectedIndexChanged += new System.EventHandler(this.Sensors_SelectedIndexChanged);
             // 
@@ -108,7 +110,7 @@
             // 
             this.RefreshListSensors.Location = new System.Drawing.Point(15, 404);
             this.RefreshListSensors.Name = "RefreshListSensors";
-            this.RefreshListSensors.Size = new System.Drawing.Size(515, 30);
+            this.RefreshListSensors.Size = new System.Drawing.Size(636, 30);
             this.RefreshListSensors.TabIndex = 5;
             this.RefreshListSensors.Text = "Refresh list sensors";
             this.RefreshListSensors.UseVisualStyleBackColor = true;
@@ -116,9 +118,10 @@
             // 
             // SwitchSelectedSensorMode
             // 
+            this.SwitchSelectedSensorMode.Enabled = false;
             this.SwitchSelectedSensorMode.Location = new System.Drawing.Point(12, 546);
             this.SwitchSelectedSensorMode.Name = "SwitchSelectedSensorMode";
-            this.SwitchSelectedSensorMode.Size = new System.Drawing.Size(515, 27);
+            this.SwitchSelectedSensorMode.Size = new System.Drawing.Size(639, 27);
             this.SwitchSelectedSensorMode.TabIndex = 6;
             this.SwitchSelectedSensorMode.Text = "Switch selected sensor mode";
             this.SwitchSelectedSensorMode.UseVisualStyleBackColor = true;
@@ -128,7 +131,7 @@
             // 
             this.SensorMeasuredValue.Location = new System.Drawing.Point(12, 314);
             this.SensorMeasuredValue.Name = "SensorMeasuredValue";
-            this.SensorMeasuredValue.Size = new System.Drawing.Size(515, 20);
+            this.SensorMeasuredValue.Size = new System.Drawing.Size(639, 20);
             this.SensorMeasuredValue.TabIndex = 7;
             this.SensorMeasuredValue.TextChanged += new System.EventHandler(this.SensorMeasuredValue_TextChanged);
             // 
@@ -137,15 +140,16 @@
             this.SensorsStateLog.FormattingEnabled = true;
             this.SensorsStateLog.Location = new System.Drawing.Point(12, 50);
             this.SensorsStateLog.Name = "SensorsStateLog";
-            this.SensorsStateLog.Size = new System.Drawing.Size(515, 121);
+            this.SensorsStateLog.Size = new System.Drawing.Size(639, 121);
             this.SensorsStateLog.TabIndex = 8;
             this.SensorsStateLog.SelectedIndexChanged += new System.EventHandler(this.SensorsStateLog_SelectedIndexChanged);
             // 
             // RefreshSensorsStateLog
             // 
+            this.RefreshSensorsStateLog.Enabled = false;
             this.RefreshSensorsStateLog.Location = new System.Drawing.Point(12, 438);
             this.RefreshSensorsStateLog.Name = "RefreshSensorsStateLog";
-            this.RefreshSensorsStateLog.Size = new System.Drawing.Size(515, 29);
+            this.RefreshSensorsStateLog.Size = new System.Drawing.Size(639, 29);
             this.RefreshSensorsStateLog.TabIndex = 9;
             this.RefreshSensorsStateLog.Text = "Refresh sensors state log";
             this.RefreshSensorsStateLog.UseVisualStyleBackColor = true;
@@ -157,10 +161,10 @@
             this.SensorList.ForeColor = System.Drawing.SystemColors.Desktop;
             this.SensorList.Location = new System.Drawing.Point(12, 176);
             this.SensorList.Name = "SensorList";
-            this.SensorList.Size = new System.Drawing.Size(515, 20);
+            this.SensorList.Size = new System.Drawing.Size(639, 20);
             this.SensorList.TabIndex = 10;
-            this.SensorList.Text = "                                                                         Sensor l" +
-    "ist";
+            this.SensorList.Text = "                                                                                 " +
+    "                Sensor list";
             this.SensorList.Click += new System.EventHandler(this.SensorList_Click);
             // 
             // MeasuringValueSensor
@@ -168,10 +172,10 @@
             this.MeasuringValueSensor.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.MeasuringValueSensor.Location = new System.Drawing.Point(12, 291);
             this.MeasuringValueSensor.Name = "MeasuringValueSensor";
-            this.MeasuringValueSensor.Size = new System.Drawing.Size(515, 20);
+            this.MeasuringValueSensor.Size = new System.Drawing.Size(639, 20);
             this.MeasuringValueSensor.TabIndex = 11;
-            this.MeasuringValueSensor.Text = "                                                    Measurement value of the sele" +
-    "cted sensor";
+            this.MeasuringValueSensor.Text = "                                                                     Measurement " +
+    "value of the selected sensor";
             this.MeasuringValueSensor.Click += new System.EventHandler(this.MeasuringValueSensor_Click);
             // 
             // SensorsStateChangeLog
@@ -179,17 +183,17 @@
             this.SensorsStateChangeLog.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.SensorsStateChangeLog.Location = new System.Drawing.Point(12, 27);
             this.SensorsStateChangeLog.Name = "SensorsStateChangeLog";
-            this.SensorsStateChangeLog.Size = new System.Drawing.Size(515, 20);
+            this.SensorsStateChangeLog.Size = new System.Drawing.Size(639, 20);
             this.SensorsStateChangeLog.TabIndex = 12;
-            this.SensorsStateChangeLog.Text = "                                                                 Sensors state ch" +
-    "ange log";
+            this.SensorsStateChangeLog.Text = "                                                                                 " +
+    "    Sensors state change log";
             this.SensorsStateChangeLog.Click += new System.EventHandler(this.SensorsStateChangeLog_Click);
             // 
             // WorkWithSensors
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(558, 585);
+            this.ClientSize = new System.Drawing.Size(697, 585);
             this.Controls.Add(this.SensorsStateChangeLog);
             this.Controls.Add(this.MeasuringValueSensor);
             this.Controls.Add(this.SensorList);

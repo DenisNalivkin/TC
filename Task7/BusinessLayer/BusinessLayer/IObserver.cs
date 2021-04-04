@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLayer
 {
     public interface IObserver
     {
-         void Update(Object obj);
+       void Update(Object obj);
     }
 }

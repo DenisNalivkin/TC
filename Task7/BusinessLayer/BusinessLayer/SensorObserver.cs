@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLayer
 {
     public class SensorObserver : IObserver
     {
-        public static List<string> SensorStateChangeLog { get; set; }
         private static SensorObserver singleSensorObserver;
-
+        public static List<string> SensorStateChangeLog { get; set; }
+        
         private SensorObserver()
         {           
         } 
@@ -28,7 +25,7 @@ namespace BusinessLayer
         public void Update(object obj)
         {
             Sensor sensor = (Sensor)obj;
-            SensorStateChangeLog.Add($"{DateTime.Now} {sensor.SensorType} mode was changed on {sensor.SensorState.ToString().Substring(14)}!");
+            SensorStateChangeLog.Add($"{DateTime.Now} {sensor.SensorTypeUniqueIdentificator} mode was changed on {sensor.SensorState.ToString().Substring(14)}!");
         }
     }
 }

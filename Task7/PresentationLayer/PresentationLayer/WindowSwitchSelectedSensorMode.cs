@@ -1,12 +1,6 @@
 ﻿using BusinessLayer;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PresentationLayer
@@ -15,10 +9,12 @@ namespace PresentationLayer
     {
         string selectedSensor;
         List<Sensor> listSensors;
+
         public WindowSwitchSelectedSensorMode()
         {
             InitializeComponent();          
             selectedSensor = null;
+            ChoseSensor.Enabled = false;
             listSensors = RequestHandler.businessLevelSensors;
             foreach(var sensor in RequestHandler.businessLevelSensors)
             {
@@ -29,8 +25,7 @@ namespace PresentationLayer
         private void WindowSwitchSelectedSensorMode_Load(object sender, EventArgs e)
         {
         }
-
-        
+       
         private void SwitchSelectedSensorMode_SelectedIndexChanged(object sender, EventArgs e)
         {
          
@@ -44,7 +39,6 @@ namespace PresentationLayer
             }
         }
         
-
         private void ChoseSensor_Click(object sender, EventArgs e)
         {
             selectedSensor = SwitchSelectedSensorMode.SelectedItem.ToString();
@@ -61,6 +55,10 @@ namespace PresentationLayer
 
         private void SwitchSelectedSensorMode_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            if(SwitchSelectedSensorMode != null)
+            {
+                ChoseSensor.Enabled = true;
+            }          
         }  
     }
 }

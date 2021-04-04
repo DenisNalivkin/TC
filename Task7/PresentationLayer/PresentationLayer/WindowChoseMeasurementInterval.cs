@@ -1,12 +1,5 @@
 ﻿using BusinessLayer;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PresentationLayer
@@ -16,10 +9,15 @@ namespace PresentationLayer
         public WindowChoseMeasurementInterval()
         {
             InitializeComponent();
+            SaveValueMeasurementInterval.Enabled = false;
         }
+
         private void ChoseMeasurementInterval_TextChanged(object sender, EventArgs e)
         {
-            
+             if (ChoseMeasurementInterval != null)
+            {
+                SaveValueMeasurementInterval.Enabled = true;
+            }          
         }
 
         private void WindowChoseMeasurementInterval_Load(object sender, EventArgs e)

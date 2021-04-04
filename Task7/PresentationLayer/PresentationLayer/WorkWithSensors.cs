@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,14 +9,12 @@ namespace PresentationLayer
 {
     public partial class WorkWithSensors : Form
     {
-
         public WorkWithSensors()
         {
             InitializeComponent();
             RequestHandler requestHandler = new RequestHandler();
-            Control.CheckForIllegalCrossThreadCalls = false;
             Task runButtonsTrackingTask = new Task(() => TrackButtonState());
-            runButtonsTrackingTask.Start();    
+            runButtonsTrackingTask.Start();                          
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -61,9 +54,9 @@ namespace PresentationLayer
         }
 
         private void Sensors_SelectedIndexChanged(object sender, EventArgs e)
-        {           
-            Sensor sensor = (Sensor)Sensors.SelectedItem;
-            Control.CheckForIllegalCrossThreadCalls = false;
+        {
+            Sensor sensor = null;
+            Sensors.Invoke( (MethodInvoker) delegate { sensor = (Sensor)Sensors.SelectedItem; }); 
             Action<object> method = x => { TrackSensorState(sensor); };
             var executeTask = new Task(method, sensor);
             executeTask.Start();       
@@ -83,35 +76,44 @@ namespace PresentationLayer
         }
 
         private void TrackSensorState(object obj)
-        {
+        {        
             Sensor sensor = (Sensor)obj;
-            while (Sensors.SelectedItem == sensor)
-            {
+            object safeSensorsSelectedItem = null;
+            Sensors.Invoke((MethodInvoker)delegate { safeSensorsSelectedItem = Sensors.SelectedItem; });
+            while (safeSensorsSelectedItem == sensor)
+            { 
+                if(RequestHandler.businessLevelSensors != null && RequestHandler.businessLevelSensors.Count == 0)
+                {
+                    SensorMeasuredValue.Text = null;
+                }
+                                                       
                 if( sensor.SensorState is DowntimeSensorState )
                 {
-                    SensorMeasuredValue.Text = "0";
+                    Sensors.Invoke((MethodInvoker)delegate { SensorMeasuredValue.Text = "0";});
+                    Thread.Sleep(1);
                 }
                 else
                 {
-                    SensorMeasuredValue.Text = sensor.MeasuredValue.ToString();
-                }                            
-            }
+                    Sensors.Invoke((MethodInvoker)delegate { SensorMeasuredValue.Text = sensor.MeasuredValue.ToString();});
+                    Thread.Sleep(1);
+                }
+                Sensors.Invoke((MethodInvoker)delegate { safeSensorsSelectedItem = Sensors.SelectedItem; });
+            }   
         }
 
         private void SensorMeasuredValue_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void SensorsStateLog_SelectedIndexChanged(object sender, EventArgs e)
-        {
-      
+        {    
         }
 
         private void RefreshSensorsStateLog_Click(object sender, EventArgs e)
         {
-            SensorsStateLog.DataSource = SensorObserver.SensorStateChangeLog;
-            if (SensorObserver.SensorStateChangeLog.Count != null)
+           
+            SensorsStateLog.DataSource = SensorObserver.SensorStateChangeLog;    
+            if (SensorsStateLog.DataSource != null && SensorObserver.SensorStateChangeLog.Count != 0)
             {
                 SensorsStateLog.DataSource = null;
                 SensorsStateLog.DataSource = SensorObserver.SensorStateChangeLog;
@@ -119,8 +121,7 @@ namespace PresentationLayer
                 {
                     SensorsStateLog.DisplayMember = SensorObserver.SensorStateChangeLog[i];
                 }
-            }
-                    
+            }                    
         }
 
         private void SensorList_Click(object sender, EventArgs e)
@@ -129,33 +130,31 @@ namespace PresentationLayer
 
         private void MeasuringValueSensor_Click(object sender, EventArgs e)
         {
-
         }
 
         private void SensorsStateChangeLog_Click(object sender, EventArgs e)
         {
-
         }
 
         private void TrackButtonState()
-        {
+        {                    
             while(true)
             {
             if (RequestHandler.businessLevelSensors.Count == 0)
             {
-                CreateNewSensorButton_Click.Enabled = false;
-                DeleteSensor.Enabled = false;
-                RefreshSensorsStateLog.Enabled = false;
-                SwitchSelectedSensorMode.Enabled = false;
+                CreateNewSensorButton_Click.Invoke((MethodInvoker)delegate { CreateNewSensorButton_Click.Enabled = false; });
+                DeleteSensor.Invoke((MethodInvoker)delegate { DeleteSensor.Enabled = false; });
+                RefreshSensorsStateLog.Invoke((MethodInvoker)delegate { RefreshSensorsStateLog.Enabled = false; });
+                SwitchSelectedSensorMode.Invoke((MethodInvoker)delegate { SwitchSelectedSensorMode.Enabled = false; });
             }
             else
             {
-                CreateNewSensorButton_Click.Enabled = true;
-                DeleteSensor.Enabled = true;
-                RefreshSensorsStateLog.Enabled = true;
-                SwitchSelectedSensorMode.Enabled = true;
+                CreateNewSensorButton_Click.Invoke((MethodInvoker)delegate { CreateNewSensorButton_Click.Enabled = true; });
+                DeleteSensor.Invoke((MethodInvoker)delegate { DeleteSensor.Enabled = true; });
+                RefreshSensorsStateLog.Invoke((MethodInvoker)delegate { RefreshSensorsStateLog.Enabled = true; });
+                SwitchSelectedSensorMode.Invoke((MethodInvoker)delegate { SwitchSelectedSensorMode.Enabled = true; });                 
             }
-            }        
+            }                              
         }
     }
 }

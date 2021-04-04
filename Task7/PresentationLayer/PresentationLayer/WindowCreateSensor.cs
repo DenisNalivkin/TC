@@ -1,12 +1,6 @@
 ﻿using BusinessLayer;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PresentationLayer
@@ -26,7 +20,6 @@ namespace PresentationLayer
 
         private void WindowCreateSensor_Load(object sender, EventArgs e)
         {
-
         }
 
         private void ListKindSensor_SelectedIndexChanged(object sender, EventArgs e)
@@ -37,6 +30,7 @@ namespace PresentationLayer
             FinishInstallSensor(selectedSensor, sensorforSave);
             Close();          
         }
+
         private void ChoseSensor_Click(object sender, EventArgs e)
         {       
         }
@@ -77,7 +71,5 @@ namespace PresentationLayer
                 ListKindSensors.Items.Add(sensorName);
             }
         }
-
-
     }
 }

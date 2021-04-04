@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -9,25 +6,23 @@ namespace BusinessLayer
 {
     public class WorkSensorState: ISensorState, IObservable
     {
-
-        CancellationTokenSource cancelTokenSource;
-        CancellationToken token;
+        CancellationTokenSource cancelTokenSourceWorkSensor;
+        CancellationToken tokenWorkSensor;
 
         public WorkSensorState()
         {
-            cancelTokenSource = new CancellationTokenSource();
-            token = cancelTokenSource.Token;
+            cancelTokenSourceWorkSensor = new CancellationTokenSource();
+            tokenWorkSensor = cancelTokenSourceWorkSensor.Token;
         }
-
 
         public void ChangeState(Sensor measuringSensor)
         {
-            cancelTokenSource.Cancel();
+            cancelTokenSourceWorkSensor.Cancel();
             measuringSensor.SensorState = new DowntimeSensorState();
             NotifyObservers(measuringSensor);
             Action<object> method = x => { measuringSensor.SensorState.Work(measuringSensor); };            
-            var task2 = new Task(method, measuringSensor);
-            task2.Start();
+            var task3 = new Task(method, measuringSensor);
+            task3.Start();
         }
 
         public void NotifyObservers(Sensor sensor)
@@ -42,7 +37,7 @@ namespace BusinessLayer
             Random randonNum = new Random();
             while (measuringSensor.SensorState is WorkSensorState)
             {
-                if (token.IsCancellationRequested)
+                if (tokenWorkSensor.IsCancellationRequested)
                 {
                     return;
                 }

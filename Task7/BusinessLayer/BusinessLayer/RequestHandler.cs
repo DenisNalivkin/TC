@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+﻿using System.Collections.Generic;
 using DataBase;
-using Newtonsoft.Json;
 
 namespace BusinessLayer
 {
@@ -28,7 +21,7 @@ namespace BusinessLayer
             }
         }
         
-        public  void ReadMeasuringSensorsXml(string path)
+        public void ReadMeasuringSensorsXml(string path)
          {
             List<DataBase.AbstractSensor> databaseLevelSensors = new SensorStorage().ReadMeasuringSensorsXml(path);
             databaseLevelSensors =  new SensorStorage ().ReadMeasuringSensorsXml(path);
