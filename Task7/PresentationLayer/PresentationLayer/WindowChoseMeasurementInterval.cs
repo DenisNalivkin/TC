@@ -3,9 +3,13 @@ using System;
 using System.Windows.Forms;
 
 namespace PresentationLayer
-{
+{/// <summary>
+/// The WindowChoseMeasurementInterval class stores the code for displaying the window that is responsible for choosing the measurement interval.
+/// </summary>
     public partial class WindowChoseMeasurementInterval : Form
-    {
+    {/// <summary>
+     /// Public constructor initializing the fields of the WindowChoseMeasurementInterval class object.
+     /// </summary>
         public WindowChoseMeasurementInterval()
         {
             InitializeComponent();

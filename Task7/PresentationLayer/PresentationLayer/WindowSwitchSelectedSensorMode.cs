@@ -4,12 +4,16 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace PresentationLayer
-{
+{/// <summary>
+/// The WindowSwitchSelectedSensorMode class stores the code for displaying the window, the selected sensor mode.
+/// </summary>
     public partial class WindowSwitchSelectedSensorMode : Form
     {
         string selectedSensor;
         List<Sensor> listSensors;
-
+        /// <summary>
+        /// Public constructor initializing the fields of the WindowSwitchSelectedSensorMode class object.
+        /// </summary>
         public WindowSwitchSelectedSensorMode()
         {
             InitializeComponent();          

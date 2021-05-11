@@ -3,11 +3,15 @@ using System;
 using System.Windows.Forms;
 
 namespace PresentationLayer
-{
+{/// <summary>
+/// The WindowDeleteSensor class stores the code for displaying the window responsible for removing the selected sensor.
+/// </summary>
     public partial class WindowDeleteSensor : Form
     {
         string listSensorsDelete;
-
+        /// <summary>
+        /// Public constructor initializing the fields of the WindowDeleteSensor class object.
+        /// </summary>
         public WindowDeleteSensor()
         {
             InitializeComponent();

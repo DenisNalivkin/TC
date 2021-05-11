@@ -4,12 +4,16 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace PresentationLayer
-{
+{/// <summary>
+/// The WindowCreateSensor class stores the code for displaying a window that is responsible for creating a new sensor.
+/// </summary>
     public partial class WindowCreateSensor : Form
     {
         string selectedSensor;
         List<string> namesSensors;
-
+        /// <summary>
+        ///  Public constructor initializing the fields of the WindowCreateSensor class object.
+        /// </summary>
         public WindowCreateSensor()
         {
             InitializeComponent();

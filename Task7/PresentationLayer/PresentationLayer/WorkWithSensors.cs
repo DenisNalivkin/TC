@@ -6,9 +6,13 @@ using System.Windows.Forms;
 using BusinessLayer;
  
 namespace PresentationLayer
-{
+{/// <summary>
+/// The WorkWithSensors class stores the code for displaying the application interface.
+/// </summary>
     public partial class WorkWithSensors : Form
-    {
+    {/// <summary>
+     /// Public constructor initializing the fields of the WorkWithSensors class object.
+     /// </summary>
         public WorkWithSensors()
         {
             InitializeComponent();
