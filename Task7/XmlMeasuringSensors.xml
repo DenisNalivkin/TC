@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+
+<Sensor name = "PressureSensor">
+<SensorType>PressureSensor</SensorType>
+<MeasurementInterval>3</MeasurementInterval>
+</Sensor>
+
+
+<Sensor name = "TemperatureSensor">
+<SensorType>TemperatureSensor</SensorType>
+<MeasurementInterval>3</MeasurementInterval>
+</Sensor>
+
+
+<Sensor name = "MagneticFieldSensor">
+<SensorType>MagneticFieldSensor</SensorType>
+<MeasurementInterval>3</MeasurementInterval>
+</Sensor>
+
+</config>
