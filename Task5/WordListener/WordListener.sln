@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordListener", "WordListener\WordListener.csproj", "{5CD34E2F-5544-4844-A322-9E0A078FE6EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5CD34E2F-5544-4844-A322-9E0A078FE6EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CD34E2F-5544-4844-A322-9E0A078FE6EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CD34E2F-5544-4844-A322-9E0A078FE6EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CD34E2F-5544-4844-A322-9E0A078FE6EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6E1A7590-2512-4758-9118-1885DBF2FFE9}
+	EndGlobalSection
+EndGlobal
