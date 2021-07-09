@@ -3,7 +3,7 @@
     ViewBag.Title = "Все тренеры";
 }
 @functions{
-    public static IEnumerable<string> getAmountCourses(IEnumerable<CMSys.Core.Entities.Catalog.Trainer> listAllTrainers)
+    public static IEnumerable<string> getListTrainerGroupNames(IEnumerable<CMSys.Core.Entities.Catalog.Trainer> listAllTrainers)
     {
         return listAllTrainers.Select(trainer => trainer.TrainerGroup.Name).Distinct();
     }
@@ -21,7 +21,7 @@
     <div class="divForHeading">
         <p class="h2Trainers">Trainers</p>
     </div>
-    @foreach (var course in getAmountCourses(Model))
+    @foreach (var course in getListTrainerGroupNames(Model))
     {
         <div class="itemsContainerForTrainers">
             <div class="divNameCourse">

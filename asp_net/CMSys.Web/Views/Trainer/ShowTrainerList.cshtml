@@ -1,0 +1,128 @@
+﻿@{
+    Layout = "";
+}
+@model IEnumerable<CMSys.Core.Entities.Catalog.Trainer>
+@{
+    ViewBag.Title = "Список тренеров";
+}
+@functions{
+   
+    public static string getPhotoTrainer(byte[] trainerPhoto)
+    {
+        byte[] arr = trainerPhoto;
+        var base64 = Convert.ToBase64String(arr);
+        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+        return imgSrc;
+    }
+
+}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="~/css/customStyles.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <nav class="navbar fixed-top navbar-light" style="background-color:blue;">
+        <div class="container-fluid">
+            <a class="navbar-brand" style="color:white;" href="#"> CMSYS </a>
+            <a class="navbar-brand" style="color:white;" href="@Url.Action("ShowAllCourses", "Course")"> Courses </a>
+            <a class="navbar-brand" style="color:white;" href="@Url.Action("ShowAllTrainers", "Trainer")"> Trainers </a>
+            <a class="navbar-brand" style="color:white;" href="@Url.Action("ShowActionInCourseList", "CourseList")"> Course list </a>
+            <a class="navbar-brand" style="color:white;" href="#"> Course group </a>
+            <a class="navbar-brand" style="color:white;" href="#"> Trainers list </a>
+            <a class="navbar-brand" style="color:white;" href="#"> Trainers groups </a>
+            <a class="navbar-brand" style="color:white;" href="#">  Users </a>
+        </div>
+    </nav>
+    <div class="divMainContent">
+        <div class="divNameUser">
+            <a class="aNameUser"> NameOfUser </a>
+        </div>
+        <div class="divWithData2">
+            <div class="containerForTrainerList">
+                <div class="divForHeading">
+                    <p class="h2StringTrainer"> Trainers  </p>
+                    <a class="referenceInShowTrainerList" href="http://localhost:61558/trainer/CreateTrainer"> Create Trainer </a>
+                </div>
+                <div class="divContainerStringShowTrainerlist">
+                    <div class="firstItemdivContainerStringShowTrainerlist">
+                        <p class="pStringMainLine"> Name </p>
+                    </div>
+                    <div class="itemsdivContainerStringShowTrainerlist">
+                        <p class="pStringMainLine"> Group </p>
+                    </div>
+                    <div class="itemsdivContainerStringShowTrainerlist">
+                        <p class="pStringMainLine"> Order </p>
+                    </div>
+                    <div class="lastItemdivContainerStringShowTrainerlist">
+                        <p class="pStringMainLine"> Action </p>
+                    </div>
+                </div>
+                <div class="divLine">
+                </div>
+                @foreach (var trainer in Model)
+                {
+                    <div class="divContainerForTrainerInformation">
+                        <div class="firstItemDivContainerForTrainerInformation">
+                            <img class="" src="@getPhotoTrainer(trainer.User.Photo)" width="35%" height="75%" alt="trainer" />
+                        </div>                 
+                        <div class="itemsDivContainerForTrainerInformation">
+                            <p class="pString"> @trainer.TrainerGroup.Name  </p>
+                        </div>
+                        <div class="itemsDivContainerForTrainerInformation">
+                            <p class="pString"> @trainer.VisualOrder  </p>
+                        </div>
+                        <div class="lastItemDivContainerForTrainerInformation">
+                            <a class="referenceEditTrainer" href="">
+                                Edit  trainer
+                            </a>
+                            <button type="button" class="ButtonDeleteTrainer" value="@trainer.User.FullName" id="">
+                                Delete course
+                            </button>
+
+                        </div>
+                    </div>
+                }
+            </div>           
+        </div>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="@Url.Content("/js/main.js")?v=@DateTime.UtcNow.ToString()"></script>
+<script type="text/javascript" src="@Url.Content("/js/groupsFilterShowactionInCourseList.js")?v=@DateTime.UtcNow.ToString()"></script>
+<script type="text/javascript" src="@Url.Content("/js/typeFilterShowActionInCourseList.js")?v=@DateTime.UtcNow.ToString()"></script>
+<script type="text/javascript" src="@Url.Content("/js/moreInformationCourseActionInCourse.js")?v=@DateTime.UtcNow.ToString()"></script>
+<script type="text/javascript" src="@Url.Content("/js/deleteCourse.js")?v=@DateTime.UtcNow.ToString()"></script>
+<script type="text/javascript" src="@Url.Content("/js/editCourseTrainers.js")?v=@DateTime.UtcNow.ToString()"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
