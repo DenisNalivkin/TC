@@ -1,0 +1,1593 @@
+/* Styles for trainer page. */
+html,
+body,
+#intro {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+}
+
+.pStyle {
+    padding: 8px;
+    margin: 0px;
+    text-align: left;
+    font-weight: 900;
+    color: white;
+    font-size: 15px;
+    text-decoration: none;
+    margin: 0;
+}
+
+.nav {
+    background-color: cornflowerblue;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0px;
+    width: 10%;
+    height: 100%;
+}
+
+.divForNavigationList {
+    width: 70%;
+    position: absolute;
+    left: 20px;
+    top: 10px;
+}
+
+.navigation-list {
+    display: inline-flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    padding-left: 0px;
+}
+
+.navigation-list-item {
+    text-align: center;
+    font-size: 1.1em;
+    padding: 0px;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.navigation-list-link {
+    padding: 8px;
+    margin: 0px;
+    text-align: left;
+    font-weight: 500;
+    color: white;
+    font-size: 15px;
+    text-decoration: none
+}
+
+.divMainContent {
+    background-color: white;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    margin-top: 50px;
+}
+
+.divNameUser {
+    width: 100%;
+    height: 70px;
+}
+
+.aNameUser {
+    float: right;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    font-weight: 800;
+    color: lightgrey;
+    font-size: 20px;
+}
+
+.divWithData {
+    background-color: #E8E8E8;
+    width: 100%;
+    height: auto;
+}
+
+.containerForTrainers {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.itemsContainerForTrainers {
+    width: 98%;
+    height: auto;
+    text-align: center;
+    font-size: 1.1em;
+    padding: 0px;
+    color: black;
+    margin: 30px 0px 30px 0px;
+    border: 2px solid #F5F5F5;
+}
+
+.divForHeading {
+    height: 100px;
+    width: 100%;
+    margin: 0;
+}
+
+.h2Trainers {
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: 800;
+    color: dimgray;
+    font-size: 20px;
+}
+
+.divNameCourse {
+    width: 100%;
+    height: 3em;
+    margin: 0;
+    padding: 0;
+    background-color: #F8F8F8;
+}
+
+.pNameCourse {
+    margin: 0;
+    float: left;
+    margin-left: 0px;
+    color: cornflowerblue;
+}
+
+.nestedContainerForTrainers {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0px;
+    width: 100%;
+    height: 85%;
+    border: 2px solid #F5F5F5;
+    background-color: white;
+}
+
+.itemsNestedContainerForTrainers {
+    width: 300px;
+    height: 250px;
+    text-align: right;
+    font-size: 0.8em;
+    padding: 10px;
+    color: black;
+    margin: 30px;
+    border: 2px solid #F5F5F5;
+}
+
+.pNameTrainer {
+    float: right;
+    margin: 5px;
+    color: cornflowerblue;
+}
+
+.imgTrainerLocation {
+    float: left;
+    margin: 5px;
+}
+
+.divTrainerAndInformation {
+    width: 50%;
+    height: 50%;
+    float: right;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.buttonTrainerInformation {
+    float: right;
+    margin-top: 0px;
+    margin-right: 5px;
+    color: cornflowerblue;
+}
+
+.divCourseDescription {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+
+
+
+
+
+/* Styles for course page. */
+.containerForCourses {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.itemsContainerForCourses {
+    width: 98%;
+    height: auto;
+    text-align: center;
+    font-size: 1.1em;
+    padding: 0px;
+    color: black;
+    margin: 30px 0px 30px 0px;
+    border: 2px solid #F5F5F5;
+    background-color: #F8F8F8;
+}
+
+.h2Course {
+    float: left;
+    margin-left: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: 800;
+    color: dimgray;
+    font-size: 25px;
+}
+
+.divNameCourse {
+    width: 100%;
+    height: 1.3em;
+    margin: 0;
+    padding: 0;
+    background-color: #F8F8F8;
+}
+
+.pNameCourse {
+    margin: 0;
+    float: left;
+    margin-left: 0px;
+    color: #989898;
+}
+
+.button1 {
+    float: left;
+    margin-top: 0px;
+    margin-left: 0px;
+    color: #fff;
+    background-color: lightseagreen;
+    border-color: #0d6efd;
+}
+
+.button2 {
+    float: left;
+    margin-top: 0px;
+    margin-left: 10px;
+    color: #fff;
+    background-color: grey;
+    border-color: #0d6efd;
+}
+
+.divCourseDescription {
+    width: 100%;
+    height: auto;
+    margin: 0px;
+}
+
+.pCourseDescription {
+    padding: 50px 0px 0px 0px;
+    color: #989898;
+}
+
+.divInformationCourse {
+    width: 100%;
+    height: auto;
+}
+
+@media (min-width: 181px) and (max-width:1723px) {
+
+    .divPanelFilters {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        float: left;
+        width: 100%;
+        margin-left: 0px;
+    }
+
+    .firstItemPanelFilters {
+        width: auto;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 30px 10px 10px 17px;
+    }
+
+    .itemsSelectTypesPanelFilters {
+        width: 25%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 0px 0px 10px 0px;
+        border: 2px solid #F5F5F5;
+    }
+
+    .itemsSelectGroupsPanelFilters {
+        width: 25%;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 0px 0px 10px 0px;
+        border: 2px solid #F5F5F5;
+    }
+
+    .aInformationCourse {
+        float: left;
+        margin: 0px;
+        margin-left: 0px;
+        text-decoration: underline;
+        color: cornflowerblue;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        color: #ffffff;
+        padding: 6px 6px;
+        background-color: #0d6efd;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid #003366;
+        -moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 1px rgba(255,255,255,0.5);
+        -webkit-box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        text-shadow: 0px -1px 0px rgb(0 0 0 / 70%), 0px 1px 0px rgb(255 255 255 / 30%);
+        display: inline-block;
+        text-decoration: none;
+        width: 150px;
+        height:25px;
+    }   
+
+}
+
+@media (min-width:1724px) {
+
+    .divPanelFilters {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        float: left;
+        width: 100%;
+        margin-left: 0px;
+    }
+
+    .firstItemPanelFilters {
+        width: auto;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 30px 1130px 30px 17px;
+    }
+
+    .itemsSelectTypesPanelFilters {
+        width: 10%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 15px 0px 30px 410px;
+        border: 2px solid #F5F5F5;
+    }
+
+    .itemsSelectGroupsPanelFilters {
+        width: 10%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 15px 0px 30px 20px;
+        border: 2px solid #F5F5F5;
+    }
+
+    .aInformationCourse {
+        float: left;
+        margin: 0px;
+        margin-left: 0px;
+        text-decoration: underline;
+        color: cornflowerblue;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        color: #ffffff;
+        padding: 6px 6px;
+        background-color: #0d6efd;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid #003366;
+        -moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 1px rgba(255,255,255,0.5);
+        -webkit-box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        text-shadow: 0px -1px 0px rgb(0 0 0 / 70%), 0px 1px 0px rgb(255 255 255 / 30%);
+        display: inline-block;
+        text-decoration: none;
+        width: 200px;
+        height:35px;
+    }
+}
+
+.selectTypes{
+    margin-top:10px;
+    display: block;
+    font-size: 14px;
+    font-family: sans-serif;
+    font-weight: 700;
+    color: #444;
+    line-height: 1.3;
+    padding: .6em 1.4em .5em .8em;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    border: 1px solid #aaa;
+    box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+    border-radius: .5em;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+    background-repeat: no-repeat, repeat;
+    background-position: right .7em top 50%, 0 0;
+    background-size: .65em auto, 100%;
+}
+
+.selectGroups {
+    margin-top: 10px;
+    display: block;
+    font-size: 14px;
+    font-family: sans-serif;
+    font-weight: 700;
+    color: #444;
+    line-height: 1.3;
+    padding: .6em 1.4em .5em .8em;
+    width: 140%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    border: 1px solid #aaa;
+    box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+    border-radius: .5em;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+    background-repeat: no-repeat, repeat;
+    background-position: right .7em top 50%, 0 0;
+    background-size: .65em auto, 100%;
+}
+
+.containerAllTrainersInMoreInforamtion {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    float: left;
+    margin-bottom: 5px;
+    margin-left: 0px;
+    margin-top: 10px;
+}
+
+.itemsContainerAllTrainersInMoreInforamtion {
+    width: auto;
+    height: auto;
+    text-align: center;
+    font-size: 1.1em;
+    padding: 0px;
+    color: black;
+    margin: 30px 0px 30px 20px;
+}
+
+.aBackToList {
+    float: left;
+    margin-left: 0px;
+    margin-top: 5px;
+    margin-left: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    color: #ffffff;
+    padding: 6px 6px;
+    background-color: #0d6efd;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border: 1px solid #003366;
+    -moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 1px rgba(255,255,255,0.5);
+    -webkit-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 1px rgba(255,255,255,0.5);
+    box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 1px rgba(255,255,255,0.5);
+    text-shadow: 0px -1px 0px rgba(000,000,000,0.7), 0px 1px 0px rgba(255,255,255,0.3);
+    display: inline-block;
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+/* Styles for CreateCourse page. */
+
+.containerformGroup {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.itemsContainerFormGroup {
+    width: 98%;
+    height: auto;
+    text-align: center;
+    font-size: 1.1em;
+    padding: 0px;
+    color: black;
+    margin: 10px 0px 10px 0px;
+    background-color: white;
+}
+
+.customform-control {
+    display: block;
+    width: 30%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #989898;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    appearance: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.labelCreateCourse{
+    float: left;
+    color: #989898;
+}
+
+.spanCreateCoursePosition{
+    float: left;
+    margin-left:10px;
+}
+
+.divForContainerformGroup {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.containerformGroup2 {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #F5F5F5;
+    background-color: white;
+}
+
+.button3{
+    float:left;
+    margin-left:18px;
+}
+
+.divForABackTolist {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+.divForButtonCreate {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+
+
+
+
+/* Styles for ActionInCourseList page. */
+
+.divWithData2 {
+    background-color: #E8E8E8;
+    width: 100%;
+    height: 100%;
+}
+
+.divWithDataActionInCourseListController {
+    background-color: #E8E8E8;
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-width: 499px) and (max-width:1723px) {
+
+    .divContainerForInformationCourse {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0px;
+        width: 99%;
+        height: 80%;
+        background-color: white;
+    }
+
+    .containerForActionInCourseList {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0px;
+        width: 99%;
+        height: 100%;
+        background-color:white;
+    }
+
+    .itemsContainerForActionInCourseList {
+        width: 98%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 50px 50px 50px 50px;
+        background-color: white;
+    }
+
+    .referenceInActionInCourseList {
+        float: right;
+        margin-right: 380px;
+        margin-top: 70px;
+        margin-bottom: 0px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        color: #ffffff;
+        padding: 6px 6px;
+        background-color: #0d6efd;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid #003366;
+        -moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 1px rgba(255,255,255,0.5);
+        -webkit-box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        text-shadow: 0px -1px 0px rgb(0 0 0 / 70%), 0px 1px 0px rgb(255 255 255 / 30%);
+        display: inline-block;
+        text-decoration: none;
+        height: 40px;
+        width: 200px;
+        text-align: center;
+        padding:10px;
+    }
+
+    .h2InActionInCourseList {
+        float: left;
+        margin-left: 10px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-weight: 800;
+        color: dimgray;
+        font-size: 30px;
+    }
+
+    .divContainerString {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0px;
+        width: 99%;
+        height: auto;
+        background-color: white;
+    }
+
+    .firstItemdivContainerString {
+        width: 10%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 15px 0px 10px;
+    }
+
+    .lastItemdivContainerString {
+        width: 10%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 10px 0px 10px;
+
+    }
+
+    .itemsdivContainerString {
+        width: 10%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 30px 0px 50px;
+    }
+
+    .pStringMainLine {
+        color: grey;
+        font-size: 15px;
+    }
+
+    .pString {
+        color: grey;
+        font-size: 15px;
+    }
+
+    .pStringCourseDescription {
+        color: grey;
+        font-size: 15px;
+    }
+
+    .pStringTrainers {
+        color: blue;
+        font-size: 15px;
+    }
+
+    .divStringTrainers {
+        margin: 0px;
+        color: blue;
+        font-size: 15px;
+    }
+
+    .divLine {
+        height: 3px;
+        width: 99%;
+        border-bottom-width: 3px;
+        border-bottom-style: solid;
+        border-bottom-color: #808080;
+    }
+
+    .firstItemDivContainerForInformationCourse {
+        width: 10%;
+        height: 90%;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 40px 15px 0px 10px;
+    }
+
+    .lastItemDivContainerForInformationCourse {
+        width: 10%;
+        height: 90%;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 40px 10px 0px 10px;
+    }
+
+    .itemsDivContainerForInformationCourse {
+        width: 10%;
+        height: 90%;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 40px 30px 0px 50px;
+    }
+
+    .itemforDivContainerForInformationCourseCourseDescription {
+        width: 100%;
+        height: auto%;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 0px 0px 0px 0px;
+        border-bottom-width: 2px;
+        border-bottom-style: solid;
+        border-bottom-color: #808080;
+    }
+
+    .div1{
+        width:50%;
+        margin-bottom:40px;
+    }
+
+    .divInformationCourseActionInCourseList {
+        width: 100%;
+        height: auto;
+    }
+
+    .itemsContainerForCoursesActionInCourseList {
+        width: 100%;
+        height: auto;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 30px 0px 30px 0px;
+        border: 2px solid #F5F5F5;
+        background-color: #F8F8F8;
+    }
+
+    .containerAllTrainersInMoreInforamtionActionInCourseList {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0px;
+        width: 100%;
+        height: auto;
+        margin-bottom: 5px;
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+
+    .aBackToListActionInCourseList {
+        margin-left: 0px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        color: #ffffff;
+        padding: 6px 6px;
+        background-color: #0d6efd;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid #003366;
+        -moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 1px rgba(255,255,255,0.5);
+        -webkit-box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        text-shadow: 0px -1px 0px rgb(0 0 0 / 70%), 0px 1px 0px rgb(255 255 255 / 30%);
+        display: inline-block;
+        text-decoration: none;
+        width: 150px;
+        height: 25px;
+    }
+
+    .ButtonMoreInformationCourse {
+        margin: 0px;
+        margin-left: 0px;
+        text-decoration: underline;
+        color: cornflowerblue;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        color: #ffffff;
+        padding: 6px 6px;
+        background-color: #0d6efd;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid #003366;
+        -moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 1px rgba(255,255,255,0.5);
+        -webkit-box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        text-shadow: 0px -1px 0px rgb(0 0 0 / 70%), 0px 1px 0px rgb(255 255 255 / 30%);
+        display: inline-block;
+        text-decoration: none;
+        width: 150px;
+        height: 25px;
+    }
+
+    .ButtonDeleteCourse {
+        margin: 0px;
+        margin-left: 0px;
+        text-decoration: underline;
+        color: cornflowerblue;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        color: #ffffff;
+        padding: 6px 6px;
+        background-color: #0d6efd;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid #003366;
+        -moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 1px rgba(255,255,255,0.5);
+        -webkit-box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        text-shadow: 0px -1px 0px rgb(0 0 0 / 70%), 0px 1px 0px rgb(255 255 255 / 30%);
+        display: inline-block;
+        text-decoration: none;
+        width: 150px;
+        height: 25px;
+    }
+
+    .containerAllTrainersInMoreInforamtionAfterUseDeleteCourse {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0px;
+        width: 100%;
+        float: left;
+        margin-bottom: 5px;
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+
+    .ButtonEditCourseTrainer {
+        margin: 0px;
+        margin-left: 0px;
+        text-decoration: underline;
+        color: cornflowerblue;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        color: #ffffff;
+        padding: 6px 6px;
+        background-color: #0d6efd;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid #003366;
+        -moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 1px rgba(255,255,255,0.5);
+        -webkit-box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        text-shadow: 0px -1px 0px rgb(0 0 0 / 70%), 0px 1px 0px rgb(255 255 255 / 30%);
+        display: inline-block;
+        text-decoration: none;
+        width: 150px;
+        height: 25px;
+    }
+
+    .containerForUpdateTrainersCourse {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-left: 20px;
+        margin-right: 20px;
+        height: 100%;
+        margin-bottom: 15px;
+        margin-left: 10px;
+        margin-top: 0px;
+        margin-right:10px;
+        border: 2px solid red;
+        background-color: #E8E8E8;
+    }
+
+    .itemsContainerForUpdateTrainersCourse {
+        width: 50%;
+        height: auto;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 0px 0px 30px 0px;
+        border: 2px solid green;
+        background-color: #F8F8F8;
+    }  
+}
+
+@media (min-width:1724px) {
+
+    .divContainerForInformationCourse {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0px;
+        width: 99%;
+        height: 80%;
+        background-color: white;
+    }
+
+    .containerForActionInCourseList {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0px;
+        width: 99%;
+        height: 100%;
+        background-color: white;
+    }
+
+    .itemsContainerForActionInCourseList {
+        width: 98%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 50px 50px 50px 50px;
+        background-color: white;
+    }
+
+    .referenceInActionInCourseList {
+        float: right;
+        margin-right: 20px;
+        margin-top: 30px;
+        margin-bottom: 10px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        color: #ffffff;
+        padding: 6px 6px;
+        background-color: #0d6efd;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid #003366;
+        -moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 1px rgba(255,255,255,0.5);
+        -webkit-box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        text-shadow: 0px -1px 0px rgb(0 0 0 / 70%), 0px 1px 0px rgb(255 255 255 / 30%);
+        display: inline-block;
+        text-decoration: none;
+        height: 40px;
+        width: 200px;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .h2InActionInCourseList {
+        float: left;
+        margin-left: 1040px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-weight: 800;
+        color: dimgray;
+        font-size: 40px;
+    }
+
+    .divContainerString {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0px;
+        width: 99%;
+        height: 10%;
+        background-color: white;
+    }
+
+    .firstItemdivContainerString {
+        width: 10%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 600px 0px 30px;    
+    }
+
+    .lastItemdivContainerString {
+        width: 10%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 30px 0px 30px;
+    }
+
+    .itemsdivContainerString {
+        width: 10%;
+        height: 70px;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 100px 0px 50px;
+    }
+
+    .pStringMainLine {
+        color: grey;
+        font-size: 30px;
+    }
+
+    .pString {
+        color: grey;
+        font-size: 25px;
+    }
+
+    .pStringCourseDescription {
+        color: grey;
+        font-size: 20px;
+    }
+
+    .pStringTrainers {
+        color: blue;
+        font-size: 25px;
+    }
+
+    .divStringTrainers {
+        margin: 0px;
+        color: blue;
+        font-size: 20px;
+    }
+
+    .divLine {
+        height: 3px;
+        width: 99%;
+        border-bottom-width: 3px;
+        border-bottom-style: solid;
+        border-bottom-color: #808080;
+    }
+
+    .firstItemDivContainerForInformationCourse {
+        width: 10%;
+        height: 90%;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 40px 600px 0px 30px;
+    }
+
+    .lastItemDivContainerForInformationCourse {
+        width: 10%;
+        height: 90%;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 40px 30px 0px 30px;
+    }
+
+    .itemsDivContainerForInformationCourse {
+        width: 10%;
+        height: 90%;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 40px 100px 0px 50px;
+    }
+
+    .itemforDivContainerForInformationCourseCourseDescription {
+        width: 100%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 0px 0px 0px 0px;
+        border-bottom-width: 2px;
+        border-bottom-style: solid;
+        border-bottom-color: #808080;
+    }
+
+    .div1 {
+        width: 50%;
+        margin-bottom: 40px;
+    }
+
+    .divInformationCourseActionInCourseList {
+        width: 100%;
+        height: auto;
+    }
+
+    .itemsContainerForCoursesActionInCourseList {
+        width: 100%;
+        height: auto;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 30px 0px 30px 0px;
+        border: 2px solid #F5F5F5;
+        background-color: #F8F8F8;
+    }
+
+    .containerAllTrainersInMoreInforamtionActionInCourseList {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0px;
+        width: 100%;
+        height: auto;
+        margin-bottom: 5px;
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+
+    .aBackToListActionInCourseList {
+        margin-left: 0px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        color: #ffffff;
+        padding: 6px 6px;
+        background-color: #0d6efd;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid #003366;
+        -moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 1px rgba(255,255,255,0.5);
+        -webkit-box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        text-shadow: 0px -1px 0px rgb(0 0 0 / 70%), 0px 1px 0px rgb(255 255 255 / 30%);
+        display: inline-block;
+        text-decoration: none;
+        width: 200px;
+        height:35px;
+    }
+
+    .ButtonMoreInformationCourse {
+        margin: 0px;
+        margin-left: 0px;
+        text-decoration: underline;
+        color: cornflowerblue;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        color: #ffffff;
+        padding: 6px 6px;
+        background-color: #0d6efd;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid #003366;
+        -moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 1px rgba(255,255,255,0.5);
+        -webkit-box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        text-shadow: 0px -1px 0px rgb(0 0 0 / 70%), 0px 1px 0px rgb(255 255 255 / 30%);
+        display: inline-block;
+        text-decoration: none;
+        width: 200px;
+        height: 35px;
+    }
+
+    .ButtonDeleteCourse {
+        margin: 0px;
+        margin-left: 0px;
+        text-decoration: underline;
+        color: cornflowerblue;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        color: #ffffff;
+        padding: 6px 6px;
+        background-color: #0d6efd;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid #003366;
+        -moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 1px rgba(255,255,255,0.5);
+        -webkit-box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        text-shadow: 0px -1px 0px rgb(0 0 0 / 70%), 0px 1px 0px rgb(255 255 255 / 30%);
+        display: inline-block;
+        text-decoration: none;
+        width: 200px;
+        height: 35px;
+    }
+
+    .containerAllTrainersInMoreInforamtionAfterUseDeleteCourse {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0px;
+        width: 100%;
+        float: left;
+        margin-bottom: 5px;
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+
+    .ButtonEditCourseTrainer {
+        margin: 0px;
+        margin-left: 0px;
+        text-decoration: underline;
+        color: cornflowerblue;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        color: #ffffff;
+        padding: 6px 6px;
+        background-color: #0d6efd;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid #003366;
+        -moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 1px rgba(255,255,255,0.5);
+        -webkit-box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        text-shadow: 0px -1px 0px rgb(0 0 0 / 70%), 0px 1px 0px rgb(255 255 255 / 30%);
+        display: inline-block;
+        text-decoration: none;
+        width: 200px;
+        height: 35px;
+    }
+
+    .containerForUpdateTrainersCourse {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        height: 100%;
+        margin-bottom: 15px;
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-top: 0px;
+        background-color: #E8E8E8;
+        width:100%;
+    }
+
+    .itemSelectAddTrainersContainerForUpdateTrainersCourse {
+        width: 50%;
+        height: 20%;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 40px 10px 30px 10px;
+        border: 2px solid grey;
+        background-color: #F8F8F8;
+    }
+
+    .itmesEditTrainersContainerForUpdateTrainersCourse {
+        width: 50%;
+        height: auto;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 40px 10px 30px 10px;
+        border: 2px solid grey;
+        background-color: #F8F8F8;
+    }
+
+    .divAddTrainer {
+        width: 100%;
+        height: 35%;
+        background-color: #F8F8F8;
+    }
+
+    .divString{
+        float:left;
+        margin-top:10px;
+        margin-left:10px;
+        margin-bottom:40px;
+    }
+
+    .pStringForDiv{
+        color: blue;
+        font-size: 30px;
+    }
+
+    .divSelectTrainers {
+        width: 100%;
+    }
+
+    .SelectTrainers {
+        width: 70%;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        margin-top:15px;
+        margin-bottom:15px;
+        margin-left:5px;
+        margin-right:10px;
+    }
+
+    .divButtonUpdateSelectTrainers{
+        height:auto;
+        width:auto;
+        margin-top:0px;
+    }
+
+    .divEditTrainer {
+        width: 100%;
+        height: auto;
+        background-color: #F8F8F8;
+    }
+
+
+
+    .divContainerStringUpdateTrainers {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0px;
+        width: 99%;
+        height: auto;
+        background-color: white;
+    }
+
+
+    .firstItemdivContainerStringUpdateTrainers {
+        width: 10%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 350px 0px 10px;
+    }
+
+    .lastItemdivContainerStringUpdateTrainers {
+        width: 10%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 10px 0px 250px;
+    }
+
+  
+    .itemdivContainerStringUpdateTrainers {
+        width: 10%;
+        height: 70px;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 300px 0px 0px;
+    }
+
+    .divMainLineUpdateTrainers {
+        height: 3px;
+        width: 100%;
+        border-bottom-width: 3px;
+        border-bottom-style: solid;
+        border-bottom-color: #808080;
+    }
+
+
+    .divContainerForEditTrainers {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0px;
+        width: 99%;
+        height: auto;
+        background-color: white;
+    }
+
+
+    .firstItemForEditTrainers {
+        width: 10%;
+        height: 90%;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 350px 0px 10px;
+    }
+
+
+    .itemContainerForEditTrainers {
+        width: 10%;
+        height: 70px;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 300px 0px 0px;
+    }
+
+    .lastContainerForEditTrainers {
+        width: 10%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 10px 0px 250px;
+    }
+
+
+    .divLineUpdateTrainers {
+        height: 3px;
+        width: 100%;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: #808080;
+    }
+
+
+    .divForBacToListUpdateTrainers{
+        margin-top:200px;
+    }
+
+    .aBackToListUpdateTrainers {
+        float: left;
+        margin-left: 0px;
+        margin-top: 5px;
+        margin-left: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        color: #ffffff;
+        padding: 6px 6px;
+        background-color: #0d6efd;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid #003366;
+        -moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 1px rgba(255,255,255,0.5);
+        -webkit-box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        text-shadow: 0px -1px 0px rgb(0 0 0 / 70%), 0px 1px 0px rgb(255 255 255 / 30%);
+        display: inline-block;
+        text-decoration: none;
+        width:300px;
+        text-align:center;
+    }
+
+
+
+}
+
+
+
+
+ 

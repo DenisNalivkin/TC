@@ -1,0 +1,84 @@
+﻿@model IEnumerable<CMSys.Core.Entities.Catalog.Trainer>
+@{
+    ViewBag.Title = "Все тренеры";
+}
+@functions{
+    public static IEnumerable<string> getAmountCourses(IEnumerable<CMSys.Core.Entities.Catalog.Trainer> listAllTrainers)
+    {
+        return listAllTrainers.Select(trainer => trainer.TrainerGroup.Name).Distinct();
+    }
+
+    public static string getPhotoTrainer(byte[] trainerPhoto)
+    {
+        byte[] arr = trainerPhoto;
+        var base64 = Convert.ToBase64String(arr);
+        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+        return imgSrc;
+    }
+
+}
+<div class="containerForTrainers">
+    <div class="divForHeading">
+        <p class="h2Trainers">Trainers</p>
+    </div>
+    @foreach (var course in getAmountCourses(Model))
+    {
+        <div class="itemsContainerForTrainers">
+            <div class="divNameCourse">
+                <p class="pNameCourse">@course</p>
+            </div>
+            <div class="nestedContainerForTrainers">
+                @foreach (var trainer in Model)
+                {
+                    if (trainer.TrainerGroup.Name == course)
+                    {
+                        <div class="itemsNestedContainerForTrainers">
+                            <img class="imgTrainerLocation"   src="@getPhotoTrainer(trainer.User.Photo)" width="35%" height="75%" alt="trainer" />
+                            <div class="divTrainerAndInformation">
+                                <p class="pNameTrainer">@trainer.User.FullName</p>
+                                <button type="button" class="btn btn-primary" value="@trainer.Description / @trainer.User.FirstName  @trainer.User.LastName ///photoTrainer///p @getPhotoTrainer(trainer.User.Photo)" data-toggle="modal" data-target="#myModal">
+                                    Information
+                                </button>
+                                <!-- The Modal -->
+                                <div class="modal" id="myModal">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <!-- Modal Header -->
+                                            <div class="modal-header">
+                                                <h4 class="modal-title"> </h4>
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                            </div>
+
+                                            <!-- Modal body -->
+                                            <div>
+                                               <img id="imgTrainerLocation" class="imgTrainerLocation" width="25%" height="35%" atl="trainer2"/>                                
+                                               <div class="modal-body"></div>                                            
+                                            </div>                                       
+                                            <!-- Modal footer -->
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    }
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="@Url.Content("/js/dataOfTrainer.js")?v=@DateTime.UtcNow.ToString()"></script>
+
+
+
+
+
+
+
+

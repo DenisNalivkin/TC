@@ -1,0 +1,80 @@
+﻿@using CMSys.Web.Models
+@using CMSys.Common.Paging
+@model PageNavigationViewModel
+@{
+    ViewBag.Title = "Все курсы";
+}
+@addTagHelper *, CMSys.Web
+@functions{
+    public static int getCountCourse(IEnumerable<CMSys.Core.Entities.Catalog.Course> listAllCourse)
+    {
+        var _listAllTrainers = listAllCourse.Select(course => course.Name);
+        return _listAllTrainers.Count();
+    }
+    public static IEnumerable<string> getCountTypeOfCourse(IEnumerable<CMSys.Core.Entities.Catalog.Course> listAllCourse)
+    {
+        var distinctTypeOfCourse = listAllCourse.Select(course => course.CourseType.Name).Distinct();
+        return distinctTypeOfCourse;
+    }
+
+}
+<div class="containerForCourses" id="containerForCoursesId">
+    <div class="divForHeading">
+        <p class="h2Course">Courses</p>
+    </div>
+    <div class="divPanelFilters">
+        <div class="firstItemPanelFilters">
+            <page-link page-model="Model.PagedList" page-action="ShowAllCourses"></page-link>
+        </div>
+        <div class="itemsSelectTypesPanelFilters">
+            <select class="selectTypes" id="selectTypesId">
+                <option>All types</option>
+                @foreach (var name in getCountTypeOfCourse(Model.AllCourse))
+                {
+                    <option>@name</option>
+                }
+            </select>
+        </div>
+        <div class="itemsSelectGroupsPanelFilters" id="itemsSelectGroupsPanelFiltersId">
+            <select class="selectGroups" id="selectGroupsId">
+                <option>All groups</option>
+                @foreach (var course2 in Model.AllCourseGroup)
+                {
+                    <option>@course2.Name</option>
+                }
+            </select>
+        </div>
+    </div>
+    @foreach (var course in Model.CoursesPerPages)
+    {
+        <div class="itemsContainerForCourses" id="itemsContainerForCoursesId">
+            <div class="divNameCourse" id="divNameCourseId">
+                <p class="pNameCourse" id="pNameCourseId">@course.Name</p>
+                <br />
+                <button type="button" class="btn button1"> @course.CourseGroup.Name </button>
+                <button type="button" class="btn button2"> @course.CourseType.Name </button>
+            </div>
+
+            <div class="divCourseDescription">
+                <br />
+                <br />
+                <p class="pStringCourseDescription"> @course.Description.TrimStart().TrimEnd()</p>
+                
+            </div>
+            <div class="divInformationCourse">
+                <button type="button" class="aInformationCourse  btn" value="@course.Name /courseData @course.Description //courseData @course.Trainers ///courseData @course.CourseGroup.Name ////courseData @course.CourseType.Name" id="buttonMoreInformation">
+                    More information
+                </button>
+            </div>
+        </div>
+    }
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="@Url.Content("/js/main.js")?v=@DateTime.UtcNow.ToString()"></script>
+<script type="text/javascript" src="@Url.Content("/js/groupsFilter.js")?v=@DateTime.UtcNow.ToString()"></script>
+<script type="text/javascript" src="@Url.Content("/js/typeFilter.js")?v=@DateTime.UtcNow.ToString()"></script>
+<script type="text/javascript" src="@Url.Content("/js/moreInformationCourse.js")?v=@DateTime.UtcNow.ToString()"></script>
+
+

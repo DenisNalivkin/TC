@@ -1,0 +1,160 @@
+﻿@{
+    Layout = "";
+}
+@using CMSys.Web.Models
+@using CMSys.Common.Paging
+@model PageNavigationViewModel
+@{
+    ViewBag.Title = "Действия в списке курсов";
+}
+@addTagHelper *, CMSys.Web
+@functions{
+    public static int getCountCourse(IEnumerable<CMSys.Core.Entities.Catalog.Course> listAllCourse)
+    {
+        var _listAllTrainers = listAllCourse.Select(course => course.Name);
+        return _listAllTrainers.Count();
+    }
+    public static IEnumerable<string> getCountTypeOfCourse(IEnumerable<CMSys.Core.Entities.Catalog.Course> listAllCourse)
+    {
+        var distinctTypeOfCourse = listAllCourse.Select(course => course.CourseType.Name).Distinct();
+        return distinctTypeOfCourse;
+    }
+    public static  IList <string> getListTrainers (IEnumerable<CMSys.Core.Entities.Catalog.Course> course, string courseName )
+    {
+        var currentCourse = course.Where( course => course.Name == courseName);
+        return currentCourse.Select(course => course.Trainers.Select(trainer => trainer.Trainer.User.FullName).ToList()).SelectMany(el => el).ToList();      
+    }
+}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="~/css/customStyles.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <nav class="navbar fixed-top navbar-light" style="background-color:blue;">
+        <div class="container-fluid">
+            <a class="navbar-brand" style="color:white;" href="#"> CMSYS </a>
+            <a class="navbar-brand" style="color:white;" href="@Url.Action("ShowAllCourses", "Course")"> Courses </a>
+            <a class="navbar-brand" style="color:white;" href="@Url.Action("ShowAllTrainers", "Trainer")"> Trainers </a>
+            <a class="navbar-brand" style="color:white;" href="@Url.Action("ShowActionInCourseList", "CourseList")"> Course list </a>
+            <a class="navbar-brand" style="color:white;" href="#"> Course group </a>
+            <a class="navbar-brand" style="color:white;" href="#"> Trainers list </a>
+            <a class="navbar-brand" style="color:white;" href="#"> Trainers groups </a>
+            <a class="navbar-brand" style="color:white;" href="#">  Users </a>
+        </div>
+    </nav>
+    <div class="divMainContent">
+        <div class="divNameUser">
+            <a class="aNameUser"> Name of user </a>
+        </div>
+        <div class="divWithData2">
+            <div class="containerForCourses" id="containerForCoursesId">
+                <div class="divForHeading">
+                    <p class="h2Course">Courses</p>
+                    <a class="referenceInActionInCourseList" href="http://localhost:61558/courseList/CreateCourse"> Create a new course </a>
+                </div>
+                <div class="divPanelFilters">
+                    <div class="firstItemPanelFilters">
+                        <page-link page-model="Model.PagedList" page-action="ShowActionInCourseList"></page-link>
+                    </div>
+                    <div class="itemsSelectTypesPanelFilters">
+                        <select class="selectTypes" id="selectTypesId">
+                            <option>All types</option>
+                            @foreach (var name in getCountTypeOfCourse(Model.AllCourse))
+                            {
+                                <option>@name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="itemsSelectGroupsPanelFilters" id="itemsSelectGroupsPanelFiltersId">
+                        <select class="selectGroups" id="selectGroupsId">
+                            <option>All groups</option>
+                            @foreach (var course2 in Model.AllCourseGroup)
+                            {
+                                <option>@course2.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="divContainerString">
+                    <div class="firstItemdivContainerString">
+                        <p class="pStringMainLine"> Name </p>
+                    </div>
+                    <div class="itemsdivContainerString">
+                        <p class="pStringMainLine"> Type </p>
+                    </div>
+                    <div class="itemsdivContainerString">
+                        <p class="pStringMainLine"> Group </p>
+                    </div>
+                    <div class="itemsdivContainerString">
+                        <p class="pStringMainLine"> Trainers </p>
+                    </div>
+                    <div class="lastItemdivContainerString">
+                        <p class="pStringMainLine"> Action </p>
+                    </div>
+                </div>
+                <div class="divLine">
+                </div>
+                @foreach (var course2 in Model.CoursesPerPages)
+                {
+                    <div class="divContainerForInformationCourse">
+                        <div class="firstItemDivContainerForInformationCourse">
+                            <p class="pString"> @course2.Name </p>
+                        </div>
+                        <div class="itemsDivContainerForInformationCourse">
+                            <p class="pString"> @course2.CourseType.Name </p>
+                        </div>
+                        <div class="itemsDivContainerForInformationCourse">
+                            <p class="pString"> @course2.CourseGroup.Name </p>
+                        </div>
+                        <div class="itemsDivContainerForInformationCourse">
+                            @foreach (var course3 in @getListTrainers(Model.AllCourse, @course2.Name))
+                            {
+                                <div class="divStringTrainers">  @course3  </div>
+                            }
+                        </div>
+                        <div class="lastItemDivContainerForInformationCourse">
+                            <div>
+        
+                                <button type="button" class="ButtonMoreInformationCourse" value="@course2.Name /courseData @course2.Description //courseData @course2.Trainers ///courseData @course2.CourseGroup.Name ////courseData @course2.CourseType.Name" id="buttonMoreInformation">
+                                    More information course
+                                </button>
+                                <button type="button" class="ButtonEditCourseTrainer" value="@course2.Name"  id="ButtonEditCourseTrainerId">
+                                    Edit course trainers
+                                </button>
+                                <a class="aBackToListActionInCourseList" href="http://localhost:61558/courseList/UpdateCourse">
+                                    Update course
+                                </a>
+                                <button type="button" class="ButtonDeleteCourse" value="@course2.Name" id="deleteCourseButtonId">
+                                    Delete course
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divContainerForInformationCourse">
+                        <div class="itemforDivContainerForInformationCourseCourseDescription">
+                            <div class="div1">
+                                <p class="pStringCourseDescription"> @course2.Description</p>
+                            </div>
+                        </div>
+                    </div>  
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="@Url.Content("/js/main.js")?v=@DateTime.UtcNow.ToString()"></script>
+<script type="text/javascript" src="@Url.Content("/js/groupsFilterShowactionInCourseList.js")?v=@DateTime.UtcNow.ToString()"></script>
+<script type="text/javascript" src="@Url.Content("/js/typeFilterShowActionInCourseList.js")?v=@DateTime.UtcNow.ToString()"></script>
+<script type="text/javascript" src="@Url.Content("/js/moreInformationCourseActionInCourse.js")?v=@DateTime.UtcNow.ToString()"></script>
+<script type="text/javascript" src="@Url.Content("/js/deleteCourse.js")?v=@DateTime.UtcNow.ToString()"></script>
+<script type="text/javascript" src="@Url.Content("/js/editCourseTrainers.js")?v=@DateTime.UtcNow.ToString()"></script>

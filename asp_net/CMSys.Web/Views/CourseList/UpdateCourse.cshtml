@@ -1,0 +1,91 @@
+﻿@using CMSys.Web.Models
+@model CreateCourseModel
+@functions{
+    CreateCourseModel createCourseModel = new CreateCourseModel();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="~/css/customStyles.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="divWithData">
+        <div class="divForHeading">
+            <p class="h2Course"> Update Courses </p>
+        </div>
+    </div>
+    <form id="UpdateCourseForm" asp-controller="CourseList" asp-action="UpdateCourse" method="post" style="background-color: #E8E8E8">
+        <div class="divForContainerformGroup">
+            <div class="containerformGroup">
+                <div class="containerformGroup2">
+                    <div class="itemsContainerFormGroup">
+                        <label asp-for="Name" class="labelCreateCourse"></label>
+                        <br />
+                        <select asp-for="Name" id="selectCourseNameId" form="UpdateCourseForm" class="customform-control" asp-items="createCourseModel.SelectListAllCourse"></select>
+                    </div>
+                    <div class="itemsContainerFormGroup">
+
+
+
+                        <div class="labelCreateCourse">
+                            <label asp-for="IsNew" class="labelCreateCourse"></label>
+                            <br />
+                            <div class="form-check form-switch">
+                                <input asp-for="IsNew" name="checkbox" class="form-check-input" type="checkbox">
+                                <span asp-validation-for="IsNew"></span>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="itemsContainerFormGroup">
+                        <label asp-for="CourseGroup" class="labelCreateCourse"></label>
+                        <br />
+                        <select id="selectCourseGroupId" form="UpdateCourseForm" class="customform-control" asp-for="CourseGroup" asp-items="createCourseModel.SelectListAllCourseGroup"></select>
+                    </div>
+                    <div class="itemsContainerFormGroup">
+                        <label asp-for="CourseType" class="labelCreateCourse"></label>
+                        <br />
+                        <select id="selectCourseTypeId" form="UpdateCourseForm" class="customform-control" asp-for="CourseType" asp-items="createCourseModel.SelectListAllCourseType"></select>
+                    </div>
+                    <div class="itemsContainerFormGroup">
+                        <label asp-for="Order" class="labelCreateCourse"></label>
+                        <br />
+                        <input id="inputOrderId" asp-for="Order" class="customform-control" />
+                        <span asp-validation-for="Order" class="text-danger spanCreateCoursePosition" />
+                    </div>
+                    <div class="itemsContainerFormGroup">
+
+                        <label asp-for="Description" class="labelCreateCourse"></label>
+                        <br />
+                        <textarea id="textareaDescriptionId" asp-for="Description" class="customform-control" maxlength="4000"></textarea>
+                        <span asp-validation-for="Description" class="text-danger" />
+                    </div>
+                    <div class="divForButtonCreate">
+                        <button class="btn btn-primary button3" type="submit"> Update </button>
+                    </div>
+
+                </div>
+                <div class="divForABackTolist">
+                    <a class="aBackToList" href="http://localhost:61558/CourseList/ShowActionInCourseList"> Back to list </a>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+<script type="text/javascript" src="@Url.Content("/js/main.js")?v=@DateTime.UtcNow.ToString()"></script>
+<script type="text/javascript" src="@Url.Content("/js/coursesFilter.js")?v=@DateTime.UtcNow.ToString()"></script>
+
+
+
+
