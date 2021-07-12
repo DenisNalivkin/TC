@@ -38,7 +38,7 @@ namespace CMSys.Web.Controllers
         {
             return View(new CreateTrainerModel());
         }
-
+  
         [HttpPost]
         public IActionResult CreateTrainer (CreateTrainerModel model)
         {
@@ -54,9 +54,12 @@ namespace CMSys.Web.Controllers
                 newTrainer.Id = allRepositories.UserRepository.All().Where(user => user.FullName == model.User).Select(user => user.Id).First();
                 newTrainer.TrainerGroup = trainerGroup;
                 newTrainer.TrainerGroupId = trainerGroup.Id;
-                newTrainer.User = allRepositories.UserRepository.All().Where(user => user.FullName == model.User).Select(user => user).First();
+                newTrainer.User = allRepositories.UserRepository.All().Where(user => user.FullName == model.User).First();
                 newTrainer.VisualOrder = model.Order;
-
+               
+                allRepositories.TrainerRepository.Add(newTrainer);
+                allRepositories.Commit();
+                               
                 return View("CreateTrainer");
             }
             else
@@ -64,7 +67,47 @@ namespace CMSys.Web.Controllers
                 return View(model);
             }
         }
-     
+
+        [HttpGet]
+        public IActionResult UpdateTrainer(string allDataForUpdateTrainer)
+        {          
+            UnitOfWorkOptions unitOfWorkOptions = new UnitOfWorkOptions();
+            UnitOfWork allRepositories = new UnitOfWork(unitOfWorkOptions);
+
+            string[] words = allDataForUpdateTrainer.Split('/');
+            UpdateTrainer(allRepositories, words);
+            allRepositories.Commit();
+            return View("UpdateCourse");
+        }
+
+        [HttpPost]
+        public void DeleteTrainer(string trainerForDelete)
+        {
+            UnitOfWorkOptions unitOfWorkOptions = new UnitOfWorkOptions();
+            UnitOfWork allRepositories = new UnitOfWork(unitOfWorkOptions);
+            Guid idTrainerFordelete = allRepositories.TrainerRepository.All().Where(trainer => trainer.User.FullName == trainerForDelete).ToArray()[0].Id;
+            Trainer _trainerForDelete = allRepositories.TrainerRepository.Find(idTrainerFordelete);
+            allRepositories.TrainerRepository.Remove(_trainerForDelete);
+            allRepositories.Commit();
+        }
+        
+
+        public IEnumerable<CMSys.Core.Entities.Catalog.Course> getDataCourses()
+        {
+            IEnumerable<CMSys.Core.Entities.Catalog.Course> dataCourses = _uow.CourseRepository.All();
+            return dataCourses;
+        }
+        public IEnumerable<CMSys.Core.Entities.Catalog.TrainerGroup> getDataTrainerGroup()
+        {
+            IEnumerable<CMSys.Core.Entities.Catalog.TrainerGroup> dataTrainerGroup = _uow.TrainerGroupRepository.All();
+            return dataTrainerGroup;
+        }
+        public IEnumerable<CMSys.Core.Entities.Catalog.Trainer> getDataTrainers()
+        {
+            IEnumerable<CMSys.Core.Entities.Catalog.Trainer> dataTrainers = _uow.TrainerRepository.All();
+            return dataTrainers;
+        }
+
         private static VisibleEntity getEntityTrainerGroup(UnitOfWork allRepositories, CreateTrainerModel model)
         {         
             foreach (var item in allRepositories.TrainerGroupRepository.All())
@@ -75,6 +118,31 @@ namespace CMSys.Web.Controllers
                 }
             }         
             return null;
+        }
+        private static VisibleEntity getEntityTrainerGroupForUpdateTrainer(UnitOfWork allRepositories, string[] words)
+        {
+            foreach (var item in allRepositories.TrainerGroupRepository.All())
+            {
+                if (item.Name.Trim() == words[1].Trim())
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+        private static void UpdateTrainer(UnitOfWork allRepositories, string[] words)
+        {
+            foreach (var item in allRepositories.TrainerRepository.All())
+            {
+                if(item.User.FullName.Trim() == words[0].Trim())
+                {
+                    item.TrainerGroup = (TrainerGroup)getEntityTrainerGroupForUpdateTrainer(allRepositories, words);
+                    item.TrainerGroupId = item.TrainerGroup.Id;
+                    item.VisualOrder = int.Parse(words[2]);
+                    item.Description = words[3];
+                    break;
+                }        
+            }
         }
     }
 }

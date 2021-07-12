@@ -4,6 +4,7 @@ using CMSys.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,11 +16,11 @@ namespace CMSys.Web.Models
     {
         public string User { get; set; }
 
-        [Required]
+        [Required]        
         public string TrainerGroup { get; set; }
 
         [Required]
-        [RegularExpression("([0-9]*)", ErrorMessage = "Error! Use an integer number!")]
+        [RegularExpression("([0-9]*)", ErrorMessage = "Error! Use an integer that must be at least 0!")]
         public int Order { get; set; }
 
         [StringLength(4000)]

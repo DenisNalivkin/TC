@@ -69,7 +69,8 @@
                 {
                     <div class="divContainerForTrainerInformation">
                         <div class="firstItemDivContainerForTrainerInformation">
-                            <img class="" src="@getPhotoTrainer(trainer.User.Photo)" width="35%" height="75%" alt="trainer" />
+                            <img class="imgShowTrainerlist" src="@getPhotoTrainer(trainer.User.Photo)" width="35%" height="75%" alt="trainer" />
+                            <p class="pTrainerNameShowTrainerlist">@trainer.User.FullName</p>
                         </div>                 
                         <div class="itemsDivContainerForTrainerInformation">
                             <p class="pString"> @trainer.TrainerGroup.Name  </p>
@@ -78,13 +79,12 @@
                             <p class="pString"> @trainer.VisualOrder  </p>
                         </div>
                         <div class="lastItemDivContainerForTrainerInformation">
-                            <a class="referenceEditTrainer" href="">
+                            <button type="button" class="ButtonEditTrainer" value="@trainer.User.FullName" id="ButtonEditTrainerId">
                                 Edit  trainer
-                            </a>
-                            <button type="button" class="ButtonDeleteTrainer" value="@trainer.User.FullName" id="">
+                            </button>
+                            <button type="button" class="ButtonDeleteTrainer" value="@trainer.User.FullName" id="ButtonDeleteTrainerId">
                                 Delete course
                             </button>
-
                         </div>
                     </div>
                 }
@@ -96,11 +96,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="@Url.Content("/js/main.js")?v=@DateTime.UtcNow.ToString()"></script>
-<script type="text/javascript" src="@Url.Content("/js/groupsFilterShowactionInCourseList.js")?v=@DateTime.UtcNow.ToString()"></script>
-<script type="text/javascript" src="@Url.Content("/js/typeFilterShowActionInCourseList.js")?v=@DateTime.UtcNow.ToString()"></script>
-<script type="text/javascript" src="@Url.Content("/js/moreInformationCourseActionInCourse.js")?v=@DateTime.UtcNow.ToString()"></script>
-<script type="text/javascript" src="@Url.Content("/js/deleteCourse.js")?v=@DateTime.UtcNow.ToString()"></script>
-<script type="text/javascript" src="@Url.Content("/js/editCourseTrainers.js")?v=@DateTime.UtcNow.ToString()"></script>
+<script type="text/javascript" src="@Url.Content("/js/deleteTrainer.js")?v=@DateTime.UtcNow.ToString()"></script>
+<script type="text/javascript" src="@Url.Content("/js/editTrainer.js")?v=@DateTime.UtcNow.ToString()"></script>
 
 
 

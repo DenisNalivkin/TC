@@ -1,6 +1,7 @@
 ﻿@using CMSys.Web.Models
 @model CreateTrainerModel
 @functions{
+    
     CreateTrainerModel createTrainerModel = new CreateTrainerModel();
 }
 <!DOCTYPE html>
@@ -15,36 +16,34 @@
 <body>
     <div class="divWithData">
         <div class="divForHeading">
-            <p class="h2Course"> Create Courses</p>
+            <p class="h2Course"> Create Trainer</p>
         </div>
     </div>
-    <form id="CreateCourseForm" asp-controller="Trainer" asp-action="CreateTrainer" method="post" style="background-color: #E8E8E8">
-        <div class="divForContainerformGroup">
-            <div class="containerformGroup">
-                <div class="containerformGroup2">
-
-                    <div class="itemsContainerFormGroup">
-                        <label asp-for="User" class="labelCreateCourse"></label>
+    <form id="CreateTrainer" asp-controller="Trainer" asp-action="CreateTrainer" method="post" style="background-color: #E8E8E8">
+        <div class="divForContainerCreateTrainer">
+            <div class="containerCreateTrainer">
+                <div class="containerCreateTrainer2">
+                    <div class="itemsCreateTrainer">
+                        <label asp-for="User" class="labelCreateTrainer"></label>
                         <br />
-                        <select form="CreateCourseForm" class="customform-control" asp-for="User" asp-items="createTrainerModel.SelectListAllActiveUsers"></select>
+                        <select form="CreateTrainer" class="customform-control" asp-for="User" asp-items="createTrainerModel.SelectListAllActiveUsers"></select>
                     </div>
 
-                    <div class="itemsContainerFormGroup">
-                        <label asp-for="TrainerGroup" class="labelCreateCourse"></label>
+                    <div class="itemsCreateTrainer">
+                        <label asp-for="TrainerGroup" class="labelCreateTrainer"></label>
                         <br />
-                        <select form="CreateCourseForm" class="customform-control" asp-for="TrainerGroup" asp-items="createTrainerModel.SelectLisTrainerGroup"></select>
+                        <select  form="CreateTrainer" class="customform-control" asp-for="TrainerGroup" asp-items="createTrainerModel.SelectLisTrainerGroup" ></select>
+                        <span asp-validation-for="TrainerGroup"></span>
                     </div>
 
-
-                    <div class="itemsContainerFormGroup">
-                        <label asp-for="Order" class="labelCreateCourse"></label>
+                    <div class="itemsCreateTrainer">
+                        <label asp-for="Order" class="labelCreateTrainer"></label>
                         <br />
                         <input asp-for="Order" class="customform-control" />
-                        <span asp-validation-for="Order" class="text-danger spanCreateCoursePosition" />
+                        <span asp-validation-for="Order" class="text-danger spanCreateTrainerPosition" />
                     </div>
-                    <div class="itemsContainerFormGroup">
-
-                        <label asp-for="Description" class="labelCreateCourse"></label>
+                    <div class="itemsCreateTrainer">
+                        <label asp-for="Description" class="labelCreateTrainer"></label>
                         <br />
                         <textarea asp-for="Description" class="customform-control" maxlength="4000"></textarea>
                         <span asp-validation-for="Description" class="text-danger" />
@@ -54,7 +53,7 @@
                     </div>
                 </div>
                 <div class="divForABackTolist">
-                    <a class="aBackToList" href="http://localhost:61558/courseList/ShowActionInCourseList"> Back to list </a>
+                    <a class="aBackToList" href="http://localhost:61558/Trainer/ShowTrainerList"> Back to list </a>
                 </div>
             </div>
         </div>
@@ -65,7 +64,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
 <script type="text/javascript" src="@Url.Content("/js/main.js")?v=@DateTime.UtcNow.ToString()"></script>
-<script type="text/javascript" src="@Url.Content("/js/checkNameNewCourse.js")?v=@DateTime.UtcNow.ToString()"></script>
+
 
 
 
