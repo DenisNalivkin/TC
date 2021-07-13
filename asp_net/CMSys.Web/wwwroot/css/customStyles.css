@@ -90,16 +90,6 @@ body,
     height: 70px;
 }
 
-.aNameUser {
-    float: right;
-    margin-top: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    font-weight: 800;
-    color: lightgrey;
-    font-size: 20px;
-}
-
 .divWithData {
     background-color: #E8E8E8;
     width: 100%;
@@ -213,6 +203,34 @@ body,
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+@media (min-width: 181px) and (max-width:1723px) {
+
+    .aNameUser {
+        float: left;
+        margin-top: 40px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        font-weight: 800;
+        color: lightgrey;
+        font-size: 20px;
+    }
+}
+
+@media (min-width:1724px) {
+
+    .aNameUser {
+        float: right;
+        margin-top: 20px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        font-weight: 800;
+        color: lightgrey;
+        font-size: 20px;
+    }
+}
+
+
 
 
 
@@ -368,9 +386,8 @@ body,
         display: inline-block;
         text-decoration: none;
         width: 150px;
-        height:25px;
-    }   
-
+        height: 25px;
+    }
 }
 
 @media (min-width:1724px) {
@@ -440,12 +457,12 @@ body,
         display: inline-block;
         text-decoration: none;
         width: 200px;
-        height:35px;
+        height: 35px;
     }
 }
 
-.selectTypes{
-    margin-top:10px;
+.selectTypes {
+    margin-top: 10px;
     display: block;
     font-size: 14px;
     font-family: sans-serif;
@@ -591,14 +608,14 @@ body,
     margin-bottom: 10px;
 }
 
-.labelCreateCourse{
+.labelCreateCourse {
     float: left;
     color: #989898;
 }
 
-.spanCreateCoursePosition{
+.spanCreateCoursePosition {
     float: left;
-    margin-left:10px;
+    margin-left: 10px;
 }
 
 .divForContainerformGroup {
@@ -619,9 +636,9 @@ body,
     background-color: white;
 }
 
-.button3{
-    float:left;
-    margin-left:18px;
+.button3 {
+    float: left;
+    margin-left: 18px;
 }
 
 .divForABackTolist {
@@ -679,7 +696,7 @@ body,
         margin: 0px;
         width: 99%;
         height: 100%;
-        background-color:white;
+        background-color: white;
     }
 
     .itemsContainerForActionInCourseList {
@@ -695,9 +712,9 @@ body,
 
     .referenceInActionInCourseList {
         float: right;
-        margin-right: 380px;
-        margin-top: 70px;
-        margin-bottom: 0px;
+        margin-right: 20px;
+        margin-top: 30px;
+        margin-bottom: 10px;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 15px;
         color: #ffffff;
@@ -716,17 +733,17 @@ body,
         height: 40px;
         width: 200px;
         text-align: center;
-        padding:10px;
+        padding: 10px;
     }
 
     .h2InActionInCourseList {
         float: left;
-        margin-left: 10px;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        margin-left: 1040px;
+        margin-top: 10px;
+        margin-bottom: 10px;
         font-weight: 800;
         color: dimgray;
-        font-size: 30px;
+        font-size: 40px;
     }
 
     .divContainerString {
@@ -737,7 +754,7 @@ body,
         align-items: center;
         margin: 0px;
         width: 99%;
-        height: auto;
+        height: 10%;
         background-color: white;
     }
 
@@ -748,7 +765,7 @@ body,
         font-size: 1.1em;
         padding: 0px;
         color: black;
-        margin: 10px 15px 0px 10px;
+        margin: 10px 10px 0px 30px;
     }
 
     .lastItemdivContainerString {
@@ -758,8 +775,7 @@ body,
         font-size: 1.1em;
         padding: 0px;
         color: black;
-        margin: 10px 10px 0px 10px;
-
+        margin: 10px 30px 0px 10px;
     }
 
     .itemsdivContainerString {
@@ -769,33 +785,33 @@ body,
         font-size: 1.1em;
         padding: 0px;
         color: black;
-        margin: 10px 30px 0px 50px;
+        margin: 10px 30px 0px 10px;
     }
 
     .pStringMainLine {
         color: grey;
-        font-size: 15px;
+        font-size: 30px;
     }
 
     .pString {
         color: grey;
-        font-size: 15px;
+        font-size: 25px;
     }
 
     .pStringCourseDescription {
         color: grey;
-        font-size: 15px;
+        font-size: 20px;
     }
 
     .pStringTrainers {
         color: blue;
-        font-size: 15px;
+        font-size: 25px;
     }
 
     .divStringTrainers {
         margin: 0px;
         color: blue;
-        font-size: 15px;
+        font-size: 20px;
     }
 
     .divLine {
@@ -813,7 +829,7 @@ body,
         font-size: 1.1em;
         padding: 0px;
         color: black;
-        margin: 40px 15px 0px 10px;
+        margin: 10px 60px 0px 10px;
     }
 
     .lastItemDivContainerForInformationCourse {
@@ -823,7 +839,7 @@ body,
         font-size: 1.1em;
         padding: 0px;
         color: black;
-        margin: 40px 10px 0px 10px;
+        margin: 30px 0px 0px 60px;
     }
 
     .itemsDivContainerForInformationCourse {
@@ -833,12 +849,12 @@ body,
         font-size: 1.1em;
         padding: 0px;
         color: black;
-        margin: 40px 30px 0px 50px;
+        margin: 10px 10px 0px 5px;
     }
 
     .itemforDivContainerForInformationCourseCourseDescription {
         width: 100%;
-        height: auto%;
+        height: auto;
         text-align: center;
         font-size: 1.1em;
         padding: 0px;
@@ -849,9 +865,9 @@ body,
         border-bottom-color: #808080;
     }
 
-    .div1{
-        width:50%;
-        margin-bottom:40px;
+    .div1 {
+        width: 50%;
+        margin-bottom: 40px;
     }
 
     .divInformationCourseActionInCourseList {
@@ -887,7 +903,7 @@ body,
     .aBackToListActionInCourseList {
         margin-left: 0px;
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 12px;
+        font-size: 15px;
         color: #ffffff;
         padding: 6px 6px;
         background-color: #0d6efd;
@@ -902,7 +918,7 @@ body,
         display: inline-block;
         text-decoration: none;
         width: 150px;
-        height: 25px;
+        height: 35px;
     }
 
     .ButtonMoreInformationCourse {
@@ -911,7 +927,7 @@ body,
         text-decoration: underline;
         color: cornflowerblue;
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 12px;
+        font-size: 15px;
         color: #ffffff;
         padding: 6px 6px;
         background-color: #0d6efd;
@@ -926,7 +942,7 @@ body,
         display: inline-block;
         text-decoration: none;
         width: 150px;
-        height: 25px;
+        height: 35px;
     }
 
     .ButtonDeleteCourse {
@@ -935,7 +951,7 @@ body,
         text-decoration: underline;
         color: cornflowerblue;
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 12px;
+        font-size: 15px;
         color: #ffffff;
         padding: 6px 6px;
         background-color: #0d6efd;
@@ -950,7 +966,7 @@ body,
         display: inline-block;
         text-decoration: none;
         width: 150px;
-        height: 25px;
+        height: 35px;
     }
 
     .containerAllTrainersInMoreInforamtionAfterUseDeleteCourse {
@@ -973,7 +989,7 @@ body,
         text-decoration: underline;
         color: cornflowerblue;
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 12px;
+        font-size: 15px;
         color: #ffffff;
         padding: 6px 6px;
         background-color: #0d6efd;
@@ -988,7 +1004,7 @@ body,
         display: inline-block;
         text-decoration: none;
         width: 150px;
-        height: 25px;
+        height: 35px;
     }
 
     .containerForUpdateTrainersCourse {
@@ -997,27 +1013,239 @@ body,
         flex-direction: row;
         justify-content: flex-start;
         align-items: flex-start;
-        margin-left: 20px;
-        margin-right: 20px;
         height: 100%;
         margin-bottom: 15px;
-        margin-left: 10px;
+        margin-left: 0px;
+        margin-right: 0px;
         margin-top: 0px;
-        margin-right:10px;
-        border: 2px solid red;
         background-color: #E8E8E8;
+        width: 100%;
     }
 
-    .itemsContainerForUpdateTrainersCourse {
+    .itemSelectAddTrainersContainerForUpdateTrainersCourse {
+        width: 50%;
+        height: 20%;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 40px 10px 30px 10px;
+        border: 2px solid grey;
+        background-color: #F8F8F8;
+    }
+
+    .itmesEditTrainersContainerForUpdateTrainersCourse {
         width: 50%;
         height: auto;
         font-size: 1.1em;
         padding: 0px;
         color: black;
-        margin: 0px 0px 30px 0px;
-        border: 2px solid green;
+        margin: 40px 10px 30px 10px;
+        border: 2px solid grey;
         background-color: #F8F8F8;
-    }  
+    }
+
+    .divAddTrainer {
+        width: 100%;
+        height: 35%;
+        background-color: #F8F8F8;
+    }
+
+    .divString {
+        float: left;
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-bottom: 40px;
+    }
+
+    .pStringForDiv {
+        color: blue;
+        font-size: 30px;
+    }
+
+    .divSelectTrainers {
+        width: 100%;
+    }
+
+    .SelectTrainers {
+        width: 70%;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        margin-left: 5px;
+        margin-right: 10px;
+    }
+
+    .divButtonUpdateSelectTrainers {
+        height: auto;
+        width: auto;
+        margin-top: 0px;
+    }
+
+    .divEditTrainer {
+        width: 100%;
+        height: auto;
+        background-color: #F8F8F8;
+    }
+
+    .divContainerStringUpdateTrainers {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0px;
+        width: 99%;
+        height: auto;
+        background-color: white;
+    }
+
+    .firstItemdivContainerStringUpdateTrainers {
+        width: 10%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 60px 0px 10px;
+    }
+
+    .lastItemdivContainerStringUpdateTrainers {
+        width: 10%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 10px 0px 5px;
+    }
+
+    .itemdivContainerStringUpdateTrainers {
+        width: 10%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 60px 0px 0px;
+    }
+
+    .divMainLineUpdateTrainers {
+        height: 3px;
+        width: 100%;
+        border-bottom-width: 3px;
+        border-bottom-style: solid;
+        border-bottom-color: #808080;
+    }
+
+    .divContainerForEditTrainers {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0px;
+        width: 99%;
+        height: auto;
+        background-color: white;
+    }
+
+    .firstItemForEditTrainers {
+        width: 10%;
+        height: 90%;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 60px 0px 10px;
+    }
+
+    .itemContainerForEditTrainers {
+        width: 10%;
+        height: 70px;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 60px 0px 0px;
+    }
+
+    .lastContainerForEditTrainers {
+        width: 10%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 10px 0px 0px;
+    }
+
+    .divLineUpdateTrainers {
+        height: 3px;
+        width: 100%;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: #808080;
+    }
+
+    .divForBacToListUpdateTrainers {
+        margin-top: 200px;
+    }
+
+    .aBackToListUpdateTrainers {
+        float: left;
+        margin-left: 0px;
+        margin-top: 5px;
+        margin-left: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        color: #ffffff;
+        padding: 6px 6px;
+        background-color: #0d6efd;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid #003366;
+        -moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 1px rgba(255,255,255,0.5);
+        -webkit-box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        text-shadow: 0px -1px 0px rgb(0 0 0 / 70%), 0px 1px 0px rgb(255 255 255 / 30%);
+        display: inline-block;
+        text-decoration: none;
+        width: 150px;
+        text-align: center;
+    }
+
+    .firstItemdivContainerString {
+        width: 10%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 30px 0px 10px;
+    }
+
+    .lastItemdivContainerString {
+        width: 10%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 30px 0px 10px;
+    }
 }
 
 @media (min-width:1724px) {
@@ -1112,7 +1340,7 @@ body,
         font-size: 1.1em;
         padding: 0px;
         color: black;
-        margin: 10px 600px 0px 30px;    
+        margin: 10px 600px 0px 30px;
     }
 
     .lastItemdivContainerString {
@@ -1265,7 +1493,7 @@ body,
         display: inline-block;
         text-decoration: none;
         width: 200px;
-        height:35px;
+        height: 35px;
     }
 
     .ButtonMoreInformationCourse {
@@ -1366,7 +1594,7 @@ body,
         margin-right: 0px;
         margin-top: 0px;
         background-color: #E8E8E8;
-        width:100%;
+        width: 100%;
     }
 
     .itemSelectAddTrainersContainerForUpdateTrainersCourse {
@@ -1397,14 +1625,14 @@ body,
         background-color: #F8F8F8;
     }
 
-    .divString{
-        float:left;
-        margin-top:10px;
-        margin-left:10px;
-        margin-bottom:40px;
+    .divString {
+        float: left;
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-bottom: 40px;
     }
 
-    .pStringForDiv{
+    .pStringForDiv {
         color: blue;
         font-size: 30px;
     }
@@ -1428,16 +1656,16 @@ body,
         appearance: none;
         border-radius: .25rem;
         transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-        margin-top:15px;
-        margin-bottom:15px;
-        margin-left:5px;
-        margin-right:10px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        margin-left: 5px;
+        margin-right: 10px;
     }
 
-    .divButtonUpdateSelectTrainers{
-        height:auto;
-        width:auto;
-        margin-top:0px;
+    .divButtonUpdateSelectTrainers {
+        height: auto;
+        width: auto;
+        margin-top: 0px;
     }
 
     .divEditTrainer {
@@ -1445,8 +1673,6 @@ body,
         height: auto;
         background-color: #F8F8F8;
     }
-
-
 
     .divContainerStringUpdateTrainers {
         display: flex;
@@ -1459,7 +1685,6 @@ body,
         height: auto;
         background-color: white;
     }
-
 
     .firstItemdivContainerStringUpdateTrainers {
         width: 10%;
@@ -1481,7 +1706,6 @@ body,
         margin: 10px 10px 0px 250px;
     }
 
-  
     .itemdivContainerStringUpdateTrainers {
         width: 10%;
         height: 70px;
@@ -1500,7 +1724,6 @@ body,
         border-bottom-color: #808080;
     }
 
-
     .divContainerForEditTrainers {
         display: flex;
         flex-wrap: nowrap;
@@ -1513,7 +1736,6 @@ body,
         background-color: white;
     }
 
-
     .firstItemForEditTrainers {
         width: 10%;
         height: 90%;
@@ -1523,7 +1745,6 @@ body,
         color: black;
         margin: 10px 350px 0px 10px;
     }
-
 
     .itemContainerForEditTrainers {
         width: 10%;
@@ -1545,7 +1766,6 @@ body,
         margin: 10px 10px 0px 250px;
     }
 
-
     .divLineUpdateTrainers {
         height: 3px;
         width: 100%;
@@ -1554,9 +1774,8 @@ body,
         border-bottom-color: #808080;
     }
 
-
-    .divForBacToListUpdateTrainers{
-        margin-top:200px;
+    .divForBacToListUpdateTrainers {
+        margin-top: 200px;
     }
 
     .aBackToListUpdateTrainers {
@@ -1579,20 +1798,16 @@ body,
         text-shadow: 0px -1px 0px rgb(0 0 0 / 70%), 0px 1px 0px rgb(255 255 255 / 30%);
         display: inline-block;
         text-decoration: none;
-        width:300px;
-        text-align:center;
+        width: 300px;
+        text-align: center;
     }
-}
-
-
+    }
 
 
 
 
 /* Styles for ShowTrainerlist  page. */
-
-@media (min-width: 1724px) 
-{
+@media (min-width: 499px) and (max-width:1723px) {
     .containerForTrainerList {
         display: flex;
         flex-wrap: nowrap;
@@ -1640,6 +1855,372 @@ body,
         padding: 10px;
     }
 
+    .divContainerStringShowTrainerlist {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0px;
+        width: 99%;
+        height: 10%;
+        background-color: white;
+    }
+
+    .firstItemdivContainerStringShowTrainerlist {
+        width: 10%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 10px 0px 30px;
+    }
+
+    .itemsdivContainerStringShowTrainerlist {
+        width: 10%;
+        height:auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 10px 0px 50px;
+    }
+
+    .lastItemdivContainerStringShowTrainerlist {
+        width: 10%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 10px 0px 30px;
+    }
+
+    .divContainerForTrainerInformation {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0px;
+        width: 99%;
+        height: 80%;
+        background-color: white;
+    }
+
+    .firstItemDivContainerForTrainerInformation {
+        width: 10%;
+        height: 90%;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 10px 0px 30px;
+    }
+
+    .itemsDivContainerForTrainerInformation {
+        width: 10%;
+        height: 90%;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 10px 0px 50px;
+    }
+
+    .lastItemDivContainerForTrainerInformation {
+        width: 10%;
+        height: 90%;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 10px 0px 30px;
+    }
+
+    .referenceEditTrainer {
+        margin-left: 0px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        color: #ffffff;
+        padding: 6px 6px;
+        background-color: #0d6efd;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid #003366;
+        -moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 1px rgba(255,255,255,0.5);
+        -webkit-box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        text-shadow: 0px -1px 0px rgb(0 0 0 / 70%), 0px 1px 0px rgb(255 255 255 / 30%);
+        display: inline-block;
+        text-decoration: none;
+        width: 200px;
+        height: 35px;
+    }
+
+    .ButtonDeleteTrainer {
+        margin: 0px;
+        margin-left: 0px;
+        text-decoration: underline;
+        color: cornflowerblue;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        color: #ffffff;
+        padding: 6px 6px;
+        background-color: #0d6efd;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid #003366;
+        -moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 1px rgba(255,255,255,0.5);
+        -webkit-box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        text-shadow: 0px -1px 0px rgb(0 0 0 / 70%), 0px 1px 0px rgb(255 255 255 / 30%);
+        display: inline-block;
+        text-decoration: none;
+        width: 200px;
+        height: 35px;
+    }
+
+    .pTrainerNameShowTrainerlist {
+        color: blue;
+        margin-left: 90px;
+        margin-top: 40px;
+    }
+
+    .imgShowTrainerlist {
+        float: left;
+        margin-left: 100px;
+        margin-top: 20px;
+    }
+
+    .divForContainerShowTrainerlist {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+
+    .containerShowTrainerlist {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .containerShowTrainerlist2 {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0px;
+        width: 100%;
+        height: 100%;
+        border: 2px solid #F5F5F5;
+        background-color: white;
+    }
+
+    .itemsShowTrainerlist {
+        width: 98%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 0px 10px 0px;
+        background-color: white;
+    }
+
+    .labelCreateTrainer {
+        float: left;
+        color: #989898;
+    }
+
+    .spanCreateTrainerPosition {
+        float: left;
+        margin-left: 10px;
+    }
+
+    .ButtonEditTrainer {
+        margin: 0px;
+        margin-left: 0px;
+        text-decoration: underline;
+        color: cornflowerblue;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        color: #ffffff;
+        padding: 6px 6px;
+        background-color: #0d6efd;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid #003366;
+        -moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 1px rgba(255,255,255,0.5);
+        -webkit-box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        text-shadow: 0px -1px 0px rgb(0 0 0 / 70%), 0px 1px 0px rgb(255 255 255 / 30%);
+        display: inline-block;
+        text-decoration: none;
+        width: 200px;
+        height: 35px;
+    }
+
+    .divForContainerCreateTrainer {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+
+    .containerCreateTrainer {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .containerCreateTrainer2 {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0px;
+        width: 100%;
+        height: 100%;
+        border: 2px solid #F5F5F5;
+        background-color: white;
+    }
+
+    .itemsCreateTrainer {
+        width: 98%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 0px 10px 0px;
+        background-color: white;
+    }
+
+    .divForContainerUpdateTrainer {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+
+    .containerUpdateTrainer {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0px;
+        width: 100%;
+        height: auto;
+    }
+
+    .containerUpdateTrainer2 {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0px;
+        width: 100%;
+        height: 100%;
+        border: 2px solid #F5F5F5;
+        background-color: white;
+    }
+
+    .itemsUpdateTrainer {
+        width: 98%;
+        height: auto;
+        text-align: center;
+        font-size: 1.1em;
+        padding: 0px;
+        color: black;
+        margin: 10px 0px 10px 0px;
+        background-color: white;
+    }
+
+    .divForButtonUpdate {
+        width: 100%;
+        height: auto;
+        margin-top: 10px;
+        margin-bottom: 40px;
+    }
+
+    .labelUpdateTrainer {
+        float: left;
+        color: #989898;
+    }
+
+    .spanForUpdateTrainer {
+        float: left;
+    }
+
+    .imgShowTrainerlist {
+        float: left;
+        margin-left: 10px;
+        margin-top: 20px;
+    }
+}
+
+
+@media (min-width: 1724px) {
+    .containerForTrainerList {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .h2StringTrainer {
+        float: left;
+        margin-left: 10px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-weight: 800;
+        color: dimgray;
+        font-size: 25px;
+    }
+
+    .referenceInShowTrainerList {
+        float: right;
+        margin-right: 20px;
+        margin-top: 30px;
+        margin-bottom: 10px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        color: #ffffff;
+        padding: 6px 6px;
+        background-color: #0d6efd;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid #003366;
+        -moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 1px rgba(255,255,255,0.5);
+        -webkit-box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        box-shadow: 0px 1px 3px rgb(0 0 0 / 50%), inset 0px 0px 1px rgb(255 255 255 / 50%);
+        text-shadow: 0px -1px 0px rgb(0 0 0 / 70%), 0px 1px 0px rgb(255 255 255 / 30%);
+        display: inline-block;
+        text-decoration: none;
+        height: 40px;
+        width: 200px;
+        text-align: center;
+        padding: 10px;
+    }
 
     .divContainerStringShowTrainerlist {
         display: flex;
@@ -1782,8 +2363,6 @@ body,
         margin-top: 20px;
     }
 
-
-
     .divForContainerShowTrainerlist {
         margin-left: 30px;
         margin-right: 30px;
@@ -1857,7 +2436,6 @@ body,
         width: 200px;
         height: 35px;
     }
-
 
     .divForContainerCreateTrainer {
         margin-left: 30px;
@@ -1946,16 +2524,14 @@ body,
         margin-bottom: 40px;
     }
 
-
     .labelUpdateTrainer {
         float: left;
         color: #989898;
     }
 
-    .spanForUpdateTrainer{       
-        float:left;     
+    .spanForUpdateTrainer {
+        float: left;
     }
-    
 }
 
 

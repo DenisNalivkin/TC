@@ -8,6 +8,11 @@ var buttonMoreInformationId = null;
 var buttonDeleteCourseId = null;
 var buttonForContor1 = null;
 var buttonForContor2 = null;
+var buttonEditTrainers = null;
+var buttonForContor3 = null;
+var stringWithElemForSelectAddTrainers = "";
+var stringWithElemForEditTrainers = "";
+var arrayAllFullNameTrainers = [];
 
 allButtons.forEach(item => {
     item.addEventListener( 'click', e => {       
@@ -37,6 +42,10 @@ allButtons.forEach(item => {
                     buttonDeleteCourseId = "deleteCourseButtonId" + i.toString();
                     buttonForContor2 = document.getElementById(buttonDeleteCourseId);
                     allFunctions.addNewEventListenerForButtonDeleteCourse(buttonForContor2,dataCourses);
+
+                    buttonEditTrainers = "ButtonEditCourseTrainerId" + i.toString();
+                    buttonForContor3 = document.getElementById(buttonEditTrainers);
+                    allFunctions.addNewEventListenerForButtonEditCourseTrainers (buttonForContor3,dataCourses,mainElem,newElem,arrayAllFullNameTrainers,stringWithElemForSelectAddTrainers,stringWithElemForEditTrainers);             
                 }
             }
         }     
