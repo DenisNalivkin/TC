@@ -42,7 +42,7 @@ selectTypes.addEventListener('change',function(){
 
                     buttonEditTrainers = "ButtonEditCourseTrainerId" + i.toString();
                     buttonForContor3 = document.getElementById(buttonEditTrainers);
-                    allFunctions.addNewEventListenerForButtonEditTrainers (buttonForContor3,dataCourses,mainElem,newElem,arrayAllFullNameTrainers,stringWithElemForSelectAddTrainers,stringWithElemForEditTrainers);             
+                    allFunctions.addNewEventListenerForButtonEditCourseTrainers (buttonForContor3,dataCourses,mainElem,newElem,arrayAllFullNameTrainers,stringWithElemForSelectAddTrainers,stringWithElemForEditTrainers);             
                 }
             }
             else
@@ -62,7 +62,7 @@ selectTypes.addEventListener('change',function(){
 
                         buttonEditTrainers = "ButtonEditCourseTrainerId" + i.toString();
                         buttonForContor3 = document.getElementById(buttonEditTrainers);
-                        allFunctions.addNewEventListenerForButtonEditTrainers (buttonForContor3,dataCourses,mainElem,newElem,arrayAllFullNameTrainers,stringWithElemForSelectAddTrainers,stringWithElemForEditTrainers);             
+                        allFunctions.addNewEventListenerForButtonEditCourseTrainers (buttonForContor3,dataCourses,mainElem,newElem,arrayAllFullNameTrainers,stringWithElemForSelectAddTrainers,stringWithElemForEditTrainers);             
                     }                       
                 }
             }

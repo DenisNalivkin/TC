@@ -46,17 +46,14 @@ namespace CMSys.Web.Controllers
             {
                 UnitOfWorkOptions unitOfWorkOptions = new UnitOfWorkOptions();
                 UnitOfWork allRepositories = new UnitOfWork(unitOfWorkOptions);
-
                 Trainer newTrainer = new Trainer();
                 TrainerGroup trainerGroup = (TrainerGroup)getEntityTrainerGroup(allRepositories, model);
-
                 newTrainer.Description = model.Description;
                 newTrainer.Id = allRepositories.UserRepository.All().Where(user => user.FullName == model.User).Select(user => user.Id).First();
                 newTrainer.TrainerGroup = trainerGroup;
                 newTrainer.TrainerGroupId = trainerGroup.Id;
                 newTrainer.User = allRepositories.UserRepository.All().Where(user => user.FullName == model.User).First();
-                newTrainer.VisualOrder = model.Order;
-               
+                newTrainer.VisualOrder = model.Order;             
                 allRepositories.TrainerRepository.Add(newTrainer);
                 allRepositories.Commit();
                                
@@ -73,7 +70,6 @@ namespace CMSys.Web.Controllers
         {          
             UnitOfWorkOptions unitOfWorkOptions = new UnitOfWorkOptions();
             UnitOfWork allRepositories = new UnitOfWork(unitOfWorkOptions);
-
             string[] words = allDataForUpdateTrainer.Split('/');
             UpdateTrainer(allRepositories, words);
             allRepositories.Commit();
@@ -91,7 +87,6 @@ namespace CMSys.Web.Controllers
             allRepositories.Commit();
         }
         
-
         public IEnumerable<CMSys.Core.Entities.Catalog.Course> getDataCourses()
         {
             IEnumerable<CMSys.Core.Entities.Catalog.Course> dataCourses = _uow.CourseRepository.All();
